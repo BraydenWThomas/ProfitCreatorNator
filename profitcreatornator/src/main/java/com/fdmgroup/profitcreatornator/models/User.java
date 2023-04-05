@@ -6,13 +6,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Getter
 @Setter
 public class User {
@@ -24,4 +27,17 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String role;
+	private Boolean enabled;
+	
+	public User(String email, String password, String firstName, String lastName, String role, Boolean enabled) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.role = role;
+		this.enabled = enabled;
+	}
+	
 }
