@@ -14,8 +14,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Getter
 @Setter
 @ToString
@@ -29,8 +30,22 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	
+	private String role;
+	private Boolean enabled;
 	@OneToOne(mappedBy = "user")
 	private Trader trader;
+	
+	public User(String email, String password, String firstName, String lastName, String role, Boolean enabled, Trader trader) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.role = role;
+		this.enabled = enabled;
+		this.trader = trader;
+	}
+	
+	
 	
 }
