@@ -24,10 +24,10 @@ import java.time.LocalDateTime;
 public class Option {
 	@Id
 	@GeneratedValue
-	private long id;
-	private long stock_id;
-	private long taker_id;
-	private long writer_id;
+	private Long id;
+	private Long stock_id;
+	private Long taker_id;
+	private Long writer_id;
 	private String style; // TODO maybe better set as enum
 	private double strike_price;
 	private String type; // TODO maybe better set as enum

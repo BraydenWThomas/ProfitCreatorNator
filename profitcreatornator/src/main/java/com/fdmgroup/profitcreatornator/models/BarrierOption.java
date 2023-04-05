@@ -25,7 +25,7 @@ public class BarrierOption extends Option {
 	@GeneratedValue
 	//@Getter(AccessLevel.None)
 	//@Setter(AccessLevel.None)
-	private long id;
+	private Long id;
 	private double threshold;
 	private String type;
 	private String status;
