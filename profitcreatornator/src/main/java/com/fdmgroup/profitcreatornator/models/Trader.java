@@ -20,17 +20,18 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class User {
+public class Trader {
 	@Id
 	@GeneratedValue
-	private Long userId;
-	private String email;
-	@JsonIgnore
-	private String password;
-	private String firstName;
-	private String lastName;
+	private Long traderId;
 	
-	@OneToOne(mappedBy = "user")
-	private Trader trader;
+	@OneToOne
+	@JsonIgnore
+	private User user;
+	
+//	@OneToMany
+//	@JsonIgnore
+//	private List<Options> options;
+	
 	
 }
