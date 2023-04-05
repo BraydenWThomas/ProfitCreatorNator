@@ -19,8 +19,6 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
 public class User {
 	@Id
 	@GeneratedValue
