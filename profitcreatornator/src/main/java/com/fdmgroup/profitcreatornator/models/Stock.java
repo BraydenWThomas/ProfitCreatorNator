@@ -31,7 +31,7 @@ public class Stock {
 	private String name;
 	private String symbol;
 	private double currentPrice;
-	private HashMap<String, Double> history;
+	//private HashMap<String, Double> history;
 	@OneToMany(mappedBy = "stock")
 	private List<Portfolio> portfolios;
 	
