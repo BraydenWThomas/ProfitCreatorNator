@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
+import com.fdmgroup.profitcreatornator.models.User;
 import com.fdmgroup.profitcreatornator.repository.TraderRepository;
 import com.fdmgroup.profitcreatornator.repository.UserRepository;
 
@@ -31,6 +32,7 @@ public class DataLoader implements ApplicationRunner {
 				+ "*********************************************************************\n"
 				+ "*********************************************************************\n"
 				+ "*********************************************************************\n");
+		
 	}
 	
 }
