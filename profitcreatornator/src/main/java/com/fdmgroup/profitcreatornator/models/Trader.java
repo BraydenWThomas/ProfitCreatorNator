@@ -26,10 +26,18 @@ import lombok.ToString;
 public class Trader {
 	@Id
 	@GeneratedValue
-	private long traderId;
+	private Long traderId;
 	
 	@OneToOne
 	@JsonIgnore
+	private User user;
+	
+	private String name;
+	
+//	@OneToMany
+//	@JsonIgnore
+//	private List<Options> options;
+
 	private User user; // child of the user
 	
     @OneToMany(mappedBy = "trader")
