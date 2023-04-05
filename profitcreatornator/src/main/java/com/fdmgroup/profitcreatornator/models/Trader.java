@@ -1,10 +1,13 @@
 package com.fdmgroup.profitcreatornator.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,16 +19,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class Trader {
 	@Id
 	@GeneratedValue
-	private Long userId;
-	private String email;
-	@JsonIgnore
-	private String password;
-	private String firstName;
-	private String lastName;
+	private Long traderId;
 	
-	@OneToOne(mappedBy = "user")
-	private Trader trader;
+	@OneToOne
+	@JsonIgnore
+	private User user;
+	
+//	@OneToMany
+//	@JsonIgnore
+//	private List<Options> options;
 }
