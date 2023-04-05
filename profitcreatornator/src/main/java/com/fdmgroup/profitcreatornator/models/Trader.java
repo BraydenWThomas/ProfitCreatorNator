@@ -29,6 +29,8 @@ public class Trader {
 	@JsonIgnore
 	private User user;
 	
+	private String name;
+	
 //	@OneToMany
 //	@JsonIgnore
 //	private List<Options> options;
