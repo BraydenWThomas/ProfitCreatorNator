@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,6 +19,8 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 public class User {
 	@Id
 	@GeneratedValue
@@ -29,8 +32,10 @@ public class User {
 	private String lastName;
 	private String role;
 	private Boolean enabled;
+	@OneToOne(mappedBy = "user")
+	private Trader trader;
 	
-	public User(String email, String password, String firstName, String lastName, String role, Boolean enabled) {
+	public User(String email, String password, String firstName, String lastName, String role, Boolean enabled, Trader trader) {
 		super();
 		this.email = email;
 		this.password = password;
@@ -38,6 +43,9 @@ public class User {
 		this.lastName = lastName;
 		this.role = role;
 		this.enabled = enabled;
+		this.trader = trader;
 	}
+	
+	
 	
 }
