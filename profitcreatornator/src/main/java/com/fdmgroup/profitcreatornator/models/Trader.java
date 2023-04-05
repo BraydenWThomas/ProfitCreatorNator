@@ -37,8 +37,6 @@ public class Trader {
 //	@OneToMany
 //	@JsonIgnore
 //	private List<Options> options;
-
-	private User user; // child of the user
 	
     @OneToMany(mappedBy = "trader")
     @JsonIgnore
