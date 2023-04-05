@@ -42,7 +42,7 @@ public class Stock {
 	// add and remove function for parent relationship stock hold
 	public void addPortfolio(Portfolio portfolio) {
 		this.portfolios.add(portfolio);
-		portfolio.
+		portfolio.setStock(this);
 	}
 	public void removePortfolio(Portfolio portfolio) {
 		this.portfolios.remove(portfolio);

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Portfolio {

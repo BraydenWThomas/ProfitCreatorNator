@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 public class Option {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private long id;
 	private long stock_id;
 	private long taker_id;
 	private long writer_id;
