@@ -1,7 +1,7 @@
 import { Card, Grid, Metric, Text } from "@tremor/react";
 import { Divider, Typography } from "@mui/material";
 
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar/Navbar';
 import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 
 export default function dashboard() {
