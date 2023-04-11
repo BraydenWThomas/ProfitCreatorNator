@@ -21,13 +21,19 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Option {
+public class Options {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private Long stock_id;
-	private Long taker_id;
-	private Long writer_id;
+	@ManyToOne
+	@JsonIgnore
+	private Stock stock_id;
+	@ManyToOne
+	@JsonIgnore
+	private Trader taker_id;
+	@ManyToOne
+	@JsonIgnore
+	private Trader writer_id;
 	private String style; // TODO maybe better set as enum
 	private double strike_price;
 	private String type; // TODO maybe better set as enum
@@ -36,13 +42,10 @@ public class Option {
 	private boolean exercised;
 	private LocalDateTime purchase_date;
 	private String status; // TODO maybe better set as enum
-	@ManyToOne
-	@JsonIgnore
-	private Trader trader;
 	
-	public Option(Long stock_id, Long taker_id, Long writer_id, String style, double strike_price, String type,
+	public Options(Stock stock_id, Trader taker_id, Trader writer_id, String style, double strike_price, String type,
 			double premium, LocalDateTime expiration_date, boolean exercised, LocalDateTime purchase_date,
-			String status, Trader trader) {
+			String status) {
 		super();
 		this.stock_id = stock_id;
 		this.taker_id = taker_id;
@@ -55,23 +58,26 @@ public class Option {
 		this.exercised = exercised;
 		this.purchase_date = purchase_date;
 		this.status = status;
-		this.trader = trader;
 	}
 	
-	// function for remove linked entities
-	public void removeTrader() {
-		this.trader.getOptions().remove(this);
-		this.trader = null;
-	}
-	public void addTrader(Trader trader) {
-		this.trader = trader;
-		trader.getOptions().add(this);
-	}
+//	// function for remove linked entities
+//	public void removeTrader() {
+//		this.trader.getOptions().remove(this);
+//		this.trader = null;
+//	}
+//	public void addTrader(Trader trader) {
+//		this.trader = trader;
+//		trader.getOptions().add(this);
+//	}
 	
 	// remove all relationships associated with the current entity
 	public void removeAllRelation() {
 		// TODO add code
 	}
+
+
+
+
 	
 	
 }

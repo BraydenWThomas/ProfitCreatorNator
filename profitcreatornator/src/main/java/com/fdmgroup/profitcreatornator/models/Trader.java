@@ -38,24 +38,31 @@ public class Trader {
 //	@JsonIgnore
 //	private List<Options> options;
 	
-    @OneToMany(mappedBy = "trader")
+    @OneToMany(mappedBy = "taker_id")
     @JsonIgnore
- 	private List<Option> options;
-	
-	public Trader(User user, String name, List<Option> options) {
+ 	private List<Options> takerOptions;
+    
+    @OneToMany(mappedBy = "writer_id")
+    @JsonIgnore
+ 	private List<Options> writerOptions;
+
+	public Trader(User user, String name, List<Options> takerOptions, List<Options> writerOptions) {
 		super();
 		this.user = user;
 		this.name = name;
-		this.options = options;
+		this.takerOptions = takerOptions;
+		this.writerOptions = writerOptions;
 	}
+	
     
-	// remove and add function
-    public void addOption(Option option) {
-    	this.options.add(option);
-    	option.setTrader(this);
-    }
-    public void removeOption(Option option) {
-    	this.options.remove(option);
-    	option.setTrader(null);
-    }
+    
+//	// remove and add function
+//    public void addOption(Option option) {
+//    	this.options.add(option);
+//    	option.setTrader(this);
+//    }
+//    public void removeOption(Option option) {
+//    	this.options.remove(option);
+//    	option.setTrader(null);
+//    }
 }

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class BarrierOption extends Option {
+public class BarrierOption extends Options {
 	@Id
 	@GeneratedValue
 	//@Getter(AccessLevel.None)

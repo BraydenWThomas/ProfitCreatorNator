@@ -9,7 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.fdmgroup.profitcreatornator.models.Option;
+import com.fdmgroup.profitcreatornator.models.Options;
 import com.fdmgroup.profitcreatornator.models.Portfolio;
 import com.fdmgroup.profitcreatornator.models.Stock;
 import com.fdmgroup.profitcreatornator.models.Trader;
@@ -73,10 +73,10 @@ public class DataLoader implements ApplicationRunner {
 		
 		//TRADERS
 		List<Trader> traderList = new ArrayList<>(); 
-		traderList.add(new Trader(null, "Cynthia Shepard", null));
-		traderList.add(new Trader(null, "Darrell Hunnicutt", null));
-		traderList.add(new Trader(null, "Jenelle Carpenter", null));
-		traderList.add(new Trader(null, "Jenson Ott", null));
+		traderList.add(new Trader(null, "Cynthia Shepard", null, null));
+		traderList.add(new Trader(null, "Darrell Hunnicutt", null, null));
+		traderList.add(new Trader(null, "Jenelle Carpenter", null, null));
+		traderList.add(new Trader(null, "Jenson Ott", null, null));
 		this.traderRepository.saveAll(traderList);
 		
 		//STOCKS
@@ -125,9 +125,12 @@ public class DataLoader implements ApplicationRunner {
 //		optionList.add(new Option(null, null, null, null, 0, null, 0, null, false, null, null, null));
 //		
 //		this.optionRepository.saveAll(optionList);
+//		
+//		
+//		this.optionRepository.saveAll(optionList);
 		
 		
-		//this.optionRepository.saveAll(optionList);
+		
 		this.portfolioRepository.saveAll(portfolioList);
 		this.stockRepository.saveAll(stockList);
 		this.traderRepository.saveAll(traderList);
