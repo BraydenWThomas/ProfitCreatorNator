@@ -10,9 +10,11 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -21,9 +23,11 @@ import java.util.ArrayList;
 
 @Entity
 @AllArgsConstructor
-// @NoArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 public class Stock {
 	@Id
 	@GeneratedValue
@@ -35,8 +39,12 @@ public class Stock {
 	@OneToMany(mappedBy = "stock")
 	private List<Portfolio> portfolios;
 	
-	public Stock() {
-		this.portfolios = new ArrayList<Portfolio>();
+	public Stock(String name, String symbol, double currentPrice, List<Portfolio> portfolios) {
+		super();
+		this.name = name;
+		this.symbol = symbol;
+		this.currentPrice = currentPrice;
+		this.portfolios = portfolios;
 	}
 	
 	// add and remove function for parent relationship stock hold
@@ -48,6 +56,7 @@ public class Stock {
 		this.portfolios.remove(portfolio);
 		portfolio.setStock(null);
 	}
+
 	
 	
 }

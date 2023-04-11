@@ -38,4 +38,14 @@ public class Portfolio {
 	@ManyToOne
 	@JsonIgnore
 	private Trader trader;
+
+	public Portfolio(int quantity, Stock stock, Trader trader) {
+		super();
+		this.quantity = quantity;
+		this.stock = stock;
+		this.trader = trader;
+	}
+	
+	
+	
 }

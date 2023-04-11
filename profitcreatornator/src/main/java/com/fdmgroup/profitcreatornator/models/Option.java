@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Option {
 	@Id
 	@GeneratedValue
@@ -40,6 +40,23 @@ public class Option {
 	@JsonIgnore
 	private Trader trader;
 	
+	public Option(Long stock_id, Long taker_id, Long writer_id, String style, double strike_price, String type,
+			double premium, LocalDateTime expiration_date, boolean exercised, LocalDateTime purchase_date,
+			String status, Trader trader) {
+		super();
+		this.stock_id = stock_id;
+		this.taker_id = taker_id;
+		this.writer_id = writer_id;
+		this.style = style;
+		this.strike_price = strike_price;
+		this.type = type;
+		this.premium = premium;
+		this.expiration_date = expiration_date;
+		this.exercised = exercised;
+		this.purchase_date = purchase_date;
+		this.status = status;
+		this.trader = trader;
+	}
 	
 	// function for remove linked entities
 	public void removeTrader() {
@@ -55,5 +72,6 @@ public class Option {
 	public void removeAllRelation() {
 		// TODO add code
 	}
+	
 	
 }

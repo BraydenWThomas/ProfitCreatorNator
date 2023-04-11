@@ -42,6 +42,12 @@ public class Trader {
     @JsonIgnore
  	private List<Option> options;
 	
+	public Trader(User user, String name, List<Option> options) {
+		super();
+		this.user = user;
+		this.name = name;
+		this.options = options;
+	}
     
 	// remove and add function
     public void addOption(Option option) {
