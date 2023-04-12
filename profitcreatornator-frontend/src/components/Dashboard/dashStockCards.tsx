@@ -19,7 +19,7 @@ export default function Navbar() {
                                     </div>
                                     <BadgeDelta deltaType="moderateDecrease">0.49%</BadgeDelta>
                                 </Flex>
-                                        <Text className="truncate">Commonwealth Bank of Australia</Text>
+                                <Text className="truncate">Commonwealth Bank of Australia</Text>
                             </Stat>
                         </ChakraProvider>
                     </Card>
@@ -35,7 +35,7 @@ export default function Navbar() {
                                     </div>
                                     <BadgeDelta deltaType="moderateIncrease">1.15%</BadgeDelta>
                                 </Flex>
-                                        <Text className="truncate">Vanguard Australian Shares Index</Text>
+                                <Text className="truncate">Vanguard Australian Shares Index ETF</Text>
                             </Stat>
                         </ChakraProvider>
                     </Card>
@@ -51,7 +51,7 @@ export default function Navbar() {
                                     </div>
                                     <BadgeDelta deltaType="moderateIncrease">0.15%</BadgeDelta>
                                 </Flex>
-                                        <Text className="truncate">National Australia Bank Ltd.</Text>
+                                <Text className="truncate">National Australia Bank Ltd.</Text>
                             </Stat>
                         </ChakraProvider>
                     </Card>
@@ -64,12 +64,11 @@ export default function Navbar() {
                                 icon={TrendingUpIcon}
                                 color="orange"
                                 variant="light"
-                                tooltip="Sum of Sales"
                                 size="xl"
                             />
                             <div>
                                 <Text>Your Earnings</Text>
-                                <Metric>$350.40</Metric>
+                                <Metric>$3342.00</Metric>
                             </div>
                         </Flex>
                     </Card>
@@ -81,7 +80,6 @@ export default function Navbar() {
                                 icon={CashIcon}
                                 color="orange"
                                 variant="light"
-                                tooltip="Sum of Sales"
                                 size="xl"
                             />
                             <div>
