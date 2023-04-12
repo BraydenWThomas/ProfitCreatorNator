@@ -26,7 +26,7 @@ import lombok.ToString;
 public class Trader {
 	@Id
 	@GeneratedValue
-	private Long traderId;
+	private Long id;
 	
 	@OneToOne
 	@JsonIgnore
