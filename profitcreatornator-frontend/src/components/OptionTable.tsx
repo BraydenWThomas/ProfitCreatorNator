@@ -13,39 +13,40 @@ import {
     BadgeDelta
 } from "@tremor/react";
 
-const data = [
-    {
-        code: "IT0001",
-        name: "Microsoft",
-        avgPrice: "133.55",
-        profitLoss:
-            "+15%",
-        units: "500",
-        price: "132.07",
-        value: "4424324",
-        type: "Technology"
 
-    },
-    {
-        code: "IT0001",
-        name: "Microsoft",
-        avgPrice: "133.55",
-        profitLoss:
-            "+15%",
-        units: "500",
-        price: "132.07",
-        value: "4424324",
-        type: "Technology"
-
-    }
-];
 
 export default function OptionTable() {
+    const data = [
+        {
+            code: "IT0001",
+            name: "Microsoft",
+            avgPrice: "133.55",
+            profitLoss:
+                "+15%",
+            units: "500",
+            price: "132.07",
+            value: "4424324",
+            type: "PUT"
+    
+        },
+        {
+            code: "IT0001",
+            name: "Microsoft",
+            avgPrice: "133.55",
+            profitLoss:
+                "+15%",
+            units: "500",
+            price: "132.07",
+            value: "4424324",
+            type: "CALL"
+    
+        }
+    ];
     return (
         <Card style={{ marginLeft: '2%', marginRight: '2%', width: '96%' }}>
 
             <Table className="mt-5">
-                <TableHead>
+                <TableHead style={{fontSize: "100%"}}>
                     <TableRow>
                         <TableHeaderCell>Code</TableHeaderCell>
                         <TableHeaderCell>Name</TableHeaderCell>
@@ -93,7 +94,13 @@ export default function OptionTable() {
                                 ${item.value}
                             </TableCell>
                             <TableCell>
-                                {item.type}
+                            
+                                 <Badge
+                                 color= {item.type == "PUT" ? "purple" : "orange"}
+                                 size="xs">
+                                 {item.type}
+                             </Badge> 
+                    
                             </TableCell>
                         </TableRow>
                     ))}
