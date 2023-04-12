@@ -1,9 +1,8 @@
+import { Card, Grid, Metric, Text } from "@tremor/react";
 import { Divider, Typography } from "@mui/material";
-import { Stat, StatLabel, StatNumber, StatHelpText, StatArrow, StatGroup, ChakraProvider } from "@chakra-ui/react";
-
-
 
 import Navbar from '../components/Navbar';
+import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 
 export default function dashboard() {
     return (
@@ -25,20 +24,51 @@ export default function dashboard() {
 
                 <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
 
-                <div className="commbank-stat">
-                    <ChakraProvider>
-                        <StatGroup>
-                            <Stat>
-                                <StatLabel>Sent</StatLabel>
-                                <StatNumber>345,670</StatNumber>
-                                <StatHelpText>
-                                    <StatArrow type='increase' />
-                                    23.36%
-                                </StatHelpText>
-                            </Stat>
-                        </StatGroup>
-                    </ChakraProvider>
-                </div>
+                <Typography variant="h4" sx={{m:2}}>Your Account</Typography>
+                <Grid numColsLg={3} className="mt-6 gap-6">
+                    <div className="CBA-stat">
+                        <Card className="max-w-xs mx-auto">
+                            <ChakraProvider>
+                                <Stat>
+                                    <StatLabel>Commonwealth Bank of Australia</StatLabel>
+                                    <StatNumber>$99.70</StatNumber>
+                                    <StatHelpText>
+                                        <StatArrow type='increase' />
+                                        0.69%
+                                    </StatHelpText>
+                                </Stat>
+                            </ChakraProvider>
+                        </Card>
+                    </div>
+                    <div className="VAS-stat">
+                        <Card className="max-w-xs mx-auto">
+                            <ChakraProvider>
+                                <Stat>
+                                    <StatLabel>Vanguard Australian Shares Index ETF</StatLabel>
+                                    <StatNumber>$90.88</StatNumber>
+                                    <StatHelpText>
+                                        <StatArrow type='increase' />
+                                        1.15%
+                                    </StatHelpText>
+                                </Stat>
+                            </ChakraProvider>
+                        </Card>
+                    </div>
+                    <div className="NASDAQ-stat">
+                        <Card className="max-w-xs mx-auto">
+                            <ChakraProvider>
+                                <Stat>
+                                    <StatLabel>Nasdaq Inc</StatLabel>
+                                    <StatNumber>$54.38</StatNumber>
+                                    <StatHelpText>
+                                        <StatArrow type='decrease' />
+                                        0.54%
+                                    </StatHelpText>
+                                </Stat>
+                            </ChakraProvider>
+                        </Card>
+                    </div>
+                </Grid>
             </div>
         </div>
     )

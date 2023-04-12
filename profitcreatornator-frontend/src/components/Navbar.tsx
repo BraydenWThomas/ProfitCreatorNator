@@ -1,4 +1,3 @@
-
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -10,7 +9,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import Image from 'next/image'
 
-import styles from "./Navbar.module.scss";
+import styles from "../styles/Navbar.module.scss";
 import { SetStateAction, useState } from "react";
 import { Tab, Tabs } from '@mui/material';
 
