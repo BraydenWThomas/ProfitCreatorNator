@@ -9,7 +9,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import Image from 'next/image'
 
-import styles from "./Navbar.module.scss";
+import styles from "../styles/Navbar.module.scss";
 import { SetStateAction, useState } from "react";
 import { Tab, Tabs } from '@mui/material';
 
