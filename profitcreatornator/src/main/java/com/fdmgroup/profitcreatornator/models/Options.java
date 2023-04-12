@@ -39,13 +39,13 @@ public class Options {
 	private String type; // TODO maybe better set as enum
 	private double premium;
 	private LocalDateTime expiration_date;
-	private boolean exercised;
 	private LocalDateTime purchase_date;
 	private String status; // TODO maybe better set as enum
+	private int quantity;
 	
 	public Options(Stock stock_id, Trader taker_id, Trader writer_id, String style, double strike_price, String type,
-			double premium, LocalDateTime expiration_date, boolean exercised, LocalDateTime purchase_date,
-			String status) {
+			double premium, LocalDateTime expiration_date, LocalDateTime purchase_date,
+			String status, int quantity) {
 		super();
 		this.stock_id = stock_id;
 		this.taker_id = taker_id;
@@ -55,9 +55,9 @@ public class Options {
 		this.type = type;
 		this.premium = premium;
 		this.expiration_date = expiration_date;
-		this.exercised = exercised;
 		this.purchase_date = purchase_date;
 		this.status = status;
+		this.quantity = quantity;
 	}
 	
 //	// function for remove linked entities
