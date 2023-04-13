@@ -6,7 +6,7 @@
 import {
     Card,
     Metric, Title, Subtitle, Bold, Italic, Text,
-    Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell,
+    Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell, BadgeDelta, Flex,
 }
     from "@tremor/react";
 
@@ -28,20 +28,23 @@ export default function ExchangeRates() {
 
         <div>
             <div className="flex flex-row...">
-            {forexCurrencies.map((currency) =>
-                <Card key={currency.id} style={{margin: "0 8px"}}>
-                    <Title> {currency.symbol} </Title>
-                    <Text> {currency.name} </Text>
-                    <Metric> {currency.amount} </Metric>
-                    {
-                        currency.change > 0 ?
-                            <Text color="green"> {currency.change} </Text>
-                            :
-                            <Text color="red"> {currency.change} </Text>
-                    }
-
-                </Card>
-            )}
+                {forexCurrencies.map((currency) =>
+                    <Card key={currency.id} style={{ margin: "0 8px" }}>
+                        <Flex alignItems="start">
+                            <div>
+                                <Title> {currency.symbol} </Title>
+                                <Text> {currency.name} </Text>
+                                <Metric> {currency.amount} </Metric>
+                            </div>
+                            {
+                                currency.change > 0 ?
+                                    <BadgeDelta deltaType="moderateIncrease"> {currency.change} </BadgeDelta>
+                                    :
+                                    <BadgeDelta deltaType="moderateDecrease"> {currency.change} </BadgeDelta>
+                            }
+                        </Flex>
+                    </Card>
+                )}
             </div>
         </div>
 

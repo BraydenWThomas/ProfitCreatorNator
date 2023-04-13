@@ -18,7 +18,7 @@ export default function Navbar() {
                                         <Text>CBA</Text>
                                         <Metric>$99.27</Metric>
                                     </div>
-                                    <BadgeDelta deltaType="moderateDecrease">0.49%</BadgeDelta>
+                                    <BadgeDelta deltaType="moderateDecrease">-0.49%</BadgeDelta>
                                 </Flex>
                                 <Text className="truncate">Commonwealth Bank of Australia</Text>
                             </Stat>
