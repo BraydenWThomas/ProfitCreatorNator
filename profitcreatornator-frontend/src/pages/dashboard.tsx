@@ -7,26 +7,14 @@ import Value from "@/components/Dashboard/value";
 import Gain from "@/components/Dashboard/gain";
 import Loss from "@/components/Dashboard/loss";
 import ExchangeRates from "@/components/Dashboard/exchange";
+import Header from "@/components/Header";
 
 export default function dashboard() {
     return (
         <div style={{ display: 'flex', marginBottom: "16px" }}>
             <Navbar/>
             <div className="content" style={{ float: 'left', width: '100%' }}>
-                <div className="header" style={{ display: "flex" }}>
-                    <Typography
-                        component="h1"
-                        variant="h3"
-                        color="#293845"
-                        mt={2}
-                        ml={2}
-                        sx={{ flex: 1 }}
-                    >
-                        Dashboard
-                    </Typography>
-                </div>
-
-                <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
+                <Header title="Dashboard"/>
 
                 <Grid container spacing={2}>
                     <Grid item sm={6}>
