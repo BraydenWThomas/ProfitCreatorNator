@@ -1,68 +1,60 @@
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import SettingsIcon from '@mui/icons-material/Settings';
-
-import Image from 'next/image'
-
 import styles from "../styles/Navbar.module.scss";
-import { SetStateAction, useState } from "react";
-import { Tab, Tabs } from '@mui/material';
+import { Tab, Tabs, Divider } from '@mui/material';
+import { TemplateIcon, ChartPieIcon, LibraryIcon, IdentificationIcon, BookmarkAltIcon, AdjustmentsIcon, LogoutIcon } from '@heroicons/react/outline';
 
 export default function Navbar() {
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event: any, newValue: SetStateAction<number>) => {
-        setValue(newValue);
-    };
 
     return (
-        <div className={styles.navbar}>
-            <div className={styles.logo}>
-                <Image src={"/logo.png"} alt="logo" height={80} width={160} />
-            </div>
-            <div className={styles.links}>
-                <Tabs orientation='vertical' sx={{ width: '100%' }} value={value} onChange={handleChange} TabIndicatorProps={{ color: '#e7833a', sx: { left: 0, width: 7 } }}>
-                    <Tab sx={{ alignSelf: 'start' }}
-                        icon={<DashboardIcon />} iconPosition="start"
-                        href='/dashboard'
-                        label="Dashboard"
-                    />
-                    <Tab sx={{ alignSelf: 'start' }}
-                        icon={<AccountBalanceWalletIcon />} iconPosition="start"
-                        href='/portfolio'
-                        label="Portfolio"
-                    />
-                    <Tab sx={{ alignSelf: 'start' }}
-                        icon={<AnalyticsIcon />} iconPosition="start"
-                        label="Analysis"
-                    />
-                    <Tab sx={{ alignSelf: 'start' }}
-                        icon={<AccountBalanceIcon />} iconPosition="start"
-                        label="Marketplace"
-                    />
-                    <Tab sx={{ alignSelf: 'start' }}
-                        icon={<MarkEmailUnreadIcon />} iconPosition="start"
-                        label="Notifications"
-                    />
-                    <Tab sx={{ alignSelf: 'start' }}
-                        icon={<PlaylistAddIcon />} iconPosition="start"
-                        label="Watchlist"
-                    />
-                    <Tab sx={{ mt: 35, alignSelf: 'start' }}
-                        icon={<SettingsIcon />} iconPosition="start"
-                        label="Settings"
-                    />
-                    <Tab sx={{ alignSelf: 'start' }}
-                        icon={<LogoutIcon />} iconPosition="start"
-                        label="Logout"
-                    />
-                </Tabs>
-            </div>
+        <div className="px-3 py-3 overflow-y-auto bg-white border" style={{width:'300px', height:'100vh'}}>
+            <a href="/dashboard" className="flex items-center mb-4">
+                <img src={"/logo.png"} className="w-39 h-16" alt="Logo" />
+            </a>
+            <Divider className="mb-4" />
+            <ul className="font-medium text-grey-900 dark:text-gray-300">
+                <li className="mb-4">
+                    <a href="/dashboard" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <TemplateIcon className='w-6 h-6' />
+                        <h1 className="ml-3">Dashboard</h1>
+                    </a>
+                </li>
+                <li className="mb-4">
+                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <IdentificationIcon className='w-6 h-6' />
+                        <h1 className="flex-1 ml-3 whitespace-nowrap">Portolio</h1>
+                    </a>
+                </li>
+                <li className="mb-4">
+                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <ChartPieIcon className='w-6 h-6' />
+                        <h1 className="flex-1 ml-3 whitespace-nowrap">Analytics</h1>
+                    </a>
+                </li>
+                <li className="mb-4">
+                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <LibraryIcon className='w-6 h-6' />
+                        <h1 className="flex-1 ml-3 whitespace-nowrap">Marketplace</h1>
+                    </a>
+                </li>
+                <li className="mb-4">
+                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <BookmarkAltIcon className='w-6 h-6' />
+                        <h1 className="flex-1 ml-3 whitespace-nowrap">Watchlist</h1>
+                    </a>
+                </li>
+                <Divider className="mb-4" />
+                <li className="mb-4">
+                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <AdjustmentsIcon className='w-6 h-6' />
+                        <h1 className="flex-1 ml-3 whitespace-nowrap">Settings</h1>
+                    </a>
+                </li>
+                <li className="mb-4">
+                    <a href="/login" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <LogoutIcon className='w-6 h-6' />
+                        <h1 className="flex-1 ml-3 whitespace-nowrap">Logout</h1>
+                    </a>
+                </li>
+            </ul>
         </div>
     )
 }

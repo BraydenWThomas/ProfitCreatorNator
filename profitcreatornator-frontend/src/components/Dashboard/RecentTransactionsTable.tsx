@@ -25,7 +25,7 @@ export default function RecentTransactions(){
                             <TableCell>CBA</TableCell>
                             <TableCell>Commonwealth Bank of Australia</TableCell>
                             <TableCell>99.27</TableCell>
-                            <TableCell><BadgeDelta deltaType="moderateDecrease">0.49</BadgeDelta></TableCell>
+                            <TableCell><BadgeDelta deltaType="moderateDecrease">-0.49</BadgeDelta></TableCell>
                             <TableCell>100</TableCell>
                             <TableCell>99.27</TableCell>
                             <TableCell>992.70</TableCell>

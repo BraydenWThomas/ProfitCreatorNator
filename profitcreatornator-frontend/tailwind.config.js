@@ -10,7 +10,11 @@ module.exports = {
   "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-  extend: {},
+  extend: {
+    fontFamily: {
+      'inter': ['inter','sans-serif']
+    }
+  },
   },
   plugins: [],
 }

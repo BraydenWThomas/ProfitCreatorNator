@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -23,7 +24,7 @@ import lombok.ToString;
 @Table(name="_user")
 public class User {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 	private String email;
 	@JsonIgnore
@@ -32,6 +33,7 @@ public class User {
 	private String lastName;
 	private String role;
 	private Boolean enabled;
+	
 	@OneToOne(mappedBy = "user")
 	private Trader trader;
 	

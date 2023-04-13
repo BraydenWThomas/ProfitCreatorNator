@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.fdmgroup.profitcreatornator.exceptions.*;
 import com.fdmgroup.profitcreatornator.models.*;
 import com.fdmgroup.profitcreatornator.repository.*;
@@ -58,6 +57,13 @@ public class PortfolioController {
 	public Portfolio getPortfoliobyId(@PathVariable long portfolioId) {
 		return portfolioRepository.findById(portfolioId)
 				.orElseThrow(() -> new NotFoundException("Can't find Portfolio with id: " + portfolioId));
+	}
+	
+	// Get all portfolios for specific trader
+	@GetMapping("/trader/{traderId}")
+	public List<Portfolio> getTraderPortfolio(@PathVariable long traderId) {
+		traderRepository.findById(traderId).orElseThrow(()->new NotFoundException("Can't find trader with id: " + traderId));
+		return portfolioRepository.getByTraderId(traderId);
 	}
 	
 	// Modify portfolio

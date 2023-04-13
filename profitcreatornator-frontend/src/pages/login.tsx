@@ -3,10 +3,6 @@ import { Box, Container } from '@mui/system'
 
 import Image from 'next/image'
 
-import pcn from '../logo.png';
-
-
-
 export default function login() {
     return (
         <div>
@@ -20,7 +16,7 @@ export default function login() {
                         mt:20
                     }}
                 >
-                    <Image src={pcn} alt='logo'/>
+                    <Image src={"/logo.png"} alt='logo' width={360} height={640}/>
                     <Box component="form" noValidate sx={{ mt: 10 }}>
                         <TextField
                             margin="normal"

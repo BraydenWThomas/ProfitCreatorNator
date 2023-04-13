@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -30,15 +31,19 @@ import java.util.ArrayList;
 @EqualsAndHashCode
 public class Stock {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
 	private String symbol;
 	private double currentPrice;
-	//private HashMap<String, Double> history;
+	// private HashMap<String, Double> history;
+
 	@OneToMany(mappedBy = "stock")
 	private List<Portfolio> portfolios;
-	
+
+	@OneToMany(mappedBy = "stock")
+	private List<Options> options;
+
 	public Stock(String name, String symbol, double currentPrice, List<Portfolio> portfolios) {
 		super();
 		this.name = name;
@@ -46,17 +51,16 @@ public class Stock {
 		this.currentPrice = currentPrice;
 		this.portfolios = portfolios;
 	}
-	
+
 	// add and remove function for parent relationship stock hold
 	public void addPortfolio(Portfolio portfolio) {
 		this.portfolios.add(portfolio);
 		portfolio.setStock(this);
 	}
+
 	public void removePortfolio(Portfolio portfolio) {
 		this.portfolios.remove(portfolio);
 		portfolio.setStock(null);
 	}
 
-	
-	
 }
