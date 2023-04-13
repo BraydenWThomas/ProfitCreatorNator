@@ -21,7 +21,7 @@ export default function Navbar() {
     };
 
     return (
-        <div className={styles.navbar}>
+        <div className={styles.navbar} style={{height: "100%"}}>
             <div className={styles.logo}>
                 <Image src={"/logo.png"} alt="logo" height={80} width={160} />
             </div>
