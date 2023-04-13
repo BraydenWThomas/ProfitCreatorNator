@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Flex, Title, Text, LineChart, TabList, Tab, Toggle, ToggleItem } from "@tremor/react";
+import { Button, Card, Divider, Flex, Title, Text, LineChart, TabList, Tab, Toggle, ToggleItem, AreaChart } from "@tremor/react";
 
 import { useState } from "react";
 import { startOfYear, subDays } from "date-fns";
@@ -106,7 +106,7 @@ export default function LineChartTabs() {
 
 
     return (
-        <Card className="h-full w-95%">
+        <Card className="h-full max-w-sm mx-auto">
             <Title>Performance - {selectedCategory}</Title>
 
             <div style={{float: "left"}}>
@@ -135,7 +135,7 @@ export default function LineChartTabs() {
             </div>
 
             <div style={{clear: "both"}}>
-            <LineChart
+            <AreaChart
                 className="h-80 mt-8"
                 data={getFilteredData(selectedPeriod)}
                 index="Date"

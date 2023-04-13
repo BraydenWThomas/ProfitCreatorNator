@@ -10,8 +10,8 @@ import ExchangeRates from "@/components/Dashboard/exchange";
 
 export default function dashboard() {
     return (
-        <div style={{ display: 'flex' }}>
-            <Navbar />
+        <div style={{ display: 'flex', marginBottom: "16px" }}>
+            <Navbar/>
             <div className="content" style={{ float: 'left', width: '100%' }}>
                 <div className="header" style={{ display: "flex" }}>
                     <Typography
