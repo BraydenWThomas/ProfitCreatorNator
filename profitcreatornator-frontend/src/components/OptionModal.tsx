@@ -1,48 +1,59 @@
 
 "use client"
-import { Backdrop, Box, Container, Divider, Fade, Grid, Menu, Modal, TextField, Typography, Button, InputAdornment } from "@mui/material";
+import { Box, Container, Divider, Fade, Grid, Menu, Modal, TextField, Typography, Button, InputAdornment } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from "react";
-import { useRef } from 'react'
+import { useState, Dispatch, SetStateAction } from "react";
+import OptionTable from "./OptionTable";
+import { Toggle, ToggleItem } from "@tremor/react";
+import { OptionInfo } from "./OptionTable";
 
+export default function OptionModal({openState, setOpenState} : {openState : boolean, setOpenState :  Dispatch<SetStateAction<boolean>>}) {
+  
+  const [optionType, setOptionType] = useState("PUT");
+  const handleClose = () => setOpenState(false)
+  const [units, setUnits] = useState(0);
+  const [strike, setStrike] = useState(0);
+  const [price, setPrice] = useState(300);
+  const [optionInfo, setOptionInfo] = useState<OptionInfo[]>([])
 
-export default function BasicUsage() {
-  const name = 'John'
-  const [ModalOpen, setModalOpen] = useState(false);
-  const handleOpen = () => setModalOpen(true);
-  const handleClose = () => setModalOpen(false);
-  const [activeButton, setActiveButton] = useState(0);
-  const setPut = () => setActiveButton(1);
-  const setCall = () => setActiveButton(2);
   const style = {
     ':hover': {
-      bgcolor: 'white', 
+      bgcolor: 'white',
       color: 'rgb(44,136,217)',
-     
-
     },
- 
   }
-  const nonActiveStyle = {
-    bgcolor: 'white', 
-    color: 'rgb(44,136,217)',
-  }
-  const activeStyle = {
-    
-      bgcolor: 'rgb(44,136,217)', 
-      color: 'white',
 
+
+  const createOption = () => {
+
+    const option = {
+      code: "IT0001",
+      name: "Microsoft",
+      strikePrice: 133.55,
+      profitLoss:
+        "+15%",
+      units: units,
+      price: price,
+      value: price*units,
+      type: optionType
+
+    }
+
+    setOptionInfo([...optionInfo, option])
+
+
+    setOpenState(false)
   }
   return (
     <>
-      <Button onClick={handleOpen}>Open Modal</Button>
       <Modal
         aria-labelledby="edit-modal-title"
         aria-describedby="edit-modal-description"
-        open={ModalOpen}
-        sx={{boxShadow: 24,
-          }}
+        open={openState}
+        sx={{
+          boxShadow: 24
+        }}
       >
         <Box style={{ backgroundColor: 'rgb(195,207,217)', transform: 'translate(180%, 30%)', width: '20%', height: '50%' }}>
           <Container component="main">
@@ -56,7 +67,7 @@ export default function BasicUsage() {
                 mt: 3,
               }}>
               <Divider sx={{ mt: 2, mb: 2 }} />
-              <Typography component="h1" variant="h5" mt={2} sx={{ flex: 1, color: 'rgb(41,56,69)' }}>Trading Account: {name}</Typography>
+              <Typography component="h1" variant="h5" mt={2} sx={{ flex: 1, color: 'rgb(41,56,69)' }}>Trading Account: John</Typography>
               <div
                 style={{
                   display: "flex",
@@ -69,90 +80,79 @@ export default function BasicUsage() {
 
                 }}
               >
-              
-      <TextField
-        id="search"
-        type="search"
-        label="Search"
-        // value={searchTerm}
-        // onChange={handleChange}
-        sx={{ width: '100%' }}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton type="submit" aria-label="search">
-                    <SearchIcon style={{ fill: "gray" }} />
-                  </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-  
+
+                <TextField
+                  id="search"
+                  type="search"
+                  label="Search"
+                  // value={searchTerm}
+                  // onChange={handleChange}
+                  sx={{ width: '100%' }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton type="submit" aria-label="search">
+                          <SearchIcon style={{ fill: "gray" }} />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
               </div>
-              <div style={{display: 'flex'}}>
-              <div>
-                <div style={{marginBottom: '5%'}}>
-                <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700,marginBottom: '0.2%' }}> Order Type </Typography>
-                <Button
-                  variant="contained"
-                  component="label"
-                  onClick={setPut}
-                  sx={activeButton == 1 ? activeStyle :
-                    nonActiveStyle
-                  }
-                  style={{ fontWeight: 700 }}
-                  >
-                  PUT
-                </Button>
-                <Button
-                  variant="contained"
-                  component="label"
-                  onClick={setCall}
-                  sx={activeButton == 2 ? activeStyle :
-                    nonActiveStyle
-                  }
-                  style={{ marginRight: "16px", fontWeight: 700 }}>
-                  CALL
-                </Button>
+              <div style={{ display: 'flex' }}>
+                <div>
+                  <div style={{ marginBottom: '5%' }}>
+                    <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginBottom: '0.2%' }}> Order Type </Typography>
+                    <Toggle style={{ fontWeight: '700' }} defaultValue="PUT" onValueChange={(value) => setOptionType(value)}>
+
+                      <ToggleItem value="PUT" text="PUT" />
+                      <ToggleItem value="CALL" text="CALL" />
+                    </Toggle>
+                  </div>
+
+                  <Grid >
+
+                    <Grid item xs={12} sm={4}>
+
+                      <TextField
+
+                        helperText={"Required field"}
+                        type="number"
+                        label="UNITS"
+
+                        onChange={(e) => {
+                          setUnits(parseInt(e.target.value))
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        type="number"
+                        helperText={"Required field"}
+                        label="STRIKE PRICE"
+                        onChange={(e) => {
+                          setStrike(parseInt(e.target.value))
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+
+                        helperText={"Required field"}
+                        label="PREMIUM"
+
+                      />
+                    </Grid>
+
+                  </Grid>
                 </div>
-                
-                <Grid >
 
-                  <Grid item xs={12} sm={4}>
-                  
-                    <TextField
-
-                      helperText={"Required field"}
-
-                      label="UNITS"
-
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    <TextField
-
-                      helperText={"Required field"}
-                      label="STRIKE PRICE"
-
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    <TextField
-
-                      helperText={"Required field"}
-                      label="PREMIUM"
-
-                    />
-                  </Grid>
-
-                </Grid>
-              </div>
-                 
-              <Box sx={{marginLeft: '10%', border: '2px solid rgb(158,173,186)', width: '70%', backgroundColor: 'rgb(227,232,237)'}}>
-                <Typography component="h2" variant="h6" mb={2} style={{marginTop: '2%', marginLeft: '2%' }}> Option Evaluation </Typography>
+                <Box sx={{ marginLeft: '10%', border: '2px solid rgb(158,173,186)', width: '70%', backgroundColor: 'rgb(227,232,237)' }}>
+                  <Typography component="h2" variant="h6" mb={2} style={{ marginTop: '2%', marginLeft: '2%' }}> Option Evaluation </Typography>
                 </Box>
-         
-                </div>
+
+              </div>
 
               <Divider sx={{ mt: 2, mb: 2 }} />
 
@@ -164,7 +164,8 @@ export default function BasicUsage() {
                   sx={
                     style
                   }
-                  style={{ marginRight: "16px", fontWeight: 700 }}>
+                  style={{ marginRight: "16px", fontWeight: 700 }}
+                  onClick={createOption}>
                   Create Option
                 </Button>
                 <Button
@@ -188,6 +189,7 @@ export default function BasicUsage() {
         </Box>
 
       </Modal>
+      <OptionTable tablerows={optionInfo} />
     </>
   )
 }
