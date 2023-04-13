@@ -19,7 +19,7 @@ import { Grid, Col, Card, Text, Metric } from "@tremor/react";
 export default function portfolio() {
     return (
         <div style={{ display: 'flex' }}>
-            <Navbar />
+            <Navbar/>
             <div className="content" style={{ float: 'left', width: "100%", margin: "0 12px" }}>
                 <div className="header" style={{ display: "flex" }}>
                     <Typography
@@ -38,7 +38,7 @@ export default function portfolio() {
 
                 <div style={{ clear: "both" }}>
                     <Typography variant="h4" color="#293845" mx={2} mb={2} style={{ float: "left" }}> My Holdings </Typography>
-                    <Button variant="outlined" style={{ float: "right" }} href='/'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
+                    <Button variant="contained" style={{ float: "right" }} href='/'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
                     <div style={{ clear: "both" }} />
                     <RecentTransactions />
                 </div>
@@ -68,7 +68,7 @@ export default function portfolio() {
                                     title={"Pending Options"}
                                     total={"4"}
                                     color="stone" />
-                                <Button className='w-full mx-auto' variant="outlined" href='/'> View Analytics </Button> {/* Take you to 'Analytics' */}
+                                <Button className='w-full mx-auto' variant="contained" sx={{ backgroundColor: "lightpurple" }} href='/analytics'> View Analytics </Button> {/* Take you to 'Analytics' */}
                             </Box>
                         </Col>
 

@@ -18,17 +18,17 @@ const data = [
     {
         Date: "17.06.2022",
         Price: 95.32,
-        Volume: 45187420,
+        Volume: 34187420,
     },
     {
         Date: "25.09.2022",
         Price: 80.67,
-        Volume: 45712541,
+        Volume: 35712541,
     },
     {
         Date: "30.10.2022",
         Price: 79.78,
-        Volume: 45996423,
+        Volume: 44996423,
     },
     {
         Date: "12.11.2022",
@@ -38,12 +38,12 @@ const data = [
     {
         Date: "31.12.2022",
         Price: 72.54,
-        Volume: 50005323,
+        Volume: 52005323,
     },
     {
         Date: "30.11.2022",
         Price: 78.20,
-        Volume: 551234532,
+        Volume: 531234532,
     },
     {
         Date: "12.12.2022",
@@ -106,45 +106,49 @@ export default function LineChartTabs() {
 
 
     return (
-        <Card className="h-full max-w-sm mx-auto">
+        <Card
+            className="h-full max-w-sm mx-auto"
+            decoration="top"
+            decorationColor="purple"
+        >
             <Title>Performance - {selectedCategory}</Title>
 
-            <div style={{float: "left"}}>
-            <TabList
-                defaultValue={selectedPeriod}
-                onValueChange={(value) => setSelectedPeriod(value)}
-                className="mt-10" color="orange">
-                <Tab value="1M" text="1M" />
-                <Tab value="3M" text="3M" />
-                <Tab value="6M" text="6M" />
-                <Tab value="YTD" text="YTD" />
-                <Tab value="Max" text="Max" />
-            </TabList>
+            <div style={{ float: "left" }}>
+                <TabList
+                    defaultValue={selectedPeriod}
+                    onValueChange={(value) => setSelectedPeriod(value)}
+                    className="mt-10" color="purple">
+                    <Tab value="1M" text="1M" />
+                    <Tab value="3M" text="3M" />
+                    <Tab value="6M" text="6M" />
+                    <Tab value="YTD" text="YTD" />
+                    <Tab value="Max" text="Max" />
+                </TabList>
             </div>
 
-            <div style={{float: "right"}}>
-            <Toggle
-                className="float-right" // Trying to get this to float right but, cant X(
-                color="zinc"
-                defaultValue="Price"
-                onValueChange={(value) => setSelectedCategory(value)}
-            >
-                <ToggleItem value="Price" text="Price" />
-                <ToggleItem value="Volume" text="Volume" />
-            </Toggle>
+            <div style={{ float: "right" }}>
+                <Toggle
+                    className="float-right" // Trying to get this to float right but, cant X(
+                    color="zinc"
+                    defaultValue="Price"
+                    onValueChange={(value) => setSelectedCategory(value)}
+                >
+                    <ToggleItem value="Price" text="Price" />
+                    <ToggleItem value="Volume" text="Volume" />
+                </Toggle>
             </div>
 
-            <div style={{clear: "both"}}>
-            <AreaChart
-                className="h-80 mt-8"
-                data={getFilteredData(selectedPeriod)}
-                index="Date"
-                categories={[selectedCategory]}
-                colors={["orange"]}
-                valueFormatter={dataFormatter} // Not Sure how this works
-                showLegend={false}
-                yAxisWidth={48}
-            />
+            <div style={{ clear: "both" }}>
+                <AreaChart
+                    className="h-80 mt-8"
+                    data={getFilteredData(selectedPeriod)}
+                    index="Date"
+                    categories={[selectedCategory]}
+                    colors={["purple"]}
+                    valueFormatter={dataFormatter} // Not Sure how this works
+                    showLegend={false}
+                    yAxisWidth={48}
+                />
             </div>
             {/* <Flex justifyContent="end" className="space-x-2">
             <Button size="sm" onClick={() => setSelectedCategory("Price")}> Price </Button>
