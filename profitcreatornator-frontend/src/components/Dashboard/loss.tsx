@@ -21,7 +21,7 @@ export default function Loss() {
     ]
 
     // Sorts from highest to lowest loss
-    const topLossList = [... dummyList].sort((a, b) => a.net - b.net);
+    const topLossList = [... dummyList].sort((a, b) => b.net - a.net);
 
 
     return (
