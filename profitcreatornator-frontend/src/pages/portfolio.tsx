@@ -18,8 +18,10 @@ import { Grid, Col, Card, Text, Metric } from "@tremor/react";
 
 export default function portfolio() {
     return (
-        <div style={{ display: 'flex' }}>
-            <Navbar/>
+        <div style={{ display: 'flex', width: "100%" }}>
+            <div>
+                <Navbar />
+            </div>
             <div className="content" style={{ float: 'left', width: "100%", margin: "0 12px" }}>
                 <div className="header" style={{ display: "flex" }}>
                     <Typography
@@ -36,11 +38,16 @@ export default function portfolio() {
 
                 <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
 
-                <div style={{ clear: "both" }}>
+                <div style={{ clear: "both", marginBottom: "16px" }}>
                     <Typography variant="h4" color="#293845" mx={2} mb={2} style={{ float: "left" }}> My Holdings </Typography>
                     <Button variant="contained" style={{ float: "right" }} href='/'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
                     <div style={{ clear: "both" }} />
                     <RecentTransactions />
+                </div>
+
+                <div style={{ clear: "both" }}>
+                    <div style={{ clear: "both" }} />
+                    <RecentTransactions /> {/* Change to stock table*/}
                 </div>
 
                 <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
@@ -49,13 +56,11 @@ export default function portfolio() {
                     <Typography variant="h4" color="#293845" mx={2} mb={2}> My Performance </Typography>
                     <Grid numCols={1} numColsSm={2} numColsLg={3} className="gap-2">
                         <Col numColSpan={2} numColSpanLg={2}>
-                            <div style={{}}>
-                                <Performance />
-                            </div>
+                            <Performance />
                         </Col>
                         <Col>
 
-                            <Box textAlign='center' className= "ml-4">
+                            <Box textAlign='center' className="ml-4">
                                 <StatBox icon={CashIcon}
                                     title={"Profit"}
                                     total={"$834.95"}

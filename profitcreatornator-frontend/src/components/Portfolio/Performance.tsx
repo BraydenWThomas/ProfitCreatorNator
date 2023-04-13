@@ -107,7 +107,7 @@ export default function LineChartTabs() {
 
     return (
         <Card
-            className="h-full max-w-sm mx-auto"
+            className="h-full w-full mx-auto"
             decoration="top"
             decorationColor="purple"
         >
