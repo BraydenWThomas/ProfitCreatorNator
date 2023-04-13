@@ -11,10 +11,10 @@ import Header from "@/components/Header";
 
 export default function dashboard() {
     return (
-        <div style={{ display: 'flex' }}>
-            <Navbar />
+        <div style={{ display: 'flex', marginBottom: "16px" }}>
+            <Navbar/>
             <div className="content" style={{ float: 'left', width: '100%' }}>
-                <Header/>
+                <Header title="Dashboard"/>
 
                 <Grid container spacing={2}>
                     <Grid item sm={6}>
