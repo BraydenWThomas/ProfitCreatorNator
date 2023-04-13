@@ -1,8 +1,9 @@
 import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 import { BadgeDelta, Card, Flex, Icon, Metric, Text } from "@tremor/react";
-import { CashIcon, TrendingUpIcon } from "@heroicons/react/outline"
+
 import { Grid } from "@mui/material"
 import React from "react";
+import { CashIcon, TrendingUpIcon } from "@heroicons/react/outline";
 
 export default function Navbar() {
     return (
