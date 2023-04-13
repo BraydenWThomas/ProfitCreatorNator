@@ -15,7 +15,7 @@ const StatBox: FunctionComponent<Props> = ({
     color
 }) => {
     return (
-        <Card className="mt-2 max-w-xs" 
+        <Card className="mx-auto mb-4" 
         decoration="top" 
         decorationColor={color}>
             <Flex
