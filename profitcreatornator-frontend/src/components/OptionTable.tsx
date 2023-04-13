@@ -1,4 +1,5 @@
 import { StatusOnlineIcon } from "@heroicons/react/outline";
+import Link from "next/link";
 import {
     Card,
     Table,
@@ -8,9 +9,9 @@ import {
     TableBody,
     TableCell,
     Text,
-    Title,
     Badge,
-    BadgeDelta
+    BadgeDelta,
+    Button
 } from "@tremor/react";
 export interface OptionInfo {
     code: String,
@@ -21,10 +22,10 @@ export interface OptionInfo {
     price: number,
     value: number,
     type: String
-  }
+}
 
 
-export default function OptionTable({tablerows}: {tablerows : OptionInfo[]}) {
+export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) {
     const data = tablerows;
     return (
         <Card style={{ marginLeft: '1%', marginRight: '1%', width: '98%' }}>
@@ -85,6 +86,12 @@ export default function OptionTable({tablerows}: {tablerows : OptionInfo[]}) {
                                     {item.type}
                                 </Badge>
 
+                            </TableCell>
+                            <TableCell>
+                                <Button color="green"><Link href={{
+                                    pathname: '/viewOption/[index]',
+                                    query: { index: index+1 },
+                                }}>View</Link></Button>
                             </TableCell>
                         </TableRow>
                     ))}
