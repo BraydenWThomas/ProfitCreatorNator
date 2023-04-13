@@ -1,19 +1,20 @@
 package com.fdmgroup.profitcreatornator.models;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -23,17 +24,8 @@ import java.time.LocalDateTime;
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Options {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
-	@JsonIgnore
-	private Stock stock_id;
-	@ManyToOne
-	@JsonIgnore
-	private Trader taker_id;
-	@ManyToOne
-	@JsonIgnore
-	private Trader writer_id;
 	private String style; // TODO maybe better set as enum
 	private double strike_price;
 	private String type; // TODO maybe better set as enum
@@ -43,13 +35,38 @@ public class Options {
 	private String status; // TODO maybe better set as enum
 	private int quantity;
 	
-	public Options(Stock stock_id, Trader taker_id, Trader writer_id, String style, double strike_price, String type,
+	@ManyToOne
+	@JoinTable(
+			name = "stocks_options",
+			joinColumns = @JoinColumn(name = "option_id"),
+			inverseJoinColumns = @JoinColumn(name = "stock_id"))
+	@JsonIgnore
+	private Stock stock;
+	
+	@ManyToOne
+	@JoinTable(
+			name = "takers_options",
+			joinColumns = @JoinColumn(name = "option_id"),
+			inverseJoinColumns = @JoinColumn(name = "taker_id"))
+	@JsonIgnore
+	private Trader taker;
+	
+	@ManyToOne
+	@JoinTable(
+			name = "writers_options",
+			joinColumns = @JoinColumn(name = "option_id"),
+			inverseJoinColumns = @JoinColumn(name = "writer_id"))
+	@JsonIgnore
+	private Trader writer;
+
+	
+	public Options(Stock stock, Trader taker, Trader writer, String style, double strike_price, String type,
 			double premium, LocalDateTime expiration_date, LocalDateTime purchase_date,
 			String status, int quantity) {
 		super();
-		this.stock_id = stock_id;
-		this.taker_id = taker_id;
-		this.writer_id = writer_id;
+		this.stock = stock;
+		this.taker = taker;
+		this.writer = writer;
 		this.style = style;
 		this.strike_price = strike_price;
 		this.type = type;
