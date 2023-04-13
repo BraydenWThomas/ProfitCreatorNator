@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.fdmgroup.profitcreatornator.exceptions.*;
 import com.fdmgroup.profitcreatornator.models.*;
 import com.fdmgroup.profitcreatornator.repository.*;
@@ -31,7 +30,7 @@ import com.fdmgroup.profitcreatornator.repository.*;
 @RequestMapping("barrierOption")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class BarrierOptionController {
-	
+
 	@Autowired
 	private BarrierOptionRepository barrierOptionRepository;
 	@Autowired
@@ -44,22 +43,21 @@ public class BarrierOptionController {
 	private TraderRepository traderRepository;
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	/* --------------------- Barrier Options --------------------- */
 	// Get all BarrierOption
 	@GetMapping("")
 	public List<BarrierOption> getAllBarrierOptions() {
 		return barrierOptionRepository.findAll();
 	}
-	
-	// Get specific BarrierOption 
+
+	// Get specific BarrierOption
 	@GetMapping("{barrierOptionId}")
 	public BarrierOption getBarrierOptionbyId(@PathVariable long barrierOptionId) {
 		return barrierOptionRepository.findById(barrierOptionId)
 				.orElseThrow(() -> new NotFoundException("Can't find Barrier Option with id: " + barrierOptionId));
 	}
-	
-	
+
 	// Modify BarrierOption
 	@PutMapping("")
 	@ResponseStatus(HttpStatus.CREATED)

@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.fdmgroup.profitcreatornator.exceptions.*;
 import com.fdmgroup.profitcreatornator.models.*;
 import com.fdmgroup.profitcreatornator.repository.*;
@@ -31,7 +30,7 @@ import com.fdmgroup.profitcreatornator.repository.*;
 @RequestMapping("option")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class OptionController {
-	
+
 	@Autowired
 	private BarrierOptionRepository barrierOptionRepository;
 	@Autowired
@@ -44,21 +43,28 @@ public class OptionController {
 	private TraderRepository traderRepository;
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	/* --------------------- Options --------------------- */
 	// Get all options
 	@GetMapping("")
 	public List<Options> getAllOptions() {
 		return optionRepository.findAll();
 	}
-	
+
 	// Get specific option
 	@GetMapping("{optionId}")
 	public Options getOptionbyId(@PathVariable long optionId) {
 		return optionRepository.findById(optionId)
 				.orElseThrow(() -> new NotFoundException("Can't find Option with id: " + optionId));
 	}
-	
+
+	// Create option for existing stock
+	@PostMapping("/options")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Options createOption(@RequestBody Options option) {
+		return optionRepository.save(option);
+	}
+
 	// Modify option
 	@PutMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
