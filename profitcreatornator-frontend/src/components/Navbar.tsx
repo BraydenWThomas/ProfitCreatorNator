@@ -5,7 +5,7 @@ import { TemplateIcon, ChartPieIcon, LibraryIcon, IdentificationIcon, BookmarkAl
 export default function Navbar() {
 
     return (
-        <div className="px-3 py-3 overflow-y-auto bg-white border" style={{width:'300px', height:'100vh'}}>
+        <div className="px-3 py-3 overflow-y-auto bg-white border" style={{width:'600px', height:'100vh', zIndex:1}}>
             <a href="/dashboard" className="flex items-center mb-4">
                 <img src={"/logo.png"} className="w-39 h-16" alt="Logo" />
             </a>

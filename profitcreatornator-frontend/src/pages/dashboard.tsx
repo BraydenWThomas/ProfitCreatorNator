@@ -11,33 +11,34 @@ import Header from "@/components/Header";
 
 export default function dashboard() {
     return (
-        <div style={{ display: 'flex', marginBottom: "16px" }}>
-            <Navbar/>
-            <div className="content" style={{ float: 'left', width: '100%' }}>
-                <Header title="Dashboard"/>
-
-                <Grid container spacing={2}>
-                    <Grid item sm={6}>
-                        <Typography variant="h4" color="#293845" m={2}>Your Account</Typography>
-                        <DashStockCards />
+        <div style={{ display: 'flex' }}>
+            <Navbar />
+            <div style={{ }}>
+                <Header title="Dashboard" />
+                <div className="px-2 py-2">
+                    <Grid container spacing={2}>
+                        <Grid item sm={6}>
+                            <Typography variant="h4" color="#293845" m={2}>Your Account</Typography>
+                            <DashStockCards />
+                        </Grid>
+                        <Grid item sm={6} >
+                            <RecentTransactions />
+                        </Grid>
+                        <Grid item sm={6}>
+                            <Value />
+                        </Grid>
+                        <Grid item sm={3}>
+                            <Gain />
+                        </Grid>
+                        <Grid item sm={3} >
+                            <Loss />
+                        </Grid>
+                        <Grid item sm={12}>
+                            <Typography variant="h4" color="#293845" m={2}>Exchange Rates</Typography>
+                            <ExchangeRates />
+                        </Grid>
                     </Grid>
-                    <Grid item sm={6} pr={2}>
-                        <RecentTransactions />
-                    </Grid>
-                    <Grid item sm={6}>
-                        <Value />
-                    </Grid>
-                    <Grid item sm={3}>
-                        <Gain />
-                    </Grid>
-                    <Grid item sm={3} pr={2}>
-                        <Loss />
-                    </Grid>
-                    <Grid item sm={12} pl={2} pr={2}>
-                        <Typography variant="h4" color="#293845" m={2}>Exchange Rates</Typography>
-                        <ExchangeRates />
-                    </Grid>
-                </Grid>
+                </div>
             </div>
         </div>
     )
