@@ -7,7 +7,69 @@
     "units": "500",
     "price": "132.07",
     "value": "4424324",
-    "type": "PUT"
+    "type": "PUT",
+    "trader_id": "1",
+    "status": "past"
+  },
+  {
+    "code": "IT0012",
+    "name": "Bing",
+    "avgPrice": "133.55",
+    "profitLoss": "+15%",
+    "units": "500",
+    "price": "132.07",
+    "value": "4424324",
+    "type": "PUT",
+    "trader_id": "1",
+    "status": "past"
+  },
+  {
+    "code": "IT0045",
+    "name": "Microsoft",
+    "avgPrice": "133.55",
+    "profitLoss": "+15%",
+    "units": "500",
+    "price": "132.07",
+    "value": "4424324",
+    "type": "CALL",
+    "trader_id": "1",
+    "status": "past"
+  },
+  {
+    "code": "IT023",
+    "name": "Microsoft",
+    "avgPrice": "133.55",
+    "profitLoss": "+15%",
+    "units": "500",
+    "price": "132.07",
+    "value": "4424324",
+    "type": "PUT",
+    "trader_id": "1",
+    "status": "current"
+  },
+  {
+    "code": "IT0201",
+    "name": "Microsoft",
+    "avgPrice": "133.55",
+    "profitLoss": "+15%",
+    "units": "500",
+    "price": "132.07",
+    "value": "4424324",
+    "type": "PUT",
+    "trader_id": "1",
+    "status": "pending"
+  },
+  {
+    "code": "IT0234",
+    "name": "ANZ",
+    "avgPrice": "133.55",
+    "profitLoss": "+15%",
+    "units": "500",
+    "price": "132.07",
+    "value": "4424324",
+    "type": "PUT",
+    "trader_id": "1",
+    "status": "pending"
   },
   {
     "code": "IT0001",
@@ -17,96 +79,56 @@
     "units": "500",
     "price": "132.07",
     "value": "4424324",
-    "type": "PUT"
+    "type": "PUT",
+    "trader_id": "1",
+    "status": "current"
   },
   {
-    "code": "IT0001",
+    "code": "IT1234",
     "name": "Microsoft",
     "avgPrice": "133.55",
     "profitLoss": "+15%",
     "units": "500",
     "price": "132.07",
     "value": "4424324",
-    "type": "CALL"
+    "type": "CALL",
+    "trader_id": "1",
+    "status": "past"
   },
   {
     "code": "IT0001",
-    "name": "Microsoft",
+    "name": "Steam",
     "avgPrice": "133.55",
     "profitLoss": "+15%",
     "units": "500",
     "price": "132.07",
     "value": "4424324",
-    "type": "PUT"
+    "type": "CALL",
+    "trader_id": "1",
+    "status": "current"
   },
   {
     "code": "IT0001",
-    "name": "Microsoft",
+    "name": "CBA",
     "avgPrice": "133.55",
     "profitLoss": "+15%",
     "units": "500",
     "price": "132.07",
     "value": "4424324",
-    "type": "PUT"
+    "type": "CALL",
+    "trader_id": "1",
+    "status": "current"
   },
   {
     "code": "IT0001",
-    "name": "Microsoft",
+    "name": "Tesla",
     "avgPrice": "133.55",
     "profitLoss": "+15%",
     "units": "500",
     "price": "132.07",
     "value": "4424324",
-    "type": "PUT"
-  },
-  {
-    "code": "IT0001",
-    "name": "Microsoft",
-    "avgPrice": "133.55",
-    "profitLoss": "+15%",
-    "units": "500",
-    "price": "132.07",
-    "value": "4424324",
-    "type": "PUT"
-  },
-  {
-    "code": "IT0001",
-    "name": "Microsoft",
-    "avgPrice": "133.55",
-    "profitLoss": "+15%",
-    "units": "500",
-    "price": "132.07",
-    "value": "4424324",
-    "type": "CALL"
-  },
-  {
-    "code": "IT0001",
-    "name": "Microsoft",
-    "avgPrice": "133.55",
-    "profitLoss": "+15%",
-    "units": "500",
-    "price": "132.07",
-    "value": "4424324",
-    "type": "CALL"
-  },
-  {
-    "code": "IT0001",
-    "name": "Microsoft",
-    "avgPrice": "133.55",
-    "profitLoss": "+15%",
-    "units": "500",
-    "price": "132.07",
-    "value": "4424324",
-    "type": "CALL"
-  },
-  {
-    "code": "IT0001",
-    "name": "Microsoft",
-    "avgPrice": "133.55",
-    "profitLoss": "+15%",
-    "units": "500",
-    "price": "132.07",
-    "value": "4424324",
-    "type": "CALL"
+    "type": "CALL",
+    "trader_id": "1",
+    "status": "past"
   }
 ]

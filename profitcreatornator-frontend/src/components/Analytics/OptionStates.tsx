@@ -1,4 +1,4 @@
-import OptionTable from "./AnalyticsOptionTable";
+import AnalyticsOptionTable from "./AnalyticsOptionTable";
 
 interface DisplayState {
   state: string
@@ -9,7 +9,7 @@ export default function OptionStates({ state }: DisplayState) {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
         <h1> Test Past </h1>
-        <OptionTable />
+        <AnalyticsOptionTable state={state} />
       </div>
     )
   }
@@ -18,7 +18,7 @@ export default function OptionStates({ state }: DisplayState) {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
         <h1> Test Current </h1>
-        <OptionTable />
+        <AnalyticsOptionTable state={state} />
       </div>
     )
   }
@@ -27,7 +27,7 @@ export default function OptionStates({ state }: DisplayState) {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
         <h1> Test Pending </h1>
-        <OptionTable />
+        <AnalyticsOptionTable state={state} />
       </div>
     )
   }
