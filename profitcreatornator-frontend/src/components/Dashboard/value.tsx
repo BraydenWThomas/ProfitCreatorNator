@@ -69,7 +69,7 @@ export default function Value() {
 
     return (
         <Grid pl={2}>
-        <Card decoration="top" decorationColor="purple">
+        <Card decoration="top" decorationColor="purple" style={{height:'454px'}}>
             <Metric>Your Value</Metric>
             <AreaChart
                 className="mt-6"
