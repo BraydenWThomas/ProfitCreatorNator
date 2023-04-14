@@ -5,7 +5,7 @@ import { TemplateIcon, ChartPieIcon, LibraryIcon, IdentificationIcon, BookmarkAl
 export default function Navbar() {
 
     return (
-        <div className="px-3 py-3 overflow-y-auto bg-white border" style={{width:'600px', height:'100vh', zIndex:1}}>
+        <div className="px-3 py-3 overflow-y-auto bg-white border" style={{width:'300px', height:'100vh', zIndex:1}}>
             <a href="/dashboard" className="flex items-center mb-4">
                 <img src={"/logo.png"} className="w-39 h-16" alt="Logo" />
             </a>
@@ -18,7 +18,7 @@ export default function Navbar() {
                     </a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="/portfolio" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <IdentificationIcon className='w-6 h-6' />
                         <h1 className="flex-1 ml-3 whitespace-nowrap">Portolio</h1>
                     </a>
@@ -30,7 +30,7 @@ export default function Navbar() {
                     </a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="/optionMarket" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <LibraryIcon className='w-6 h-6' />
                         <h1 className="flex-1 ml-3 whitespace-nowrap">Marketplace</h1>
                     </a>
