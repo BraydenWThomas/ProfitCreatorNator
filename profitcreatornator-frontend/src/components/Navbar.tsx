@@ -24,7 +24,7 @@ export default function Navbar() {
                     </a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <a href="/analytics" className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <ChartPieIcon className='w-6 h-6' />
                         <h1 className="flex-1 ml-3 whitespace-nowrap">Analytics</h1>
                     </a>

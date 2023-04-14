@@ -14,125 +14,16 @@ import {
   TableCell,
 } from "@tremor/react";
 
+// Material UI
+import { TablePagination } from "@mui/material";
+
 // Components
 import TableData from "./Extra/TableData";
-import { TablePagination } from "@mui/material";
-import GetBadge from "./Extra/GetBadge";
 
-export default function AnalyticsOptionTable() {
-  const data = [
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "PUT"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    },
-    {
-      code: "IT0001",
-      name: "Microsoft",
-      avgPrice: "133.55",
-      profitLoss: "+15%",
-      units: "500",
-      price: "132.07",
-      value: "4424324",
-      type: "CALL"
-    }
-  ];
+// Dummy Data
+import data from "./Extra/TempData.json";
 
+export default function AnalyticsOptionTable({ state }: any) {
   // Pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -146,9 +37,6 @@ export default function AnalyticsOptionTable() {
     setPage(0);
   };
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-  
   return (
     <Card style={{ marginTop: '2%', marginLeft: '2%', marginRight: '2%', width: '96%' }}>
       <Table className="mt-5">
@@ -168,27 +56,12 @@ export default function AnalyticsOptionTable() {
           {data
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((item, key) => (
-              <TableRow key={key}>
-                <TableCell> {item.code} </TableCell>
-                <TableCell> {item.name} </TableCell>
-                <TableCell> ${item.avgPrice} </TableCell>
-                <TableCell>
-                  <GetBadge status={item.profitLoss[0]} amount={item.profitLoss} />
-                </TableCell>
-                <TableCell> {item.units} </TableCell>
-                <TableCell> ${item.price} </TableCell>
-                <TableCell> ${item.value} </TableCell>
-                <TableCell>
-                  <GetBadge status={item.type} amount={item.type} />
-                </TableCell>
-              </TableRow>
+              // (item.status === state
+              //   && <TableData key={key} data={item} />
+              // )
+              <TableData key={key} data={item} /> 
             ))
           }
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
         </TableBody>
       </Table>
       <TablePagination

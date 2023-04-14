@@ -12,8 +12,6 @@ export default function analytics() {
       <div className="content" style={{ float: 'left', width: '100%' }}>
         <Header title="Analytics" />
 
-        <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
-
         <DisplayState />
       </div>
     </div>

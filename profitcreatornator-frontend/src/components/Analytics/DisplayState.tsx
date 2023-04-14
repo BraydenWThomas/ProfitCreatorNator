@@ -35,6 +35,5 @@ export default function DisplayState() {
         ))}
       </div>
     </div>
-
   )
 }
