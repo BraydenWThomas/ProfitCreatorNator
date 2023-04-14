@@ -18,7 +18,7 @@ export default function StockPortfolio() {
     ]
 
     return (
-        <div className="recent-transactions">
+        <div className="stock-portfolio">
             <Card>
                 <Metric>Stocks</Metric>
                 <Table>
@@ -36,7 +36,7 @@ export default function StockPortfolio() {
                     <TableBody>
                         {
                             stockData.map((stock, index) =>
-                                <TableRow>
+                                <TableRow key={index}>
                                     <TableHeaderCell> <Text> {stock.symbol} </Text> </TableHeaderCell>
                                     <TableHeaderCell> <Text> {stock.name} </Text> </TableHeaderCell>
                                     <TableHeaderCell> <Text> {stock.industry} </Text> </TableHeaderCell>
