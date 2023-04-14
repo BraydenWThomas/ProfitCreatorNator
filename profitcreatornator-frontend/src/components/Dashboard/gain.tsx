@@ -36,13 +36,15 @@ export default function Gain() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {topLossList.map((dummyList, index) =>
-                        <TableRow key={index}>
-                            <TableCell> <Text> {dummyList.name} </Text> </TableCell>
-                            <TableCell> <Text> {dummyList.value} </Text> </TableCell>
-                            <TableCell> <BadgeDelta deltaType="moderateIncrease"> {dummyList.net} </BadgeDelta> </TableCell>
-                        </TableRow>
-                    )}
+                    {
+                        topLossList.map((dummyList, index) =>
+                            <TableRow key={index}>
+                                <TableCell> <Text> {dummyList.name} </Text> </TableCell>
+                                <TableCell> <Text> {dummyList.value} </Text> </TableCell>
+                                <TableCell> <BadgeDelta deltaType="moderateIncrease"> {dummyList.net} </BadgeDelta> </TableCell>
+                            </TableRow>
+                        )
+                    }
                 </TableBody>
             </Table>
         </Card>

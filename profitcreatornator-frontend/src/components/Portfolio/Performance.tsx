@@ -111,7 +111,7 @@ export default function LineChartTabs() {
             decoration="top"
             decorationColor="purple"
         >
-            <Title>Performance - {selectedCategory}</Title>
+            <Title> Account Performance - {selectedCategory}</Title>
 
             <div style={{ float: "left" }}>
                 <TabList

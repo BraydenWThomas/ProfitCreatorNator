@@ -3,7 +3,11 @@ import Navbar from '../components/Navbar';
 import StatBox from "@/components/Portfolio/StatBox";
 
 import RecentTransactions from '@/components/Dashboard/RecentTransactionsTable';
+import StockPortfolio from '../components/Portfolio/StockPortfolio';
+import StockPie from '../components/Portfolio/StockPie';
 import Performance from "../components/Portfolio/Performance"
+
+// Heroicons
 import { CashIcon } from "@heroicons/react/outline";
 import { ChartBarIcon } from "@heroicons/react/outline";
 import { ClockIcon } from "@heroicons/react/outline";
@@ -46,8 +50,16 @@ export default function portfolio() {
                 </div>
 
                 <div style={{ clear: "both" }}>
-                    <div style={{ clear: "both" }} />
-                    <RecentTransactions /> {/* Change to stock table*/}
+                    <Grid numCols={1} numColsSm={3} className="gap-2">
+                        <Col numColSpan={2} numColSpanLg={2}>
+                            <StockPortfolio /> {/* Change to stock table*/}
+                        </Col>
+                        <Col>
+                            <Box textAlign='center' className="ml-4">
+                                <StockPie />
+                            </Box>
+                        </Col>
+                    </Grid>
                 </div>
 
                 <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
