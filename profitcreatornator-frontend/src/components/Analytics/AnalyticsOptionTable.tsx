@@ -37,6 +37,9 @@ export default function AnalyticsOptionTable({ state }: any) {
     setPage(0);
   };
 
+  // Filter by status
+  const filteredData = data.filter(item => item.status === state);
+
   return (
     <Card style={{ marginTop: '2%', marginLeft: '2%', marginRight: '2%', width: '96%' }}>
       <Table className="mt-5">
@@ -53,7 +56,7 @@ export default function AnalyticsOptionTable({ state }: any) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data
+          {filteredData
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((item, key) => (
               // (item.status === state
