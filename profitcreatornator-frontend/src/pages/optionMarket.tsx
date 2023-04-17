@@ -7,6 +7,7 @@ import OptionTable from "@/components/OptionTable";
 import OptionModal from "@/components/OptionModal";
 
 import { useState } from "react";
+import Header from "@/components/Header";
 
 export default function OptionMarket() {
     const buttonStyle = {
@@ -20,50 +21,32 @@ export default function OptionMarket() {
 
     const handleOpen = () => setModalOpen(true)
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', width: "100%" }}>
             <Navbar active="Marketplace"/>
-            <div className="content" style={{ float: 'left', width: '100%' }}>
-                <div className="header" style={{ display: "flex" }}>
-                    <Typography
-                        component="h1"
-                        variant="h3"
-                        color="#293845"
-                        mt={2}
-                        ml={2}
-                        sx={{ flex: 1 }}
-                    >
-                        Options Marketplace
-                    </Typography>
+            <div className="content" style={{ width: '100%' }}>
+                <div>
+                    <Header title=" Options Marketplace" />
                 </div>
 
-                <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
-                <div style={{ marginLeft: '1%', marginRight: '1%', width: '98%', marginBottom: '1%', border: '2px solid rgb(41,56,69)' }}>
+                <Card>
                     <Typography
                         component="h2"
                         variant="h4"
                         color="#293845"
-                        mt={2}
-                        ml={2}
-                      
-                        sx={{ flex: 1 }}
                     >
                         Place Orders
                     </Typography>
                     <Typography
-                    component="h4"
+                        component="h4"
                         variant="h6"
                         color="#293845"
-                        mt={2}
-                        ml={2}
-                      
-                        sx={{ flex: 1 }}>Trading Account: Mr JOHN DOE</Typography>
+                    >
+                        Trading Account: Mr JOHN DOE</Typography>
                     <Button variant="contained"
                         component="label"
                         sx={buttonStyle}
-                       
-                        style={{ marginLeft: '0.5%', marginTop: '1%', marginBottom: '1%', fontWeight: 700 }} 
                         onClick={handleOpen}>Create Option</Button>
-                </div>
+                </Card>
                 <OptionModal openState={ModalOpen} setOpenState={setModalOpen} />
             </div>
         </div>
