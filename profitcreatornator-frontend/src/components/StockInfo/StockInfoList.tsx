@@ -17,7 +17,7 @@ const StockInfoList: FunctionComponent<Props> = ({
     dayRange
 }) => {
     return(
-        <Card className="max-w-xs">
+        <Card>
             <Title>Stock Information</Title>
             <List>
                 <ListItem>

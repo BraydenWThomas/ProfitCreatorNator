@@ -5,10 +5,10 @@ import { Grid } from "@mui/material"
 import React from "react";
 import { CashIcon, TrendingUpIcon } from "@heroicons/react/outline";
 
-export default function Navbar() {
+export default function YourAccount() {
     return (
         <div>
-            <Grid container spacing={2} pl={2}>
+            <Grid container spacing={2}>
                 <Grid item xs={12} sm={4}>
                     <Card>
                         <ChakraProvider>

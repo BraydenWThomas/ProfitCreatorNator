@@ -1,11 +1,11 @@
-import { Badge, BadgeDelta, Card, Metric, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from "@tremor/react";
+import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from "@tremor/react";
 
 export default function RecentTransactions(){
 
     return(
         <div className="recent-transactions">
             <Card>
-                <Metric>Recent Transactions</Metric>
+                <Title>Recent Transactions</Title>
                 <Table>
                     <TableHead>
                         <TableRow>
