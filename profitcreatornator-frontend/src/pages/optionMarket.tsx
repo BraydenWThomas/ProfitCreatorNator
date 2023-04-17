@@ -21,7 +21,7 @@ export default function OptionMarket() {
     const handleOpen = () => setModalOpen(true)
     return (
         <div style={{ display: 'flex' }}>
-            <Navbar />
+            <Navbar active="Marketplace"/>
             <div className="content" style={{ float: 'left', width: '100%' }}>
                 <div className="header" style={{ display: "flex" }}>
                     <Typography

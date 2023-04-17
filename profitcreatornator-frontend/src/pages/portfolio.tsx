@@ -48,7 +48,7 @@ export default function portfolio() {
     return (
         <div style={{ display: 'flex', width: "100%" }}>
             <div>
-                <Navbar />
+                <Navbar active='Portfolio'/>
             </div>
             <div style={{ width: '100%' }}>
                 <Header title="Portfolio" />
