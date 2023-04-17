@@ -17,7 +17,7 @@ const StockPriceCard: FunctionComponent<Props>= ({
     stockPrice
 }) => {
     return(
-       <Card className="max-w-xs mb-1">
+       <Card>
         <Flex justifyContent="between" alignItems="center">
             <Text>{symbol}</Text>
             <BadgeDelta
