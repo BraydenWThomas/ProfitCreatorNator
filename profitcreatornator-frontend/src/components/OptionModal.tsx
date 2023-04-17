@@ -6,16 +6,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState, Dispatch, SetStateAction } from "react";
 import OptionTable from "./OptionTable";
 import { Toggle, ToggleItem } from "@tremor/react";
-import { OptionInfo } from "./OptionTable";
+import { OptionInfo } from "@/pages/optionMarket";
 
-export default function OptionModal({openState, setOpenState} : {openState : boolean, setOpenState :  Dispatch<SetStateAction<boolean>>}) {
+export default function OptionModal({openState, setOpenState, optionInfo, setOptionInfo} : 
+  {optionInfo : OptionInfo[], setOptionInfo : Dispatch<SetStateAction<OptionInfo[]>>, openState : boolean, setOpenState : Dispatch<SetStateAction<boolean>>}) {
   
-  const [optionType, setOptionType] = useState("PUT");
+  const [optionType, setOptionType] = useState("put");
   const handleClose = () => setOpenState(false)
   const [units, setUnits] = useState(0);
   const [strike, setStrike] = useState(0);
   const [price, setPrice] = useState(300);
-  const [optionInfo, setOptionInfo] = useState<OptionInfo[]>([])
+  
 
   const style = {
     ':hover': {
@@ -28,15 +29,15 @@ export default function OptionModal({openState, setOpenState} : {openState : boo
   const createOption = () => {
 
     const option = {
-      code: "IT0001",
-      name: "Microsoft",
-      strikePrice: 133.55,
-      profitLoss:
-        "+15%",
-      units: units,
-      price: price,
-      value: price*units,
-      type: optionType
+      expiration_date: "2023-04-17T00:00:00",
+      id: "0",
+      premium: 0.58,
+      purchase_date: null,
+      quantity: 2,
+      status: "waiting_taker",
+      strike_price: 114.63,
+      style: "European",
+      type: "put"
 
     }
 
@@ -104,10 +105,10 @@ export default function OptionModal({openState, setOpenState} : {openState : boo
                 <div>
                   <div style={{ marginBottom: '5%' }}>
                     <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginBottom: '0.2%' }}> Order Type </Typography>
-                    <Toggle style={{ fontWeight: '700' }} defaultValue="PUT" onValueChange={(value) => setOptionType(value)}>
+                    <Toggle style={{ fontWeight: '700' }} defaultValue="put" onValueChange={(value) => setOptionType(value)}>
 
-                      <ToggleItem value="PUT" text="PUT" />
-                      <ToggleItem value="CALL" text="CALL" />
+                      <ToggleItem value="put" text="PUT" />
+                      <ToggleItem value="call" text="CALL" />
                     </Toggle>
                   </div>
 

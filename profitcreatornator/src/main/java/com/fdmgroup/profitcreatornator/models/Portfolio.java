@@ -33,7 +33,6 @@ public class Portfolio {
 	private int quantity;
 	
 	@ManyToOne
-	@JsonIgnore
 	private Stock stock;
 	
 	@ManyToOne

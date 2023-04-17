@@ -13,16 +13,7 @@ import {
     BadgeDelta,
     Button
 } from "@tremor/react";
-export interface OptionInfo {
-    code: String,
-    name: String,
-    strikePrice: number,
-    profitLoss: String,
-    units: number,
-    price: number,
-    value: number,
-    type: String
-}
+import { OptionInfo } from "@/pages/optionMarket";
 
 
 export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) {
@@ -34,27 +25,28 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
                 <TableHead style={{ fontSize: "100%" }}>
                     <TableRow>
                         <TableHeaderCell>Code</TableHeaderCell>
-                        <TableHeaderCell>Name</TableHeaderCell>
+                        <TableHeaderCell>Expiration Date</TableHeaderCell>
                         <TableHeaderCell>Strike Price($)</TableHeaderCell>
                         <TableHeaderCell>Profit/Loss(%)</TableHeaderCell>
                         <TableHeaderCell>Units</TableHeaderCell>
-                        <TableHeaderCell>Price($)</TableHeaderCell>
-                        <TableHeaderCell>Value($)</TableHeaderCell>
+                        <TableHeaderCell>Premium($)</TableHeaderCell>
+                        <TableHeaderCell>Style</TableHeaderCell>
                         <TableHeaderCell>Type</TableHeaderCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {data.map((item, index) => (
                         <TableRow key={index}>
-                            <TableCell>{item.code}</TableCell>
+                            <TableCell>{item.id}</TableCell>
                             <TableCell>
-                                <Text>{item.name}</Text>
+                                <Text>{item.expiration_date}</Text>
                             </TableCell>
                             <TableCell>
-                                <Text>${item.strikePrice}</Text>
+                                <Text>${item.strike_price}</Text>
                             </TableCell>
                             <TableCell>
-                                {item.profitLoss[0] == "+" ?
+
+                                {/* {item.profitLoss[0] == "+" ?
                                     <BadgeDelta
                                         deltaType="increase"
                                         isIncreasePositive={true}
@@ -67,16 +59,16 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
                                         isIncreasePositive={false}
                                         size="xs">
                                         {item.profitLoss}
-                                    </BadgeDelta>}
+                                    </BadgeDelta>} */}
                             </TableCell>
                             <TableCell>
-                                {item.units.toString()}
+                                {item.quantity.toString()}
                             </TableCell>
                             <TableCell>
-                                ${item.price}
+                                ${item.premium}
                             </TableCell>
                             <TableCell>
-                                ${item.value}
+                                {item.style}
                             </TableCell>
                             <TableCell>
 
@@ -89,8 +81,8 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
                             </TableCell>
                             <TableCell>
                                 <Button color="green"><Link href={{
-                                    pathname: '/viewOption/[index]',
-                                    query: { index: index+1 },
+                                    pathname: '/viewOption/' + item.id,
+                              
                                 }}>View</Link></Button>
                             </TableCell>
                         </TableRow>
