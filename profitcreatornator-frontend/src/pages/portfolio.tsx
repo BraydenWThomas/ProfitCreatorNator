@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import StatBox from "@/components/Portfolio/StatBox";
 import RecentTransactions from '@/components/Dashboard/RecentTransactionsTable';
 import StockPortfolio from '../components/Portfolio/StockPortfolio';
+import StockPortfolio2 from '../components/Portfolio/StockPortfolio2';
 import StockPie from '../components/Portfolio/StockPie';
 import Performance from "../components/Portfolio/Performance";
 
@@ -30,7 +31,7 @@ export default function portfolio() {
     // Get stocks for 'My Holdings'
     useEffect(() => {
         Promise.all([
-            axios.get('http://localhost:8080/api/stock'),
+            axios.get('http://localhost:8080/api/portfolio/trader/detailed/3'), // use 3 for now
             axios.get('http://localhost:8080/api/portfolio/trader/3') // use 3 for now
         ]).then(response => {
             console.log(response);
@@ -42,7 +43,7 @@ export default function portfolio() {
     // console.log(stocks)
     // console.log(portfolio)
 
-    console.log(portfolio)
+    console.log(stocks)
 
 
     return (
@@ -63,7 +64,7 @@ export default function portfolio() {
                     <div style={{ clear: "both" }}>
                         <Grid numCols={1} numColsSm={3} className="gap-2">
                             <Col numColSpan={2} numColSpanLg={2}>
-                                <StockPortfolio />
+                                <StockPortfolio2 />
                             </Col>
                             <Col>
                                 <Box textAlign='center' className="ml-4">
