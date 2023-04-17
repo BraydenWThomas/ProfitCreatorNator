@@ -12,6 +12,7 @@ import Link from "next/link";
 import StockInfoList from "@/components/StockInfo/StockInfoList";
 import StockPriceCard from "@/components/StockInfo/StockPriceCard"
 import Header from "@/components/Header";
+import { OptionInfo } from "../optionMarket";
 export default function OptionMarket() {
     const buttonStyle = {
         ':hover': {
@@ -21,11 +22,36 @@ export default function OptionMarket() {
     }
     const router = useRouter()
     const id = Object.entries(router.query)[0][1];
+    const [optionDetail, setOptionDetail] = useState<OptionInfo>({
+        expiration_date: "2023-04-17T00:00:00",
+        id: "0",
+        premium: 0,
+        purchase_date: null,
+        quantity: 0,
+        status: "waiting_taker",
+        strike_price: 0,
+        style: "European",
+        type: "put"
+  
+      })
+    useEffect(() => {
+        const requestOptions: RequestInit = {
+            method: 'GET',
+            redirect: 'follow',
+        };
+
+        fetch("http://localhost:8080/api/option/" + id, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setOptionDetail(data)
+            })
+            .catch(error => console.log('error', error));
+    }, [])
 
     return (
         <div style={{ display: 'flex', width: "100%" }}>
             <div>
-                <Navbar />
+            <Navbar active="Marketplace"/>
             </div>
             <div style={{ width: "100%" }}>
                 <Header title="Option" />
@@ -55,19 +81,19 @@ export default function OptionMarket() {
                             <List>
                                 <ListItem>
                                     <span>Strike Price</span>
-                                    <span>$5552</span>
+                                    <span>{optionDetail.strike_price}</span>
                                 </ListItem>
                                 <ListItem>
-                                    <span>Option Time span</span>
-                                    <span>3 years</span>
+                                    <span>Option Expiration Date</span>
+                                    <span>{optionDetail.expiration_date.toString().substring(0,10)}</span>
                                 </ListItem>
                                 <ListItem>
                                     <span>Premium</span>
-                                    <span>$35</span>
+                                    <span>{optionDetail.premium}</span>
                                 </ListItem>
                                 <ListItem>
                                     <span>Stock Volume</span>
-                                    <span>500</span>
+                                    <span>{optionDetail.quantity}</span>
                                 </ListItem>
                             </List>
                         </Card> </Grid>

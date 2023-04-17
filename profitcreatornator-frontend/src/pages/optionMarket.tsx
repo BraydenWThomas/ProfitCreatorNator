@@ -6,9 +6,19 @@ import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } 
 import OptionTable from "@/components/OptionTable";
 import OptionModal from "@/components/OptionModal";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
-
+export interface OptionInfo {
+    expiration_date: String
+    id: String
+    premium: number
+    purchase_date: any
+    quantity: number
+    status: String
+    strike_price: number
+    style: String
+    type: String
+}
 export default function OptionMarket() {
     const buttonStyle = {
         ':hover': {
@@ -20,6 +30,27 @@ export default function OptionMarket() {
     const [ModalOpen, setModalOpen] = useState(false);
 
     const handleOpen = () => setModalOpen(true)
+
+    const [optionInfo, setOptionInfo] = useState<OptionInfo[]>([])
+
+
+
+
+
+
+    useEffect(() => {
+        const requestOptions: RequestInit = {
+            method: 'GET',
+            redirect: 'follow',
+        };
+
+        fetch("http://localhost:8080/api/option", requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setOptionInfo(data.filter((item : OptionInfo) => item.status == "waiting_taker"))
+            })
+            .catch(error => console.log('error', error));
+    }, [])
     return (
         <div style={{ display: 'flex', width: "100%" }}>
             <Navbar active="Marketplace"/>
@@ -47,7 +78,7 @@ export default function OptionMarket() {
                         sx={buttonStyle}
                         onClick={handleOpen}>Create Option</Button>
                 </Card>
-                <OptionModal openState={ModalOpen} setOpenState={setModalOpen} />
+                <OptionModal openState={ModalOpen} setOpenState={setModalOpen} optionInfo={optionInfo} setOptionInfo={setOptionInfo} />
             </div>
         </div>
     )
