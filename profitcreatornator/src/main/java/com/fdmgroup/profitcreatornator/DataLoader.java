@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
+import com.fdmgroup.profitcreatornator.models.BarrierOption;
 import com.fdmgroup.profitcreatornator.models.Options;
 import com.fdmgroup.profitcreatornator.models.Portfolio;
 import com.fdmgroup.profitcreatornator.models.Stock;
@@ -119,12 +120,21 @@ public class DataLoader implements ApplicationRunner {
 		this.portfolioRepository.saveAll(portfolioList);
 		
 		
-		//stock_id,taker_id,writer_id,style,strike_price,type,premium,expiration_date,exercised,purchase_date,status,quantity
+		//BARRIER - double threshold, String type, String status
+		List<BarrierOption> barrierList = new ArrayList<>();
+		barrierList.add(new BarrierOption(172.52,null,null));
+		barrierList.add(new BarrierOption(642.13,null,null));
+		this.barrierOptionRepository.saveAll(barrierList);
+		
+		
+
 		//OPTIONS
 		List<Options> optionList = new ArrayList<>();
 		//1
 		optionList.add(new Options(stockList.get(0), traderList.get(3), traderList.get(0), "American", 122.83, "put", 0.32, LocalDateTime.of(2023, 4, 21, 0, 0), LocalDateTime.of(2023, 4, 4, 0, 0), "waiting_exercise", 8,null));
-		
+		//barrier
+		optionList.add(new Options(stockList.get(1), traderList.get(2), traderList.get(3), "European", 162.13, "put", 0.72, LocalDateTime.of(2023, 4, 22, 0, 0), LocalDateTime.of(2023, 4, 4, 0, 0), "waiting_exercise", 4,null));
+		optionList.get(1).setBarrierOption(barrierList.get(0));	
 		//2 
 		optionList.add(new Options(stockList.get(1), traderList.get(3), traderList.get(1), "American", 157.63, "call", 0.91, LocalDateTime.of(2023, 4, 18, 0, 0), LocalDateTime.of(2023, 4, 5, 0, 0), "exercised", 7,null));
 		optionList.add(new Options(stockList.get(3), null, traderList.get(1), "European", 114.63, "put", 0.58, LocalDateTime.of(2023, 4, 17, 0, 0), null, "waiting_taker", 2,null));
@@ -132,10 +142,16 @@ public class DataLoader implements ApplicationRunner {
 		//4 
 		optionList.add(new Options(stockList.get(3), traderList.get(0), traderList.get(3), "American", 185.71, "call", 0.22, LocalDateTime.of(2023, 4, 19, 0, 0), LocalDateTime.of(2023, 4, 6, 0, 0), "waiting_exercise", 6,null));
 		optionList.add(new Options(stockList.get(2), null, traderList.get(3), "European", 181.75, "put", 0.51, LocalDateTime.of(2023, 4, 18, 0, 0), null, "waiting_taker", 9,null));
-		
+		//barrier
+		optionList.add(new Options(stockList.get(0), null, traderList.get(1), "American", 623.12, "call", 0.52, LocalDateTime.of(2023, 4, 23, 0, 0), null, "waiting_taker", 6,null));
+		optionList.get(6).setBarrierOption(barrierList.get(1));		
 		this.optionRepository.saveAll(optionList);
 		
 		
+		
+		
+		
+		this.barrierOptionRepository.saveAll(barrierList);
 		this.optionRepository.saveAll(optionList);	
 		this.portfolioRepository.saveAll(portfolioList);
 		this.stockRepository.saveAll(stockList);
