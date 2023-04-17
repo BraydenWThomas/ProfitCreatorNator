@@ -13,14 +13,13 @@ export default function dashboard() {
     return (
         <div style={{ display: 'flex', width: "100%" }}>
             <div>
-            <Navbar />
+            <Navbar active="Dashboard"/>
             </div>
             <div>
                 <Header title="Dashboard" />
                 <div className="px-2 py-2">
                     <Grid container spacing={2}>
                         <Grid item sm={6}>
-                            <Typography variant="h4" color="#293845" m={2}>Your Account</Typography>
                             <DashStockCards />
                         </Grid>
                         <Grid item sm={6} >
@@ -36,7 +35,6 @@ export default function dashboard() {
                             <Loss />
                         </Grid>
                         <Grid item sm={12}>
-                            <Typography variant="h4" color="#293845" m={2}>Exchange Rates</Typography>
                             <ExchangeRates />
                         </Grid>
                     </Grid>

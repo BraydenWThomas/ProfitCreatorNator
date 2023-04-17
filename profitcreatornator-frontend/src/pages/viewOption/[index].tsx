@@ -1,16 +1,18 @@
-import { Card, Grid, Metric, Text } from "@tremor/react";
-import { Divider, Typography, Button } from "@mui/material";
+import { Card, Metric, Text } from "@tremor/react";
+import { Divider, Typography, Button, Grid } from "@mui/material";
 import Value from "@/components/Dashboard/value";
 
 import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 import { List, ListItem, Title } from "@tremor/react";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
-import { useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 import { url } from "inspector";
 import Link from "next/link";
 import StockInfoList from "@/components/StockInfo/StockInfoList";
 import StockPriceCard from "@/components/StockInfo/StockPriceCard"
+import Header from "@/components/Header";
+import { OptionInfo } from "../optionMarket";
 export default function OptionMarket() {
     const buttonStyle = {
         ':hover': {
@@ -20,74 +22,90 @@ export default function OptionMarket() {
     }
     const router = useRouter()
     const id = Object.entries(router.query)[0][1];
+    const [optionDetail, setOptionDetail] = useState<OptionInfo>({
+        expiration_date: "2023-04-17T00:00:00",
+        id: "0",
+        premium: 0,
+        purchase_date: null,
+        quantity: 0,
+        status: "waiting_taker",
+        strike_price: 0,
+        style: "European",
+        type: "put"
+  
+      })
+    useEffect(() => {
+        const requestOptions: RequestInit = {
+            method: 'GET',
+            redirect: 'follow',
+        };
+
+        fetch("http://localhost:8080/api/option/" + id, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                setOptionDetail(data)
+            })
+            .catch(error => console.log('error', error));
+    }, [])
 
     return (
-        <div style={{ display: 'flex' }}>
-             <Navbar />
-            <div className="content" style={{ float: 'left', width: '100%' }}>
-                <div className="header" style={{ display: "flex" }}>
-                    <Typography
-                        component="h1"
-                        variant="h3"
-                        color="#293845"
-                        mt={2}
-                        ml={2}
-                        sx={{ flex: 1 }}
-                    >
-                        Option {id}
-                    </Typography>
-                </div>
-
-                <Divider variant="middle" sx={{ mt: 2, mb: 2 }} />
-                <div>
-        
-       </div>
-                <div style={{marginLeft: '1%', marginRight: '1%', width: '98%', display: 'flex'}}>
-                <div style={{ width: '20%'}}>
-            <StockPriceCard 
-            symbol="Current Price" 
-            deltaType="moderateIncrease"
-            isIncreasePositive={true}
-            stockPrice="$ 174.93"/>
-            <StockInfoList 
-            marketCap="572.187B" 
-            previousClose="187.23"
-            open="190.78"
-            volume="148,418,050"
-            dayRange="180.31 - 191.58"/>
-
-        </div>
-        <div  style={{ width: '160%'}}>
-        <Value />
-        </div>
-        </div>
-        <Card style={{marginLeft: '1%', marginTop: '1%', marginBottom: '1%', width: '20%'}}>
-            <Title>Option Details</Title>
-            <List>
-                <ListItem>
-                    <span>Strike Price</span>
-                    <span>$5552</span>
-                </ListItem>
-                <ListItem>
-                    <span>Option Time span</span>
-                    <span>3 years</span>
-                </ListItem>
-                <ListItem>
-                    <span>Premium</span>
-                    <span>$35</span>
-                </ListItem>
-                <ListItem>
-                    <span>Stock Volume</span>
-                    <span>500</span>
-                </ListItem>
-            </List>
-        </Card>
-                <Button variant="contained"
-                        component="label"
-                        sx={buttonStyle}
-                        onClick={router.back}
-                        style={{marginLeft: '1%'}}>Back</Button>
+        <div style={{ display: 'flex', width: "100%" }}>
+            <div>
+            <Navbar active="Marketplace"/>
             </div>
-        </div>
+            <div style={{ width: "100%" }}>
+                <Header title="Option" />
+                <div className="px-4 py-2">
+                    <Grid container spacing={2}>
+                        <Grid item sm={9}>
+                            <Value />
+                        </Grid>
+                        <Grid item sm={3}>
+                                <StockPriceCard
+                                    symbol="Current Price"
+                                    deltaType="moderateIncrease"
+                                    isIncreasePositive={true}
+                                    stockPrice="$ 174.93" />
+                                <StockInfoList
+                                    marketCap="572.187B"
+                                    previousClose="187.23"
+                                    open="190.78"
+                                    volume="148,418,050"
+                                    dayRange="180.31 - 191.58" />
+
+                       
+
+
+                        <Card>
+                            <Title>Option Details</Title>
+                            <List>
+                                <ListItem>
+                                    <span>Strike Price</span>
+                                    <span>{optionDetail.strike_price}</span>
+                                </ListItem>
+                                <ListItem>
+                                    <span>Option Expiration Date</span>
+                                    <span>{optionDetail.expiration_date.toString().substring(0,10)}</span>
+                                </ListItem>
+                                <ListItem>
+                                    <span>Premium</span>
+                                    <span>{optionDetail.premium}</span>
+                                </ListItem>
+                                <ListItem>
+                                    <span>Stock Volume</span>
+                                    <span>{optionDetail.quantity}</span>
+                                </ListItem>
+                            </List>
+                        </Card> </Grid>
+                    </Grid>
+                </div>
+                <Button variant="contained"
+                    component="label"
+                    sx={buttonStyle}
+                    onClick={router.back}
+                    style={{ marginLeft: '1%' }}>Back</Button>
+
+            </div>
+        </div >
     )
 }

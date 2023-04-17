@@ -1,63 +1,40 @@
-import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
-import { BadgeDelta, Card, Flex, Icon, Metric, Text } from "@tremor/react";
+import { BadgeDelta, Card, Flex, Icon, Metric, Subtitle, Text, Title } from "@tremor/react";
 
 import { Grid } from "@mui/material"
 import React from "react";
 import { CashIcon, TrendingUpIcon } from "@heroicons/react/outline";
 
-export default function Navbar() {
+export default function YourAccount() {
+    const dummyList = [
+        { code: "CBA", value: "$99.27", performance: -0.49, name: "Commonwealth Bank of Australia" },
+        { code: "VAS", value: "$90.88", performance: 1.15, name: "Vanguard Australian Shares Index ETF" },
+        { code: "NAB", value: "$28.10", performance: 0.15, name: "National Australia Bank Ltd." }
+    ]
+
     return (
         <div>
-            <Grid container spacing={2} pl={2}>
-                <Grid item xs={12} sm={4}>
-                    <Card>
-                        <ChakraProvider>
-                            <Stat>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={12}>
+                    <div className="flex flex-row...">
+                        {dummyList.map((holdings) =>
+                            <Card key={holdings.code} style={{ margin: "0 3px" }}>
                                 <Flex alignItems="start">
                                     <div>
-                                        <Text>CBA</Text>
-                                        <Metric>$99.27</Metric>
+                                        <Subtitle> {holdings.code} </Subtitle>
+                                        <Metric> {holdings.value} </Metric>
+                                        <Text> {holdings.name} </Text>
                                     </div>
-                                    <BadgeDelta deltaType="moderateDecrease">-0.49%</BadgeDelta>
+                                    {
+                                        holdings.performance > 0 ?
+                                            <BadgeDelta deltaType="moderateIncrease"> {holdings.performance}% </BadgeDelta>
+                                            :
+                                            <BadgeDelta deltaType="moderateDecrease"> {holdings.performance}% </BadgeDelta>
+                                    }
                                 </Flex>
-                                <Text className="truncate">Commonwealth Bank of Australia</Text>
-                            </Stat>
-                        </ChakraProvider>
-                    </Card>
+                            </Card>
+                        )}
+                    </div>
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                    <Card>
-                        <ChakraProvider>
-                            <Stat>
-                                <Flex alignItems="start">
-                                    <div>
-                                        <Text>VAS</Text>
-                                        <Metric>$90.88</Metric>
-                                    </div>
-                                    <BadgeDelta deltaType="moderateIncrease">1.15%</BadgeDelta>
-                                </Flex>
-                                <Text className="truncate">Vanguard Australian Shares Index ETF</Text>
-                            </Stat>
-                        </ChakraProvider>
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                    <Card>
-                        <ChakraProvider>
-                            <Stat>
-                                <Flex alignItems="start">
-                                    <div>
-                                        <Text>NAB</Text>
-                                        <Metric>$28.10</Metric>
-                                    </div>
-                                    <BadgeDelta deltaType="moderateIncrease">0.15%</BadgeDelta>
-                                </Flex>
-                                <Text className="truncate">National Australia Bank Ltd.</Text>
-                            </Stat>
-                        </ChakraProvider>
-                    </Card>
-                </Grid>
-
                 <Grid item xs={12} sm={6}>
                     <Card decoration="top" decorationColor="orange">
                         <Flex className="space-x-6">

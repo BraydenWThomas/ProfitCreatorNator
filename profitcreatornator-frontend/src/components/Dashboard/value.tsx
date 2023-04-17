@@ -68,11 +68,9 @@ export default function Value() {
         `${Intl.NumberFormat("us").format(number).toString()}`;
 
     return (
-        <Grid pl={2}>
         <Card decoration="top" decorationColor="purple" style={{height:'454px'}}>
-            <Metric>Your Value</Metric>
+            <Title>Your Value</Title>
             <AreaChart
-                className="mt-6"
                 data={chartdata}
                 index="month"
                 categories={["Value"]}  
@@ -80,6 +78,5 @@ export default function Value() {
                 yAxisWidth={40}
             />
         </Card>
-        </Grid>
     )
 }
