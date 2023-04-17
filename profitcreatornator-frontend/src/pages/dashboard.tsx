@@ -13,7 +13,7 @@ export default function dashboard() {
     return (
         <div style={{ display: 'flex', width: "100%" }}>
             <div>
-                <Navbar />
+            <Navbar active="Dashboard"/>
             </div>
             <div>
                 <Header title="Dashboard" />
