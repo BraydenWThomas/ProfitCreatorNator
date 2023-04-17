@@ -66,6 +66,13 @@ public class PortfolioController {
 		return portfolioRepository.getByTraderId(traderId);
 	}
 	
+	// Get all portfolios WITH STOCK INFORMATION from specific trader
+		@GetMapping("/trader/detailed/{traderId}")
+		public List<Portfolio> getTraderPortfolioDetailed(@PathVariable long traderId) {
+			Trader trader = traderRepository.findById(traderId).orElseThrow(()->new NotFoundException("Can't find trader with id: " + traderId));
+			return trader.getPortfolio();
+		}
+	
 	// Modify portfolio
 	@PutMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
