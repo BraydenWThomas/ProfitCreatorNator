@@ -42,6 +42,9 @@ public class Trader {
 	@OneToMany(mappedBy = "writer")
 	@JsonIgnore
 	private List<Options> writerOptions;
+	
+	@OneToMany(mappedBy = "trader")
+	private List<Portfolio> portfolio;
 
 	public Trader(User user, String name, List<Options> takerOptions, List<Options> writerOptions) {
 		super();
