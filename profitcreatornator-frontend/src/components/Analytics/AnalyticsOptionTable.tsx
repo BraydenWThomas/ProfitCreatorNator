@@ -1,5 +1,5 @@
 // React
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useState, useEffect } from "react";
 
 import { StatusOnlineIcon } from "@heroicons/react/outline";
 
@@ -24,6 +24,12 @@ import TableData from "./Extra/TableData";
 import data from "./Extra/TempData.json";
 
 export default function AnalyticsOptionTable({ state }: any) {
+  // Fetch options in db
+  const [options, setOptions] = useState([]);
+
+  // URL
+  const API_URL = "http://localhost:8080/api/option";
+
   // Pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -37,32 +43,46 @@ export default function AnalyticsOptionTable({ state }: any) {
     setPage(0);
   };
 
+  // Fetch request
+  useEffect(() => {
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => { setOptions(data) });
+  }, [])
+
   // Filter by status
-  const filteredData = data.filter(item => item.status === state);
+  const filteredOptions = options.filter(option => option.status.includes(state));
 
   return (
     <Card style={{ marginTop: '2%', marginLeft: '2%', marginRight: '2%', width: '96%' }}>
       <Table className="mt-5">
         <TableHead style={{ fontSize: "100%" }}>
           <TableRow>
-            <TableHeaderCell> Code </TableHeaderCell>
+            {/* <TableHeaderCell> Code </TableHeaderCell>
             <TableHeaderCell> Name </TableHeaderCell>
             <TableHeaderCell> Avg Price </TableHeaderCell>
             <TableHeaderCell> Profit/Loss(%) </TableHeaderCell>
             <TableHeaderCell> Units </TableHeaderCell>
             <TableHeaderCell> Price </TableHeaderCell>
             <TableHeaderCell> Value </TableHeaderCell>
+            <TableHeaderCell> Type </TableHeaderCell> */}
+            <TableHeaderCell> Code </TableHeaderCell>
+            <TableHeaderCell> Name </TableHeaderCell>
+            <TableHeaderCell> Strike Price </TableHeaderCell>
+            <TableHeaderCell> Profit/Loss(%) </TableHeaderCell>
+            <TableHeaderCell> Units </TableHeaderCell>
+            <TableHeaderCell> Premium</TableHeaderCell>
+            <TableHeaderCell> Value </TableHeaderCell>
+            <TableHeaderCell> Style </TableHeaderCell>
             <TableHeaderCell> Type </TableHeaderCell>
+            <TableHeaderCell> Expiration </TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredData
+          {filteredOptions
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((item, key) => (
-              // (item.status === state
-              //   && <TableData key={key} data={item} />
-              // )
-              <TableData key={key} data={item} /> 
+            .map((option, key) => (
+              <TableData key={key} data={option} /> 
             ))
           }
         </TableBody>

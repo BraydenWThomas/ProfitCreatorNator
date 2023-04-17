@@ -5,19 +5,17 @@ interface DisplayState {
 }
 
 export default function OptionStates({ state }: DisplayState) {
-  if (state === "past") {
+  if (state === "exercised") {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
-        <h1> Test Past </h1>
         <AnalyticsOptionTable state={state} />
       </div>
     )
   }
 
-  else if (state === "current") {
+  else if (state === "waiting") {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
-        <h1> Test Current </h1>
         <AnalyticsOptionTable state={state} />
       </div>
     )
@@ -26,7 +24,6 @@ export default function OptionStates({ state }: DisplayState) {
   else if (state === "pending") {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
-        <h1> Test Pending </h1>
         <AnalyticsOptionTable state={state} />
       </div>
     )

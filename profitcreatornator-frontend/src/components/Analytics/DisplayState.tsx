@@ -6,7 +6,7 @@ import { Tab, Tabs } from '@mui/material';
 import OptionStates from "./OptionStates";
 
 export default function DisplayState() {
-  const [displayState, setDisplayState] = useState("current");
+  const [displayState, setDisplayState] = useState("waiting");
 
   const changeDisplay = (event: any, newDisplay: SetStateAction<string>) => {
     setDisplayState(newDisplay);
@@ -19,16 +19,16 @@ export default function DisplayState() {
           value={displayState}
           onChange={changeDisplay}
         >
-          <Tab value="past" label="Past Options" />
-          <Tab value="current" label="Current Options" />
+          <Tab value="excercised" label="Past Options" />
+          <Tab value="waiting" label="Current Options" />
           <Tab value="pending" label="Pending Options" />
         </Tabs>
       </div>
 
       <div className="OptionStates">
-        {displayState === "past" 
+        {displayState === "exercised" 
           ? <OptionStates state={displayState} />
-          : (displayState === "current"
+          : (displayState === "waiting"
             ? <OptionStates state={displayState} />
             : (displayState === "pending"
               && <OptionStates state={displayState} />
