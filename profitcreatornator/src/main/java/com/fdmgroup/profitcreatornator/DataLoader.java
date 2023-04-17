@@ -122,16 +122,16 @@ public class DataLoader implements ApplicationRunner {
 		//stock_id,taker_id,writer_id,style,strike_price,type,premium,expiration_date,exercised,purchase_date,status,quantity
 		//OPTIONS
 		List<Options> optionList = new ArrayList<>();
-		//1 -s
-		optionList.add(new Options(stockList.get(0), traderList.get(3), traderList.get(0), "American", 122.83, "put", 0.32, LocalDateTime.of(2023, 4, 21, 0, 0), LocalDateTime.of(2023, 4, 4, 0, 0), "waiting_exercise", 8));
+		//1
+		optionList.add(new Options(stockList.get(0), traderList.get(3), traderList.get(0), "American", 122.83, "put", 0.32, LocalDateTime.of(2023, 4, 21, 0, 0), LocalDateTime.of(2023, 4, 4, 0, 0), "waiting_exercise", 8,null));
 		
-		//2 -2 -bb
-		optionList.add(new Options(stockList.get(1), traderList.get(3), traderList.get(1), "American", 157.63, "call", 0.91, LocalDateTime.of(2023, 4, 18, 0, 0), LocalDateTime.of(2023, 4, 5, 0, 0), "exercised", 7));
-		optionList.add(new Options(stockList.get(3), null, traderList.get(1), "European", 114.63, "put", 0.58, LocalDateTime.of(2023, 4, 17, 0, 0), null, "waiting_taker", 2));
+		//2 
+		optionList.add(new Options(stockList.get(1), traderList.get(3), traderList.get(1), "American", 157.63, "call", 0.91, LocalDateTime.of(2023, 4, 18, 0, 0), LocalDateTime.of(2023, 4, 5, 0, 0), "exercised", 7,null));
+		optionList.add(new Options(stockList.get(3), null, traderList.get(1), "European", 114.63, "put", 0.58, LocalDateTime.of(2023, 4, 17, 0, 0), null, "waiting_taker", 2,null));
 		//3 
-		//4 -bs
-		optionList.add(new Options(stockList.get(3), traderList.get(0), traderList.get(3), "American", 185.71, "call", 0.22, LocalDateTime.of(2023, 4, 19, 0, 0), LocalDateTime.of(2023, 4, 6, 0, 0), "waiting_exercise", 6));
-		optionList.add(new Options(stockList.get(2), null, traderList.get(3), "European", 181.75, "put", 0.51, LocalDateTime.of(2023, 4, 18, 0, 0), null, "waiting_taker", 9));
+		//4 
+		optionList.add(new Options(stockList.get(3), traderList.get(0), traderList.get(3), "American", 185.71, "call", 0.22, LocalDateTime.of(2023, 4, 19, 0, 0), LocalDateTime.of(2023, 4, 6, 0, 0), "waiting_exercise", 6,null));
+		optionList.add(new Options(stockList.get(2), null, traderList.get(3), "European", 181.75, "put", 0.51, LocalDateTime.of(2023, 4, 18, 0, 0), null, "waiting_taker", 9,null));
 		
 		this.optionRepository.saveAll(optionList);
 		

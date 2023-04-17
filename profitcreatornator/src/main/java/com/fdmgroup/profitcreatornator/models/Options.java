@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,8 @@ public class Options {
 	private LocalDateTime purchase_date;
 	private String status; // TODO maybe better set as enum
 	private int quantity;
+	@OneToOne
+	private BarrierOption barrierOption;
 	
 	@ManyToOne
 	@JoinTable(
@@ -62,7 +65,7 @@ public class Options {
 	
 	public Options(Stock stock, Trader taker, Trader writer, String style, double strike_price, String type,
 			double premium, LocalDateTime expiration_date, LocalDateTime purchase_date,
-			String status, int quantity) {
+			String status, int quantity, BarrierOption barrierOption) {
 		super();
 		this.stock = stock;
 		this.taker = taker;
@@ -75,6 +78,7 @@ public class Options {
 		this.purchase_date = purchase_date;
 		this.status = status;
 		this.quantity = quantity;
+		this.barrierOption = barrierOption;
 	}
 	
 //	// function for remove linked entities

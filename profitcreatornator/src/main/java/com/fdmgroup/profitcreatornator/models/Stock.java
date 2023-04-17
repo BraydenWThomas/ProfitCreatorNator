@@ -38,9 +38,11 @@ public class Stock {
 	private double currentPrice;
 	// private HashMap<String, Double> history;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "stock")
 	private List<Portfolio> portfolios;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "stock")
 	private List<Options> options;
 

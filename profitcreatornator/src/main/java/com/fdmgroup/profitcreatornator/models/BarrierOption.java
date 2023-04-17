@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,13 +22,20 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class BarrierOption extends Options {
+public class BarrierOption{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Getter(AccessLevel.None)
-	//@Setter(AccessLevel.None)
 	private Long id;
 	private double threshold;
 	private String type;
 	private String status;
+	
+	public BarrierOption(double threshold, String type, String status) {
+		super();
+		this.threshold = threshold;
+		this.type = type;
+		this.status = status;
+	}
+	
+	
 }
