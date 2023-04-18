@@ -80,6 +80,17 @@ public class OptionController {
 		Trader trader = traderRepository.findById(traderId).orElseThrow(() -> new NotFoundException("Can't find trader with id: " + traderId));
 		return trader.getWriterOptions();
 	}
+	
+	// Get all options by trader id
+	@GetMapping("{traderId}/all")
+	@ResponseStatus(HttpStatus.CREATED)
+	public List<Options> getAllOptionsByTraderId(@PathVariable long traderId) {
+		Trader trader = traderRepository.findById(traderId).orElseThrow(() -> new NotFoundException("Can't find trader with id: " + traderId));
+		List<Options> combinedList = new ArrayList<Options>();
+		combinedList.addAll(trader.getWriterOptions());
+		combinedList.addAll(trader.getTakerOptions());
+		return combinedList;
+	}
 
 	// Modify option
 	@PutMapping("")
