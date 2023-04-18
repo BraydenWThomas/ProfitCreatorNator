@@ -43,7 +43,6 @@ public class Options {
 			name = "stocks_options",
 			joinColumns = @JoinColumn(name = "option_id"),
 			inverseJoinColumns = @JoinColumn(name = "stock_id"))
-	@JsonIgnore
 	private Stock stock;
 	
 	@ManyToOne
@@ -51,7 +50,6 @@ public class Options {
 			name = "takers_options",
 			joinColumns = @JoinColumn(name = "option_id"),
 			inverseJoinColumns = @JoinColumn(name = "taker_id"))
-	@JsonIgnore
 	private Trader taker;
 	
 	@ManyToOne
@@ -59,7 +57,6 @@ public class Options {
 			name = "writers_options",
 			joinColumns = @JoinColumn(name = "option_id"),
 			inverseJoinColumns = @JoinColumn(name = "writer_id"))
-	@JsonIgnore
 	private Trader writer;
 
 	
