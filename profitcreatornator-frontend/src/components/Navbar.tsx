@@ -14,7 +14,7 @@ export default function Navbar({active}: NavbarProps) {
     return (
         <div className="sticky top-0 px-3 py-3 overflow-y-auto bg-white border" style={{width:'300px', height:'100vh', zIndex:1}}>
             <a href="/dashboard" className="flex items-center mb-4">
-                <img src={"/logo.png"} className="w-39 h-16" alt="Logo" />
+                <img src={"/logo.png"} alt="Logo" style={{height:'100px', width:'230px'}}/>
             </a>
             <Divider className="mb-4" />
             <ul className="font-medium text-grey-900 dark:text-gray-300">
