@@ -1,4 +1,3 @@
-import styles from "../styles/Navbar.module.scss";
 import { Tab, Tabs, Divider } from '@mui/material';
 import { TemplateIcon, ChartPieIcon, LibraryIcon, IdentificationIcon, BookmarkAltIcon, AdjustmentsIcon, LogoutIcon } from '@heroicons/react/outline';
 
@@ -8,16 +7,16 @@ interface NavbarProps {
 
 export default function Navbar({active}: NavbarProps) {
 
-    var activeClass = "bg-purple-800 flex items-center p-2 rounded-lg text-white";
-    var inactiveClass = "flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    var activeClass = "bg-zinc-300 flex items-center p-2 rounded-lg dark:text-black";
+    var inactiveClass = "flex items-center p-2 rounded-lg text-black hover:bg-gray-300 dark:hover:bg-gray-700"
 
     return (
-        <div className="sticky top-0 px-3 py-3 overflow-y-auto bg-white border" style={{width:'300px', height:'100vh', zIndex:1}}>
+        <div className="sticky top-0 px-3 py-3 bg-white dark:bg-slate-700 border" style={{width:'300px', height:'100vh', zIndex:1}}>
             <a href="/dashboard" className="flex items-center mb-4">
                 <img src={"/logo.png"} alt="Logo" style={{height:'100px', width:'230px'}}/>
             </a>
             <Divider className="mb-4" />
-            <ul className="font-medium text-grey-900 dark:text-gray-300">
+            <ul className="font-medium">
                 <li className="mb-4">
                     <a href="/dashboard" className={active === "Dashboard" ? activeClass : inactiveClass}>
                         <TemplateIcon className='w-6 h-6' />

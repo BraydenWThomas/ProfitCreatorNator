@@ -11,7 +11,7 @@ import Header from "@/components/Header";
 
 export default function dashboard() {
     return (
-        <div style={{ display: 'flex', width: "100%" }}>
+        <div className="dark:bg-slate-500" style={{ display: 'flex', width: "100%" }}>
             <div>
             <Navbar active="Dashboard"/>
             </div>

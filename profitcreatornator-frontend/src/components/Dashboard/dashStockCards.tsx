@@ -15,9 +15,9 @@ export default function YourAccount() {
         <div>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
-                    <div className="flex flex-row...">
+                    <div className="flex flex-row... space-x-3">
                         {dummyList.map((holdings) =>
-                            <Card key={holdings.code} style={{ margin: "0 3px" }}>
+                            <Card key={holdings.code}>
                                 <Flex alignItems="start">
                                     <div>
                                         <Subtitle> {holdings.code} </Subtitle>
@@ -36,8 +36,8 @@ export default function YourAccount() {
                     </div>
                 </Grid>
                 <Grid item xs={12} sm={12}>
-                    <div className="flex flex-row...">
-                        <Card decoration="top" decorationColor="orange" style={{ margin: "0 3px", paddingTop: '38px', paddingBottom: '38px' }}>
+                    <div className="flex flex-row... space-x-3">
+                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '44px', paddingBottom: '44px' }}>
                             <Flex>
                                 <Icon
                                     icon={TrendingUpIcon}
@@ -51,7 +51,7 @@ export default function YourAccount() {
                                 </div>
                             </Flex>
                         </Card>
-                        <Card decoration="top" decorationColor="orange" style={{ margin: "0 3px", paddingTop: '46px', paddingBottom: '46px' }}>
+                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '44px', paddingBottom: '44px' }}>
                             <Flex>
                                 <Icon
                                     icon={CashIcon}
