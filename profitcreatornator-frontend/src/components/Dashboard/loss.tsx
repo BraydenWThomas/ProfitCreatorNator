@@ -26,7 +26,7 @@ export default function Loss() {
 
     return (
         <Card decoration="top" decorationColor="red">
-            <Metric>Top Losses</Metric>
+            <Title>Top Losses</Title>
             <Table>
                 <TableHead>
                     <TableRow>

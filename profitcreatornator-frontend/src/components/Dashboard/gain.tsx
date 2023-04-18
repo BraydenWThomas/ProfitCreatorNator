@@ -26,7 +26,7 @@ export default function Gain() {
 
     return (
         <Card decoration="top" decorationColor="green">
-            <Metric>Top Gainers</Metric>
+            <Title>Top Gainers</Title>
             <Table>
                 <TableHead>
                     <TableRow>

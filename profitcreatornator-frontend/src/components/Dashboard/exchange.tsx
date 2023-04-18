@@ -27,9 +27,9 @@ export default function ExchangeRates() {
     return (
 
         <div>
-            <div className="flex flex-row...">
+            <div className="flex flex-row... space-x-4">
                 {forexCurrencies.map((currency) =>
-                    <Card key={currency.id} style={{ margin: "0 8px" }}>
+                    <Card key={currency.id} className="dark:bg-black">
                         <Flex alignItems="start">
                             <div>
                                 <Title> {currency.symbol} </Title>
