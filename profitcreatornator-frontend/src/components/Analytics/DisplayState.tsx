@@ -6,7 +6,7 @@ import { Tab, Tabs } from '@mui/material';
 import OptionStates from "./OptionStates";
 
 export default function DisplayState() {
-   // Pagination
+  // Pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -19,12 +19,17 @@ export default function DisplayState() {
     setPage(0);
   };
 
+  // Show detailed
+  const [displayHidden, setDisplayHidden] = useState(false);
+
   // Tab filter
   const [displayState, setDisplayState] = useState("waiting");
 
+  // Reset states on display change
   const changeDisplay = (event: any, newDisplay: SetStateAction<string>) => {
     setDisplayState(newDisplay);
     setRowsPerPage(5);
+    setDisplayHidden(false);
   }
 
   return (
@@ -43,25 +48,31 @@ export default function DisplayState() {
       <div className="OptionStates">
         {displayState === "exercised"
           ? <OptionStates
+            state={displayState}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            handleChangePage={handleChangePage}
+            handleChangeRowsPerPage={handleChangeRowsPerPage}
+            displayHidden={displayHidden}
+            setDisplayHidden={setDisplayHidden} />
+          : (displayState === "waiting"
+            ? <OptionStates
               state={displayState}
               page={page}
               rowsPerPage={rowsPerPage}
               handleChangePage={handleChangePage}
-              handleChangeRowsPerPage={handleChangeRowsPerPage} />
-          : (displayState === "waiting"
-            ? <OptionStates
+              handleChangeRowsPerPage={handleChangeRowsPerPage}
+              displayHidden={displayHidden}
+              setDisplayHidden={setDisplayHidden} />
+            : (displayState === "pending"
+              && <OptionStates
                 state={displayState}
                 page={page}
                 rowsPerPage={rowsPerPage}
                 handleChangePage={handleChangePage}
-                handleChangeRowsPerPage={handleChangeRowsPerPage} />
-            : (displayState === "pending"
-              && <OptionStates
-                  state={displayState}
-                  page={page}
-                  rowsPerPage={rowsPerPage}
-                  handleChangePage={handleChangePage}
-                  handleChangeRowsPerPage={handleChangeRowsPerPage} />
+                handleChangeRowsPerPage={handleChangeRowsPerPage}
+                displayHidden={displayHidden}
+                setDisplayHidden={setDisplayHidden} />
             ))}
       </div>
     </div>
