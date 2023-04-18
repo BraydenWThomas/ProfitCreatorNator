@@ -27,7 +27,8 @@ const StockPriceCard: FunctionComponent<Props>= ({
                 +9.42
             </BadgeDelta>
         </Flex>
-        <Metric>{stockPrice}</Metric>
+        {/* <Text> Current Price </Text> */}
+        <Metric> $ {stockPrice}</Metric>
        </Card>
     );
 } 

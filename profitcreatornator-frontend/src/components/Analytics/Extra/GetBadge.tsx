@@ -27,7 +27,7 @@ export default function GetBadge({ status, amount }: ProfitLoss) {
   } else {
     return (
       <Badge
-        color={status == "PUT" ? "purple" : "orange"}
+        color={status.toUpperCase() == "PUT" ? "purple" : "orange"}
         size="xs">
         {amount}
       </Badge>

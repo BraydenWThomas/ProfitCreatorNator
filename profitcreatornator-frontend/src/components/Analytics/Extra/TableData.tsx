@@ -1,22 +1,48 @@
-import { TableBody, TableCell, TableRow } from "@tremor/react"
+// React
+import { TableCell, TableRow } from "@tremor/react"
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+// Components
 import GetBadge from "./GetBadge"
 
-export default function TableData({ data }: any) {
+// Style
+import styles from "./Extra/TableBody.module.scss"
+
+export default function TableData({ data, setDisplayHidden, setStockId, setOptionId }: any) {
+  // Convert date to DD-MM-YYYY LT
+  dayjs.extend(customParseFormat);
+  const formattedDate = dayjs(data.expiration_date).format("MMMM D, YYYY hh:mm:ss")
+  
+  // Handle viewing detailed option
+  const handleView = (event: React.MouseEvent<HTMLTableRowElement>) => {
+    setDisplayHidden(true);
+
+    const tableRow: HTMLTableRowElement = event.currentTarget;
+    const ids = tableRow.id.split(" ");
+
+    setStockId(ids[0]);
+    setOptionId(ids[1]);
+  }
+
   // if (data.trader_id === "1") {
     return (
-      <TableRow>
-        <TableCell> {data.code} </TableCell>
-        <TableCell> {data.name} </TableCell>
-        <TableCell> ${data.avgPrice} </TableCell>
-        <TableCell>
-          <GetBadge status={data.profitLoss[0]} amount={data.profitLoss} />
+      <TableRow onClick={handleView} id={(data.stock.id + " " + data.id)}>
+        <TableCell> {data.id} </TableCell>
+        <TableCell> 
+          {data.stock.name} 
         </TableCell>
-        <TableCell> {data.units} </TableCell>
-        <TableCell> ${data.price} </TableCell>
-        <TableCell> ${data.value} </TableCell>
+        <TableCell> ${data.strike_price} </TableCell>
         <TableCell>
-          <GetBadge status={data.type} amount={data.type} />
+          {/* <GetBadge status={data.profitLoss[0]} amount={data.profitLoss} /> */}
         </TableCell>
+        <TableCell> {data.quantity} </TableCell>
+        <TableCell> ${data.premium} </TableCell>
+        <TableCell> {data.style} </TableCell>
+        <TableCell>
+          <GetBadge status={data.type} amount={data.type.toUpperCase()} />
+        </TableCell>
+        <TableCell> {formattedDate.toString()} </TableCell>
       </TableRow>
     )
   // } else {
@@ -24,5 +50,4 @@ export default function TableData({ data }: any) {
   //     <> This shouldn't happen </>
   //   )
   // }
- 
 }
