@@ -1,31 +1,40 @@
 // Imports
+ import PortfolioData from '@/components/data/PortfolioData';
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // Tremor SO
-import { Badge, BadgeDelta, Card, Metric, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Text, Title } from "@tremor/react";
+import { Card, Metric, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Text } from "@tremor/react";
 
 // END OF IMPORTS
 
+
+interface stockInformation {
+    id: number;
+    name: string;
+    symbol: string;
+    currentPrice: number;
+}
+
+interface portfolioItem {
+    id: number;
+    quantity: number;
+    stock: stockInformation;
+ }
+
 export default function StockPortfolio() {
 
-    // you need to make an interface and an interface within that interface
-    const [stocks, setStocks] = useState([0, "", "", 0])
-    const [portfolio, setPortfolio] = useState([])
+    const [stocks, setStocks] = useState<portfolioItem[]>([]) // owned stocks
 
-    // Get stocks for 'My Holdings'
+    // Make this more effecient, use that data component
     useEffect(() => {
-        Promise.all([
-            axios.get('http://localhost:8080/api/portfolio/trader/detailed/3'), // use 3 for now
-            axios.get('http://localhost:8080/api/portfolio/trader/3') // use 3 for now
-        ]).then(response => {
+            axios.get('http://localhost:8080/api/portfolio/trader/detailed/3') // use 3 for now
+        .then(response => {
             console.log(response);
-            setStocks(response[0].data)
-            setPortfolio(response[1].data)
+            setStocks(response.data)
         }).catch(error => console.log('error', error));
     }, [])
-
-    console.log(stocks)
 
     return (
         <div className="stock-portfolio">
@@ -36,7 +45,6 @@ export default function StockPortfolio() {
                         <TableRow>
                             <TableHeaderCell>Symbol</TableHeaderCell>
                             <TableHeaderCell>Name</TableHeaderCell>
-                            <TableHeaderCell>Industry</TableHeaderCell>
                             <TableHeaderCell>Price ($)</TableHeaderCell>
                             <TableHeaderCell>Shares</TableHeaderCell>
                             <TableHeaderCell>Total Cost ($)</TableHeaderCell>
@@ -47,12 +55,11 @@ export default function StockPortfolio() {
                         {
                             stocks.map((stock, index) =>
                                 <TableRow key={index}>
-                                    <TableHeaderCell> <Text> {stock.id} </Text> </TableHeaderCell>
-                                    <TableHeaderCell> <Text> {stock.stock.name} </Text> </TableHeaderCell>
-                                    <TableHeaderCell> <Text> {stock.industry} </Text> </TableHeaderCell>
-                                    <TableHeaderCell> <Text> {stock.price} </Text> </TableHeaderCell>
-                                    <TableHeaderCell> <Text> {stock.shares} </Text> </TableHeaderCell>
-                                    <TableHeaderCell> <Text> {stock.price * stock.shares} </Text> </TableHeaderCell>
+                                    <TableCell> <Text> { stock.stock.symbol } </Text> </TableCell>
+                                    <TableCell> <Text> { stock.stock.name } </Text> </TableCell>
+                                    <TableCell> <Text> { stock.stock.currentPrice } </Text> </TableCell>
+                                    <TableCell> <Text> { stock.quantity } </Text> </TableCell>
+                                    <TableCell> <Text> { stock.quantity * stock.stock.currentPrice } </Text> </TableCell>
                                 </TableRow>
                             )
                         }
