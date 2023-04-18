@@ -1,7 +1,10 @@
+// React
 import { SetStateAction, useState } from "react";
+
+// Components
 import AnalyticsOptionTable from "./AnalyticsOptionTable";
 
-export default function OptionStates({ state, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage }: any) {
+export default function OptionStates({ state, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, displayHidden, setDisplayHidden}: any) {
   if (state === "exercised") {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
@@ -10,7 +13,9 @@ export default function OptionStates({ state, page, rowsPerPage, handleChangePag
           page={page}
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage} />
+          handleChangeRowsPerPage={handleChangeRowsPerPage} 
+          displayHidden={displayHidden}
+          setDisplayHidden={setDisplayHidden} />
       </div>
     )
   }
@@ -23,7 +28,9 @@ export default function OptionStates({ state, page, rowsPerPage, handleChangePag
           page={page}
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage} />
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+          displayHidden={displayHidden}
+          setDisplayHidden={setDisplayHidden} />
       </div>
     )
   }
@@ -36,7 +43,9 @@ export default function OptionStates({ state, page, rowsPerPage, handleChangePag
           page={page}
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage} />
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+          displayHidden={displayHidden}
+          setDisplayHidden={setDisplayHidden} />
       </div>
     )
   }

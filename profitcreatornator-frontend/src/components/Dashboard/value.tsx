@@ -68,7 +68,7 @@ export default function Value() {
         `${Intl.NumberFormat("us").format(number).toString()}`;
 
     return (
-        <Card decoration="top" decorationColor="purple" style={{height:'454px'}}>
+        <Card decoration="top" decorationColor="purple" style={{height:'596px'}}>
             <Title>Your Value</Title>
             <AreaChart
                 data={chartdata}
