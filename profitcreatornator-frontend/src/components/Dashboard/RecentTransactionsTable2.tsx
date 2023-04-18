@@ -1,10 +1,14 @@
-import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from "@tremor/react";
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Text, Title } from "@tremor/react";
 
 interface OptionsProperties {
     id: number;
-    expirationDate: Date;
+    expirationDate: string;
     premium: number;
-    purchaseDate: Date;
+    purchaseDate: string;
     quantity: number;
     status: string;
     strikePrice: number;
@@ -13,37 +17,58 @@ interface OptionsProperties {
     barrierOptionId?: number;
 }
 
-export default function RecentTransactions(){
+interface UserProps {
+    active: number
+}
 
-    return(
+export default function RecentTransactions({ active }: UserProps) {
+    const [options, setOptions] = useState<OptionsProperties[]>([]); // owned stocks
+
+    // Make this more effecient, use that data component
+    useEffect(() => {
+        let temp = [];
+            axios.get('http://localhost:8080/api/option/' + active + '/taker')
+            .then(response => {
+                //console.log(response);
+                setOptions(response.data)
+            }).catch(error => console.log('error', error));
+    }, [])
+
+    console.log("Options t");
+    console.log(options);
+    return (
         <div className="recent-transactions">
             <Card>
                 <Title>Recent Transactions</Title>
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableHeaderCell>Code</TableHeaderCell>
-                            <TableHeaderCell>Name</TableHeaderCell>
-                            <TableHeaderCell>Avg Price ($)</TableHeaderCell>
-                            <TableHeaderCell>Profit/Loss (%)</TableHeaderCell>
-                            <TableHeaderCell>Units</TableHeaderCell>
-                            <TableHeaderCell>Price ($)</TableHeaderCell>
-                            <TableHeaderCell>Value ($)</TableHeaderCell>
-                            <TableHeaderCell>Type</TableHeaderCell>
+                            <TableHeaderCell> ID </TableHeaderCell>
+                            <TableHeaderCell> Type </TableHeaderCell>
+                            <TableHeaderCell> Style </TableHeaderCell>
+                            <TableHeaderCell> Quantity </TableHeaderCell>
+                            <TableHeaderCell> Premium ($) </TableHeaderCell>
+                            <TableHeaderCell> Strike ($) </TableHeaderCell>
+                            <TableHeaderCell> Date of Purchase </TableHeaderCell>
+                            <TableHeaderCell> Date of Expiry </TableHeaderCell>
                         </TableRow>
                     </TableHead>
 
                     <TableBody>
-                        <TableRow>
-                            <TableCell>NAB</TableCell>
-                            <TableCell>National Australia Bank Ltd.</TableCell>
-                            <TableCell>28.10</TableCell>
-                            <TableCell><BadgeDelta deltaType="moderateIncrease">0.15</BadgeDelta></TableCell>
-                            <TableCell>100</TableCell>
-                            <TableCell>28.10</TableCell>
-                            <TableCell>281.00</TableCell>
-                            <TableCell><Badge color="violet">Put</Badge></TableCell>
-                        </TableRow>
+                        {
+                            options.map((item, index) =>
+                                <TableRow key={index}>
+                                    <TableCell> <Text> {item.id} </Text> </TableCell>
+                                    <TableCell> <Text> {item.type} </Text> </TableCell>
+                                    <TableCell> <Text> {item.style} </Text> </TableCell>
+                                    <TableCell> <Text> {item.quantity} </Text> </TableCell>
+                                    <TableCell> <Text> {item.premium} </Text> </TableCell>
+                                    <TableCell> <Text> {item.strikePrice} </Text> </TableCell>
+                                    <TableCell> <Text> {item.purchaseDate} </Text> </TableCell>
+                                    <TableCell> <Text> {item.expirationDate} </Text> </TableCell>
+                                </TableRow>
+                            )
+                        }
                     </TableBody>
                 </Table>
             </Card>

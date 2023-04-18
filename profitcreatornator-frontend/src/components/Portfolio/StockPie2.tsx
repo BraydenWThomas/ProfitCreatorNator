@@ -20,13 +20,17 @@ interface portfolioItem {
     stock: stockInformation;
  }
 
-export default function StockPie() {
+ interface UserProps {
+    active: number
+}
+
+export default function StockPie({active}: UserProps) {
 
     const [stocks, setStocks] = useState<portfolioItem[]>([]) // owned stocks
 
     // Make this more effecient, use that data component
     useEffect(() => {
-            axios.get('http://localhost:8080/api/portfolio/trader/detailed/3') // use 3 for now
+            axios.get('http://localhost:8080/api/portfolio/trader/detailed/' + active) // use 3 for now
         .then(response => {
             console.log(response);
             setStocks(response.data)
