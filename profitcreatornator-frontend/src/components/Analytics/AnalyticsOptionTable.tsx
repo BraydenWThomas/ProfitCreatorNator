@@ -23,29 +23,19 @@ import TableData from "./Extra/TableData";
 // Dummy Data
 import data from "./Extra/TempData.json";
 
-export default function AnalyticsOptionTable({ state }: any) {
+export default function AnalyticsOptionTable({ state, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage }: any) {
   // Fetch options in db
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<any[]>([]);
 
   // URL
   const API_URL = "http://localhost:8080/api/option";
 
-  // Pagination
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const handleChangePage = (event: any, newPage: SetStateAction<number>) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: any) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   // Fetch request
   useEffect(() => {
-    fetch(API_URL)
+    fetch(API_URL, {
+      method: "GET",
+      redirect: "follow",
+    })
       .then(response => response.json())
       .then(data => { setOptions(data) });
   }, [])
@@ -58,21 +48,12 @@ export default function AnalyticsOptionTable({ state }: any) {
       <Table className="mt-5">
         <TableHead style={{ fontSize: "100%" }}>
           <TableRow>
-            {/* <TableHeaderCell> Code </TableHeaderCell>
-            <TableHeaderCell> Name </TableHeaderCell>
-            <TableHeaderCell> Avg Price </TableHeaderCell>
-            <TableHeaderCell> Profit/Loss(%) </TableHeaderCell>
-            <TableHeaderCell> Units </TableHeaderCell>
-            <TableHeaderCell> Price </TableHeaderCell>
-            <TableHeaderCell> Value </TableHeaderCell>
-            <TableHeaderCell> Type </TableHeaderCell> */}
             <TableHeaderCell> Code </TableHeaderCell>
             <TableHeaderCell> Name </TableHeaderCell>
-            <TableHeaderCell> Strike Price </TableHeaderCell>
+            <TableHeaderCell> Strike Price ($) </TableHeaderCell>
             <TableHeaderCell> Profit/Loss(%) </TableHeaderCell>
             <TableHeaderCell> Units </TableHeaderCell>
-            <TableHeaderCell> Premium</TableHeaderCell>
-            <TableHeaderCell> Value </TableHeaderCell>
+            <TableHeaderCell> Premium ($) </TableHeaderCell>
             <TableHeaderCell> Style </TableHeaderCell>
             <TableHeaderCell> Type </TableHeaderCell>
             <TableHeaderCell> Expiration </TableHeaderCell>
@@ -90,7 +71,7 @@ export default function AnalyticsOptionTable({ state }: any) {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={data.length}
+        count={filteredOptions.length}
         page={page}
         onPageChange={handleChangePage}
         rowsPerPage={rowsPerPage}

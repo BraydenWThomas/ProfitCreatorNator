@@ -12,14 +12,15 @@ export default function TableData({ data }: any) {
     return (
       <TableRow>
         <TableCell> {data.id} </TableCell>
-        <TableCell> {data.name} </TableCell>
+        <TableCell> 
+          {data.stock.name} 
+        </TableCell>
         <TableCell> ${data.strike_price} </TableCell>
         <TableCell>
           {/* <GetBadge status={data.profitLoss[0]} amount={data.profitLoss} /> */}
         </TableCell>
         <TableCell> {data.quantity} </TableCell>
         <TableCell> ${data.premium} </TableCell>
-        <TableCell> ${data.value} </TableCell>
         <TableCell> {data.style} </TableCell>
         <TableCell>
           <GetBadge status={data.type} amount={data.type.toUpperCase()} />
