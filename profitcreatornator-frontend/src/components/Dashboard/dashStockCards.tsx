@@ -15,9 +15,9 @@ export default function YourAccount() {
         <div>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
-                    <div className="flex flex-row...">
+                    <div className="flex flex-row... space-x-3">
                         {dummyList.map((holdings) =>
-                            <Card key={holdings.code} style={{ margin: "0 3px" }}>
+                            <Card key={holdings.code}>
                                 <Flex alignItems="start">
                                     <div>
                                         <Subtitle> {holdings.code} </Subtitle>
@@ -35,39 +35,39 @@ export default function YourAccount() {
                         )}
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Card decoration="top" decorationColor="orange">
-                        <Flex className="space-x-6">
-                            <Icon
-                                icon={TrendingUpIcon}
-                                color="orange"
-                                variant="light"
-                                size="xl"
-                            />
-                            <div>
-                                <Text>Your Earnings</Text>
-                                <Metric>$3342.00</Metric>
-                            </div>
-                        </Flex>
-                    </Card>
+                <Grid item xs={12} sm={12}>
+                    <div className="flex flex-row... space-x-3">
+                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '44px', paddingBottom: '44px' }}>
+                            <Flex>
+                                <Icon
+                                    icon={TrendingUpIcon}
+                                    color="orange"
+                                    variant="light"
+                                    size="xl"
+                                />
+                                <div>
+                                    <Subtitle>Your Earnings</Subtitle>
+                                    <Metric>$3342.00</Metric>
+                                </div>
+                            </Flex>
+                        </Card>
+                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '44px', paddingBottom: '44px' }}>
+                            <Flex>
+                                <Icon
+                                    icon={CashIcon}
+                                    color="orange"
+                                    variant="light"
+                                    size="xl"
+                                />
+                                <div>
+                                    <Subtitle>Your Balance</Subtitle>
+                                    <Metric>$1000</Metric>
+                                </div>
+                            </Flex>
+                        </Card>
+                    </div>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Card decoration="top" decorationColor="orange">
-                        <Flex className="space-x-6">
-                            <Icon
-                                icon={CashIcon}
-                                color="orange"
-                                variant="light"
-                                size="xl"
-                            />
-                            <div>
-                                <Text>Your Balance</Text>
-                                <Metric>$1000</Metric>
-                            </div>
-                        </Flex>
-                    </Card>
-                </Grid>
-            </Grid>
-        </div>
+            </Grid >
+        </div >
     )
 }

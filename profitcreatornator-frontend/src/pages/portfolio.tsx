@@ -5,6 +5,10 @@ import RecentTransactions from '@/components/Dashboard/RecentTransactionsTable';
 import RecentTransactions2 from '@/components/Dashboard/RecentTransactionsTable2';
 import StockPortfolio from '../components/Portfolio/StockPortfolio';
 import StockPortfolio2 from '../components/Portfolio/StockPortfolio2';
+<<<<<<< HEAD
+=======
+import PortfolioData from '../components/data/PortfolioData';
+>>>>>>> master
 import StockPie from '../components/Portfolio/StockPie';
 import StockPie2 from '../components/Portfolio/StockPie2';
 import Performance from "../components/Portfolio/Performance";

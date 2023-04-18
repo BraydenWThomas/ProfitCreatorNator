@@ -9,6 +9,10 @@ import { Card, Metric, Table, TableBody, TableCell, TableHead, TableHeaderCell, 
 
 // END OF IMPORTS
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 interface stockInformation {
     id: number;
     name: string;
@@ -26,6 +30,10 @@ interface portfolioItem {
     active: number
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 export default function StockPortfolio({active}: UserProps) {
 
     const [stocks, setStocks] = useState<portfolioItem[]>([]) // owned stocks

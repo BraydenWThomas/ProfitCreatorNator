@@ -21,10 +21,10 @@ const StatBox: FunctionComponent<Props> = ({
             <Flex
             justifyContent="evenly">
                 <div>
-                    {icon && <Icon icon={icon} 
+                    {icon && <Icon icon={icon}
                     color={color}
-                    variant="solid"
-                    size="lg"
+                    variant="light"
+                    size="xl"
                     />}
                 </div>
                 <div>
