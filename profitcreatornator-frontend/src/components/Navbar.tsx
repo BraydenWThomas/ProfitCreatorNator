@@ -7,15 +7,14 @@ interface NavbarProps {
 
 export default function Navbar({active}: NavbarProps) {
 
-    var activeClass = "bg-zinc-300 flex items-center p-2 rounded-lg dark:text-black";
-    var inactiveClass = "flex items-center p-2 rounded-lg text-black hover:bg-gray-300 dark:hover:bg-gray-700"
+    var activeClass = "bg-gray-700 text-white flex items-center p-2 rounded-lg";
+    var inactiveClass = " text-gray-400 flex items-center p-2 rounded-lg hover:bg-gray-600"
 
     return (
-        <div className="sticky top-0 px-3 py-3 bg-white dark:bg-slate-700 border" style={{width:'300px', height:'100vh', zIndex:1}}>
-            <a href="/dashboard" className="flex items-center mb-4">
-                <img src={"/logo.png"} alt="Logo" style={{height:'100px', width:'230px'}}/>
+        <div className="sticky top-0 px-3 py-4 bg-gray-800 border-r" style={{width:'300px', height:'100vh', zIndex:1}}>
+            <a href="/dashboard" className="flex items-center">
+                <img src={"/logo.png"} alt="Logo" style={{height:'70px', marginBottom:'20px'}}/>
             </a>
-            <Divider className="mb-4" />
             <ul className="font-medium">
                 <li className="mb-4">
                     <a href="/dashboard" className={active === "Dashboard" ? activeClass : inactiveClass}>
@@ -47,7 +46,7 @@ export default function Navbar({active}: NavbarProps) {
                         <h1 className="flex-1 ml-3 whitespace-nowrap">Watchlist</h1>
                     </a>
                 </li>
-                <Divider className="mb-4" />
+                <Divider className="mb-4 bg-slate-400" />
                 <li className="mb-4">
                     <a href="#" className={active === "Settings" ? activeClass : inactiveClass}>
                         <AdjustmentsIcon className='w-6 h-6' />

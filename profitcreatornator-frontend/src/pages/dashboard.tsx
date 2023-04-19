@@ -11,13 +11,13 @@ import Header from "@/components/Header";
 
 export default function dashboard() {
     return (
-        <div className="dark:bg-slate-500" style={{ display: 'flex', width: "100%" }}>
+        <div className="flex w-full dark:bg-blue-950">
             <div>
             <Navbar active="Dashboard"/>
             </div>
             <div>
                 <Header title="Dashboard" />
-                <div className="px-2 py-2">
+                <div className="px-6 py-6">
                     <Grid container spacing={2}>
                         <Grid item sm={6}>
                             <DashStockCards />
