@@ -13,7 +13,7 @@ export default function Navbar({active}: NavbarProps) {
     return (
         <div className="sticky top-0 px-3 py-4 bg-gray-800 border-r" style={{width:'300px', height:'100vh', zIndex:1}}>
             <a href="/dashboard" className="flex items-center">
-                <img src={"/logo.png"} alt="Logo" style={{height:'70px', marginBottom:'20px'}}/>
+                <img src={"/logo.png"} alt="Logo" style={{width:'250px', marginBottom:'40px', marginTop:'10px'}}/>
             </a>
             <ul className="font-medium">
                 <li className="mb-4">
