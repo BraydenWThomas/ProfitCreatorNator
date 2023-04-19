@@ -5,7 +5,6 @@ import RecentTransactions from '@/components/Dashboard/RecentTransactionsTable';
 import RecentTransactions2 from '@/components/Dashboard/RecentTransactionsTable2';
 import StockPortfolio from '../components/Portfolio/StockPortfolio';
 import StockPortfolio2 from '../components/Portfolio/StockPortfolio2';
-import PortfolioData from '../components/data/PortfolioData';
 import StockPie from '../components/Portfolio/StockPie';
 import StockPie2 from '../components/Portfolio/StockPie2';
 import Performance from "../components/Portfolio/Performance";
@@ -64,7 +63,7 @@ export default function portfolio() {
             {/* recent transactions can use a date silter maybe. Y/Qtr/M/W */}
             <div style={{ width: '100%' }}>
                 <Header title="Portfolio" />
-                <div className="px-2 py-2">
+                <div className="px-6 py-6">
                     <div style={{ clear: "both", marginBottom: "16px" }}>
                         <Typography variant="h4" color="#293845" mx={2} mb={2} style={{ float: "left" }}> My Holdings </Typography>
                         <Button variant="contained" style={{ float: "right" }} href='/'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
@@ -76,7 +75,7 @@ export default function portfolio() {
                         <StockPortfolio2 active={noForUser} />
                     </div>
 
-                    <Divider sx={{ mt: 2, mb: 2 }} />
+                    <Divider />
 
                     <div style={{ clear: "both", marginBottom: "16px" }}>
                         <Typography variant="h4" color="#293845" mx={2} mb={2}> My Performance </Typography>
