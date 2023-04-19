@@ -75,7 +75,7 @@ export default function Value() {
                 index="month"
                 categories={["Value"]}  
                 colors={["purple"]}
-                yAxisWidth={40}
+                yAxisWidth={60}
             />
         </Card>
     )

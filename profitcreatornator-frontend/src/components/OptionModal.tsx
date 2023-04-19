@@ -1,23 +1,31 @@
 
 "use client"
-import { Box, Container, Divider, Fade, Grid, Menu, Modal, TextField, Typography, Button, InputAdornment } from "@mui/material";
+import { Box, Container, Divider, Fade, Grid, Menu, Modal, TextField, Typography, Button, InputAdornment, FormControl, MenuItem } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import OptionTable from "./OptionTable";
 import { Toggle, ToggleItem } from "@tremor/react";
 import { OptionInfo } from "@/pages/optionMarket";
+export interface Stock {
+  id: String
+  name: String
+  symbol: String
+  currentPrice: number
+}
+export default function OptionModal({ openState, setOpenState, optionInfo, setOptionInfo }:
+  { optionInfo: OptionInfo[], setOptionInfo: Dispatch<SetStateAction<OptionInfo[]>>, openState: boolean, setOpenState: Dispatch<SetStateAction<boolean>> }) {
 
-export default function OptionModal({openState, setOpenState, optionInfo, setOptionInfo} : 
-  {optionInfo : OptionInfo[], setOptionInfo : Dispatch<SetStateAction<OptionInfo[]>>, openState : boolean, setOpenState : Dispatch<SetStateAction<boolean>>}) {
-  
   const [optionType, setOptionType] = useState("put");
   const handleClose = () => setOpenState(false)
   const [units, setUnits] = useState(0);
   const [strike, setStrike] = useState(0);
   const [price, setPrice] = useState(300);
-  
-
+  const [optionStyle, setOptionStyle] = useState("European");
+  const [premium, setPremium] = useState(0);
+  const [stockInfo, setStockInfo] = useState<Stock[]>([])
+  const [selectedStock, setSelectedStock] = useState<Stock>()
+ 
   const style = {
     ':hover': {
       bgcolor: 'white',
@@ -25,26 +33,54 @@ export default function OptionModal({openState, setOpenState, optionInfo, setOpt
     },
   }
 
+  useEffect(() => {
+    const requestOptions: RequestInit = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:8080/api/stock", requestOptions)
+      .then(response => response.json())
+      .then(result => setStockInfo(result))
+      .catch(error => console.log('error', error));
+  }, [])
+
+  useEffect(() => {
+   setSelectedStock(stockInfo[0])
+  }, [stockInfo])
 
   const createOption = () => {
 
     const option = {
+      stock: selectedStock,
+      taker: null,
+      writer: null,
+      style: optionStyle,
+      strike_price: strike,
+      type: optionType,
+      premium: premium,
       expiration_date: "2023-04-17T00:00:00",
-      id: "0",
-      premium: 0.58,
       purchase_date: null,
-      quantity: 2,
       status: "waiting_taker",
-      strike_price: 114.63,
-      style: "European",
-      type: "put"
-
+      quantity: 2,
+      barrierOption: null
     }
 
-    setOptionInfo([...optionInfo, option])
+    const requestOptions: RequestInit = {
+      method: 'POST',
+      body: JSON.stringify(option),
+      redirect: 'follow',
+      headers: { 'content-type': 'application/json' }
+    };
 
-
+    fetch("http://localhost:8080/api/option", requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log('error', error));
+    
+    
     setOpenState(false)
+    window.location.reload();
   }
   return (
     <>
@@ -56,7 +92,7 @@ export default function OptionModal({openState, setOpenState, optionInfo, setOpt
           boxShadow: 24
         }}
       >
-        <Box style={{ backgroundColor: 'rgb(195,207,217)', transform: 'translate(180%, 30%)', width: '20%', height: '50%' }}>
+        <Box style={{ backgroundColor: 'rgb(195,207,217)', transform: 'translate(100%, 30%)', width: '30%', height: '60%' }}>
           <Container component="main">
             <div className="header" style={{ display: "flex" }}>
               <Typography component="h1" variant="h3" mt={2} sx={{ flex: 1, color: 'rgb(41,56,69)' }}>Create Option</Typography>
@@ -69,18 +105,7 @@ export default function OptionModal({openState, setOpenState, optionInfo, setOpt
               }}>
               <Divider sx={{ mt: 2, mb: 2 }} />
               <Typography component="h1" variant="h5" mt={2} sx={{ flex: 1, color: 'rgb(41,56,69)' }}>Trading Account: John</Typography>
-              <div
-                style={{
-                  display: "flex",
-                  alignSelf: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  paddingTop: '2%',
-                  paddingBottom: '2%',
-
-
-                }}
-              >
+              <Grid item sm={3}>
 
                 <TextField
                   id="search"
@@ -100,7 +125,8 @@ export default function OptionModal({openState, setOpenState, optionInfo, setOpt
                   }}
                 />
 
-              </div>
+              </Grid>
+
               <div style={{ display: 'flex' }}>
                 <div>
                   <div style={{ marginBottom: '5%' }}>
@@ -110,6 +136,7 @@ export default function OptionModal({openState, setOpenState, optionInfo, setOpt
                       <ToggleItem value="put" text="PUT" />
                       <ToggleItem value="call" text="CALL" />
                     </Toggle>
+
                   </div>
 
                   <Grid >
@@ -142,15 +169,29 @@ export default function OptionModal({openState, setOpenState, optionInfo, setOpt
 
                         helperText={"Required field"}
                         label="PREMIUM"
-
+                        onChange={(e) => {
+                          setPremium(parseInt(e.target.value))
+                        }}
                       />
                     </Grid>
 
                   </Grid>
                 </div>
 
-                <Box sx={{ marginLeft: '10%', border: '2px solid rgb(158,173,186)', width: '70%', backgroundColor: 'rgb(227,232,237)' }}>
-                  <Typography component="h2" variant="h6" mb={2} style={{ marginTop: '2%', marginLeft: '2%' }}> Option Evaluation </Typography>
+                <Box sx={{ marginLeft: '10%', width: '70%' }}>
+                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginBottom: '0.2%' }}> Order Style </Typography>
+                  <Toggle style={{ fontWeight: '700' }} defaultValue="European" onValueChange={(value) => setOptionStyle(value)}>
+
+                    <ToggleItem value="European" text="European" />
+                    <ToggleItem value="American" text="American" />
+                  </Toggle>
+                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginTop: '2%' }}> Option Evaluation </Typography>
+
+                  {stockInfo[0] ? stockInfo.map((item, index) => (<Button key={index} variant="outlined" onClick={() => {
+                    setSelectedStock(item);
+                    
+                  }}>{item.name}</Button>)) : <h1>hi</h1>}
+                  <p>{selectedStock == undefined ? null : selectedStock.name}</p>
                 </Box>
 
               </div>

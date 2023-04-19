@@ -13,7 +13,9 @@ import StockInfoList from "@/components/StockInfo/StockInfoList";
 import StockPriceCard from "@/components/StockInfo/StockPriceCard"
 import Header from "@/components/Header";
 import { OptionInfo } from "../optionMarket";
+
 export default function OptionMarket() {
+    
     const buttonStyle = {
         ':hover': {
             bgcolor: 'white',
@@ -32,8 +34,8 @@ export default function OptionMarket() {
         strike_price: 0,
         style: "European",
         type: "put"
-  
-      })
+
+    })
     useEffect(() => {
         const requestOptions: RequestInit = {
             method: 'GET',
@@ -51,52 +53,56 @@ export default function OptionMarket() {
     return (
         <div style={{ display: 'flex', width: "100%" }}>
             <div>
-            <Navbar active="Marketplace"/>
+                <Navbar active="Marketplace" />
             </div>
             <div style={{ width: "100%" }}>
-                <Header title="Option" />
+                <Header title={"Option " + id } />
                 <div className="px-4 py-2">
                     <Grid container spacing={2}>
+                        <Grid item sm={12}>
+                            <StockPriceCard
+                                symbol="Current Price"
+                                deltaType="moderateIncrease"
+                                isIncreasePositive={true}
+                                stockPrice="174.93" />
+                        </Grid>
+
                         <Grid item sm={9}>
                             <Value />
                         </Grid>
                         <Grid item sm={3}>
-                                <StockPriceCard
-                                    symbol="Current Price"
-                                    deltaType="moderateIncrease"
-                                    isIncreasePositive={true}
-                                    stockPrice="$ 174.93" />
-                                <StockInfoList
-                                    marketCap="572.187B"
-                                    previousClose="187.23"
-                                    open="190.78"
-                                    volume="148,418,050"
-                                    dayRange="180.31 - 191.58" />
 
-                       
+                            <StockInfoList
+                                marketCap="572.187B"
+                                previousClose="187.23"
+                                open="190.78"
+                                volume="148,418,050"
+                                dayRange="180.31 - 191.58" />
 
 
-                        <Card>
-                            <Title>Option Details</Title>
-                            <List>
-                                <ListItem>
-                                    <span>Strike Price</span>
-                                    <span>{optionDetail.strike_price}</span>
-                                </ListItem>
-                                <ListItem>
-                                    <span>Option Expiration Date</span>
-                                    <span>{optionDetail.expiration_date.toString().substring(0,10)}</span>
-                                </ListItem>
-                                <ListItem>
-                                    <span>Premium</span>
-                                    <span>{optionDetail.premium}</span>
-                                </ListItem>
-                                <ListItem>
-                                    <span>Stock Volume</span>
-                                    <span>{optionDetail.quantity}</span>
-                                </ListItem>
-                            </List>
-                        </Card> </Grid>
+
+
+                            <Card>
+                                <Title>Option Details</Title>
+                                <List>
+                                    <ListItem>
+                                        <span>Strike Price</span>
+                                        <span>{optionDetail.strike_price}</span>
+                                    </ListItem>
+                                    <ListItem>
+                                        <span>Option Expiration Date</span>
+                                        <span>{optionDetail.expiration_date.toString().substring(0, 10)}</span>
+                                    </ListItem>
+                                    <ListItem>
+                                        <span>Premium</span>
+                                        <span>{optionDetail.premium}</span>
+                                    </ListItem>
+                                    <ListItem>
+                                        <span>Stock Volume</span>
+                                        <span>{optionDetail.quantity}</span>
+                                    </ListItem>
+                                </List>
+                            </Card> </Grid>
                     </Grid>
                 </div>
                 <Button variant="contained"

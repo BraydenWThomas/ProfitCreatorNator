@@ -19,7 +19,7 @@ import { OptionInfo } from "@/pages/optionMarket";
 export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) {
     const data = tablerows;
     return (
-        <Card style={{ marginLeft: '1%', marginRight: '1%', width: '98%' }}>
+        <Card>
 
             <Table className="mt-5">
                 <TableHead style={{ fontSize: "100%" }}>
@@ -73,17 +73,17 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
                             <TableCell>
 
                                 <Badge
-                                    color={item.type == "PUT" ? "purple" : "orange"}
+                                    color={item.type == "put" ? "purple" : "orange"}
                                     size="xs">
                                     {item.type}
                                 </Badge>
 
                             </TableCell>
                             <TableCell>
-                                <Button color="green"><Link href={{
+                            <Link href={{
                                     pathname: '/viewOption/' + item.id,
                               
-                                }}>View</Link></Button>
+                                }}> <Button color="green">View</Button></Link>
                             </TableCell>
                         </TableRow>
                     ))}
