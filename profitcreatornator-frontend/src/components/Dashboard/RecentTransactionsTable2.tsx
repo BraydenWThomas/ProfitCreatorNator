@@ -1,41 +1,79 @@
 
+// IMPORTS
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// Tremor
 import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Text, Title } from "@tremor/react";
 
+// END OF IMPORTS
+
+// Format data from the API call
 interface OptionsProperties {
+    barrierOptions: BarrierOptions;
+    expiration_date: Date;
     id: number;
-    expirationDate: string;
     premium: number;
-    purchaseDate: string;
+    purchase_date?: Date;
     quantity: number;
     status: string;
-    strikePrice: number;
+    stock: Stock;
+    strike_price: number;
     style: string;
+    taker: Taker;
     type: string;
-    barrierOptionId?: number;
+    writer: Writer;
+}
+
+interface BarrierOptions {
+    id: number;
+    status?: string;
+    threshold: number;
+    type?: string;
+}
+
+interface Stock {
+    currentPrice: number;
+    id: number;
+    name: string;
+    symbol: string;
+}
+
+interface Taker {
+    id: number;
+    name: string;
+}
+
+interface Writer {
+    id: number;
+    name: string;
 }
 
 interface UserProps {
     active: number
 }
 
-export default function RecentTransactions({ active }: UserProps) {
-    const [options, setOptions] = useState<OptionsProperties[]>([]); // owned stocks
+const dateFormatter = (date: any) => {
+    return (
+        dayjs(date).format('D MMMM YYYY')
+    )
+}
 
-    // Make this more effecient, use that data component
+export default function RecentTransactions({ active }: UserProps) {
+    const [options, setOptions] = useState<OptionsProperties[]>([]);
+
+    // API Call to get option information based on user
     useEffect(() => {
         let temp = [];
-            axios.get('http://localhost:8080/api/option/' + active + '/taker')
+        axios.get('http://localhost:8080/api/option/' + active + '/all')
             .then(response => {
-                //console.log(response);
                 setOptions(response.data)
             }).catch(error => console.log('error', error));
     }, [])
 
     console.log("Options t");
-    console.log(options);
+    console.log(options)
     return (
         <div className="recent-transactions">
             <Card>
@@ -43,32 +81,36 @@ export default function RecentTransactions({ active }: UserProps) {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableHeaderCell> ID </TableHeaderCell>
+                            <TableHeaderCell> Stock </TableHeaderCell>
+                            <TableHeaderCell> Symbol </TableHeaderCell>
                             <TableHeaderCell> Type </TableHeaderCell>
-                            <TableHeaderCell> Style </TableHeaderCell>
                             <TableHeaderCell> Quantity </TableHeaderCell>
                             <TableHeaderCell> Premium ($) </TableHeaderCell>
                             <TableHeaderCell> Strike ($) </TableHeaderCell>
                             <TableHeaderCell> Date of Purchase </TableHeaderCell>
-                            <TableHeaderCell> Date of Expiry </TableHeaderCell>
                         </TableRow>
                     </TableHead>
 
                     <TableBody>
                         {
                             options.map((item, index) =>
+                                dateFormatter(item.purchase_date) == 'Invalid Date' ?
+                                    null
+                                :
                                 <TableRow key={index}>
-                                    <TableCell> <Text> {item.id} </Text> </TableCell>
+                                    <TableCell> <Text> {item.stock.name} </Text> </TableCell>
+                                    <TableCell> <Text> {item.stock.symbol} </Text> </TableCell>
                                     <TableCell> <Text> {item.type} </Text> </TableCell>
-                                    <TableCell> <Text> {item.style} </Text> </TableCell>
                                     <TableCell> <Text> {item.quantity} </Text> </TableCell>
                                     <TableCell> <Text> {item.premium} </Text> </TableCell>
-                                    <TableCell> <Text> {item.strikePrice} </Text> </TableCell>
-                                    <TableCell> <Text> {item.purchaseDate} </Text> </TableCell>
-                                    <TableCell> <Text> {item.expirationDate} </Text> </TableCell>
+                                    <TableCell> <Text> {item.strike_price} </Text> </TableCell>
+                                    <TableCell> <Text> {dateFormatter(item.purchase_date)} </Text> </TableCell>
                                 </TableRow>
+                            
+                            
                             )
                         }
+
                     </TableBody>
                 </Table>
             </Card>
