@@ -8,11 +8,12 @@ import DisplayState from "@/components/Analytics/DisplayState";
 export default function analytics() {
   return (
     <div style={{ display: 'flex' }}>
-      <Navbar active="Analytics"/>
+      <Navbar active="Analytics" />
       <div className="content" style={{ float: 'left', width: '100%' }}>
         <Header title="Analytics" />
-
-        <DisplayState />
+        <div className="px-6 py-6">
+          <DisplayState />
+        </div>
       </div>
     </div>
   )

@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function login() {
     return (
         <div>
-            <Container component='main' maxWidth='xs'>
+            <Container component='main' maxWidth='lg'>
                 <Box
                     sx={{
                         marginTop: 8,
@@ -16,7 +16,7 @@ export default function login() {
                         mt:20
                     }}
                 >
-                    <Image src={"/logo.png"} alt='logo' width={360} height={640}/>
+                    <img src={"/logo.png"} alt='logo' width={360} height={640}/>
                     <Box component="form" noValidate sx={{ mt: 10 }}>
                         <TextField
                             margin="normal"
