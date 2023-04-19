@@ -21,9 +21,6 @@ import styles from "./Extra/TableBody.module.scss"
 import TableData from "./Extra/TableData";
 import DetailedOption from "./Extra/DetailedOption";
 
-// Dummy Data
-import data from "./Extra/TempData.json";
-
 export default function AnalyticsOptionTable({ state, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage, displayHidden, setDisplayHidden}: any) {
   // Fetch options in db
   const [options, setOptions] = useState<any[]>([]);
@@ -45,15 +42,15 @@ export default function AnalyticsOptionTable({ state, page, rowsPerPage, handleC
   const filteredOptions = options.filter(option => option.status.includes(state));
 
   // Show detailed option
-  // const [displayHidden, setDisplayHidden] = useState(false);
   const [stockId, setStockId] = useState("");
   const [optionId, setOptionId] = useState("");
+  const [highlightedRow, setHighlightedRow] = useState("");
 
   return (
     <div>
       <Card style={{ marginTop: '-1%', marginLeft: '1%', marginRight: '1%', width: '98%' }}>
         <Table className="analytics-options">
-          <TableHead style={{ fontSize: "100%" }}>
+          <TableHead className="bg-purple-50 uppercase   " style={{ fontSize: "100%" }}>
             <TableRow>
               <TableHeaderCell> Code </TableHeaderCell>
               <TableHeaderCell> Name </TableHeaderCell>
@@ -70,11 +67,13 @@ export default function AnalyticsOptionTable({ state, page, rowsPerPage, handleC
             {filteredOptions
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((option, key) => (
-                <TableData 
-                  key={key} 
-                  data={option} 
-                  setDisplayHidden={setDisplayHidden} 
-                  setStockId={setStockId} 
+                <TableData
+                  key={key}
+                  data={option}
+                  highlightedRow={highlightedRow}
+                  setHighlightedRow={setHighlightedRow}
+                  setDisplayHidden={setDisplayHidden}
+                  setStockId={setStockId}
                   setOptionId={setOptionId} />
               ))
             }

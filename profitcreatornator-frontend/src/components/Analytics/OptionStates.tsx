@@ -13,7 +13,7 @@ export default function OptionStates({ state, page, rowsPerPage, handleChangePag
           page={page}
           rowsPerPage={rowsPerPage}
           handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage} 
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
           displayHidden={displayHidden}
           setDisplayHidden={setDisplayHidden} />
       </div>
