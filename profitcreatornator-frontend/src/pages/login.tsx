@@ -37,9 +37,9 @@ export default function login() {
                             id="password"
                         />
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
+                            color='primary'
                             sx={{ mt: 3, mb: 2 }}
                             href="/dashboard"
                         >
