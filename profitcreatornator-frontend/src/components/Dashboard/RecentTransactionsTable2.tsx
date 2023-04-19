@@ -4,8 +4,11 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// Material UI
+import Button from "@mui/material/Button"
+
 // Tremor
-import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Text, Title } from "@tremor/react";
+import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TabList, Tab, Text, Title } from "@tremor/react";
 
 // END OF IMPORTS
 
@@ -82,7 +85,6 @@ export default function RecentTransactions({ active }: UserProps) {
                     <TableHead>
                         <TableRow>
                             <TableHeaderCell> Stock </TableHeaderCell>
-                            <TableHeaderCell> Symbol </TableHeaderCell>
                             <TableHeaderCell> Type </TableHeaderCell>
                             <TableHeaderCell> Quantity </TableHeaderCell>
                             <TableHeaderCell> Premium ($) </TableHeaderCell>
@@ -96,18 +98,19 @@ export default function RecentTransactions({ active }: UserProps) {
                             options.map((item, index) =>
                                 dateFormatter(item.purchase_date) == 'Invalid Date' ?
                                     null
-                                :
-                                <TableRow key={index}>
-                                    <TableCell> <Text> {item.stock.name} </Text> </TableCell>
-                                    <TableCell> <Text> {item.stock.symbol} </Text> </TableCell>
-                                    <TableCell> <Text> {item.type} </Text> </TableCell>
-                                    <TableCell> <Text> {item.quantity} </Text> </TableCell>
-                                    <TableCell> <Text> {item.premium} </Text> </TableCell>
-                                    <TableCell> <Text> {item.strike_price} </Text> </TableCell>
-                                    <TableCell> <Text> {dateFormatter(item.purchase_date)} </Text> </TableCell>
-                                </TableRow>
-                            
-                            
+                                    :
+                                    
+                                        <TableRow key={index}>
+                                            <TableCell className="content-center"> <Text> <Button variant="outlined" size="small"> {item.stock.symbol} </Button> </Text> </TableCell>
+                                            <TableCell> <Text> <Badge color={item.type == "put" ? "violet" : "amber"}> {item.type}</Badge> </Text> </TableCell>
+                                            <TableCell> <Text> {item.quantity} </Text> </TableCell>
+                                            <TableCell> <Text> {item.premium} </Text> </TableCell>
+                                            <TableCell> <Text> {item.strike_price} </Text> </TableCell>
+                                            <TableCell> <Text> {dateFormatter(item.purchase_date)} </Text> </TableCell>
+                                        </TableRow>
+                                    
+
+
                             )
                         }
 

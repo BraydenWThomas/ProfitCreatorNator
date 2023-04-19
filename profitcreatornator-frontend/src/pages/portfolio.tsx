@@ -29,8 +29,7 @@ import Header from '@/components/Header';
 
 export default function portfolio() {
 
-    const noForUser = 4
-    ; // for sake of testing user without login
+    const noForUser = 4; // for sake of testing user without login
 
     // const [stocks, setStocks] = useState([])
     // const [portfolio, setPortfolio] = useState([])
@@ -70,11 +69,11 @@ export default function portfolio() {
                         <Typography variant="h4" color="#293845" mx={2} mb={2} style={{ float: "left" }}> My Holdings </Typography>
                         <Button variant="contained" style={{ float: "right" }} href='/'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
                         <div style={{ clear: "both" }} />
-                        <RecentTransactions2 active={noForUser}/>
+                        <RecentTransactions2 active={noForUser} />
                     </div>
 
                     <div style={{ clear: "both" }}>
-                                <StockPortfolio2 active={noForUser} />
+                        <StockPortfolio2 active={noForUser} />
                     </div>
 
                     <Divider sx={{ mt: 2, mb: 2 }} />
