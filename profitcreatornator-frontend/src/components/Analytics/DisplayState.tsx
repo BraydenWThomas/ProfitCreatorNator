@@ -28,7 +28,7 @@ export default function DisplayState() {
   const [highlightedRow, setHighlightedRow] = useState("");
 
   // Tab filter
-  const [displayState, setDisplayState] = useState("waiting");
+  const [displayState, setDisplayState] = useState("waiting_exercise");
 
   // Reset states on display change
   const changeDisplay = (event: any, newDisplay: SetStateAction<string>) => {
@@ -60,8 +60,8 @@ export default function DisplayState() {
           indicatorColor="secondary"
         >
           <Tab value="exercised" label="Past Options" />
-          <Tab value="waiting" label="Current Options" />
-          <Tab value="pending" label="Pending Options" />
+          <Tab value="waiting_exercise" label="Current Options" />
+          <Tab value="waiting_taker" label="Pending Options" />
         </Tabs>
         </ThemeProvider>
       </div>
@@ -76,7 +76,7 @@ export default function DisplayState() {
               handleChangeRowsPerPage={handleChangeRowsPerPage}
               displayHidden={displayHidden}
               setDisplayHidden={setDisplayHidden}  />
-          : (displayState === "waiting"
+          : (displayState === "waiting_exercise"
             ? <OptionStates
                 state={displayState}
                 page={page}
@@ -85,7 +85,7 @@ export default function DisplayState() {
                 handleChangeRowsPerPage={handleChangeRowsPerPage}
                 displayHidden={displayHidden}
                 setDisplayHidden={setDisplayHidden} />
-            : (displayState === "pending"
+            : (displayState === "waiting_taker"
               && <OptionStates
                     state={displayState}
                     page={page}
