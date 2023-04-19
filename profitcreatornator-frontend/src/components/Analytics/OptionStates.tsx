@@ -20,7 +20,7 @@ export default function OptionStates({ state, page, rowsPerPage, handleChangePag
     )
   }
 
-  else if (state === "waiting") {
+  else if (state === "waiting_exercise") {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
         <AnalyticsOptionTable
@@ -35,7 +35,7 @@ export default function OptionStates({ state, page, rowsPerPage, handleChangePag
     )
   }
 
-  else if (state === "pending") {
+  else if (state === "waiting_taker") {
     return (
       <div className="OptionsTabTable" style={{ marginTop: '2%' }}>
         <AnalyticsOptionTable
