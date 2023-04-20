@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import OptionTable from "./OptionTable";
-import { Toggle, ToggleItem } from "@tremor/react";
+import { Toggle, ToggleItem, Badge } from "@tremor/react";
 import { OptionInfo } from "@/pages/optionMarket";
 export interface Stock {
   id: String
@@ -20,12 +20,11 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
   const handleClose = () => setOpenState(false)
   const [units, setUnits] = useState(0);
   const [strike, setStrike] = useState(0);
-  const [price, setPrice] = useState(300);
   const [optionStyle, setOptionStyle] = useState("European");
   const [premium, setPremium] = useState(0);
   const [stockInfo, setStockInfo] = useState<Stock[]>([])
   const [selectedStock, setSelectedStock] = useState<Stock>()
- 
+  const [completeCheck, setCompleteCheck] = useState(true);
   const style = {
     ':hover': {
       bgcolor: 'white',
@@ -62,10 +61,10 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
       expiration_date: "2023-04-17T00:00:00",
       purchase_date: null,
       status: "waiting_taker",
-      quantity: 2,
+      quantity: units,
       barrierOption: null
     }
-
+    if (option.strike_price != 0 && option.premium != 0 && option.quantity != 0){
     const requestOptions: RequestInit = {
       method: 'POST',
       body: JSON.stringify(option),
@@ -81,6 +80,10 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
     
     setOpenState(false)
     window.location.reload();
+  }
+  else{
+    setCompleteCheck(false)
+  }
   }
   return (
     <>
@@ -166,7 +169,7 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
                     </Grid>
                     <Grid item xs={12} sm={4}>
                       <TextField
-
+                        type="number"
                         helperText={"Required field"}
                         label="PREMIUM"
                         onChange={(e) => {
@@ -185,18 +188,20 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
                     <ToggleItem value="European" text="European" />
                     <ToggleItem value="American" text="American" />
                   </Toggle>
-                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginTop: '2%' }}> Option Evaluation </Typography>
+                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginTop: '2%' }}> Select Stock </Typography>
 
                   {stockInfo[0] ? stockInfo.map((item, index) => (<Button key={index} variant="outlined" onClick={() => {
                     setSelectedStock(item);
                     
                   }}>{item.name}</Button>)) : <h1>hi</h1>}
-                  <p>{selectedStock == undefined ? null : selectedStock.name}</p>
+                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginTop: '2%' }}> Stock Chosen </Typography>
+                 {selectedStock == undefined ? null : <Badge color="green" size="sm">{selectedStock.name}</Badge>}
                 </Box>
 
               </div>
 
               <Divider sx={{ mt: 2, mb: 2 }} />
+              {completeCheck == false ? <p style={{color: "red"}}> *Please complete all required fields!</p> : <p></p>}
 
               <div style={{ display: 'flex', float: 'right' }}>
                 <Button
