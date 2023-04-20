@@ -37,7 +37,7 @@ export default function portfolio() {
                 <div className="px-6 py-6">
                     <div style={{ clear: "both", marginBottom: "16px" }}>
                         <Typography variant="h4" color="#293845" mx={2} mb={2} style={{ float: "left" }}> My Holdings </Typography>
-                        <Button variant="contained" style={{ float: "right" }} href='/'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
+                        <Button variant="contained" style={{ float: "right" }} href='/optionMarket'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
                         <div style={{ clear: "both" }} />
                         <RecentTransactions2 active={userPH} />
                     </div>
