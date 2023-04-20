@@ -7,8 +7,8 @@ interface NavbarProps {
 
 export default function Navbar({active}: NavbarProps) {
 
-    var activeClass = "bg-gray-700 text-white flex items-center p-2 rounded-lg";
-    var inactiveClass = " text-gray-400 flex items-center p-2 rounded-lg hover:bg-gray-600"
+    var activeClass = "bg-gray-700 text-white flex items-center p-4 rounded-lg";
+    var inactiveClass = " text-gray-400 flex items-center p-4 rounded-lg hover:bg-gray-600 hover:text-white"
 
     return (
         <div className="sticky top-0 px-3 py-4 bg-gray-800 border-r" style={{width:'300px', height:'100vh', zIndex:1}}>
