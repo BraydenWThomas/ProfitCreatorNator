@@ -49,7 +49,7 @@ export default function portfolio() {
                     <Divider />
 
                     <div style={{ clear: "both", marginBottom: "16px" }}>
-                        <Typography variant="h4" color="#293845" mx={2} mb={2}> My Performance </Typography>
+                        {/* <Typography variant="h4" color="#293845" mx={2} mb={2}> My Performance </Typography> */}
                         <Grid numCols={1} numColsSm={2} numColsLg={3} className="gap-2">
                             <Col numColSpan={2} numColSpanLg={2}>
                                 <Performance />

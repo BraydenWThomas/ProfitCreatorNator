@@ -55,7 +55,7 @@ export default function AnalyticsOptionTable({ state, page, rowsPerPage, handleC
               <TableHeaderCell> Code </TableHeaderCell>
               <TableHeaderCell> Name </TableHeaderCell>
               <TableHeaderCell> Strike Price ($) </TableHeaderCell>
-              <TableHeaderCell> Profit/Loss(%) </TableHeaderCell>
+              {/* <TableHeaderCell> Profit/Loss(%) </TableHeaderCell> */}
               <TableHeaderCell> Units </TableHeaderCell>
               <TableHeaderCell> Premium ($) </TableHeaderCell>
               <TableHeaderCell> Style </TableHeaderCell>

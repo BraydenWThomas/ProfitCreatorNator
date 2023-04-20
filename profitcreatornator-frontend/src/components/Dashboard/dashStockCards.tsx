@@ -37,7 +37,7 @@ export default function YourAccount() {
                 </Grid>
                 <Grid item xs={12} sm={12}>
                     <div className="flex flex-row... space-x-3">
-                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '44px', paddingBottom: '44px' }}>
+                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '26px', paddingBottom: '26px' }}>
                             <Flex>
                                 <Icon
                                     icon={TrendingUpIcon}
@@ -51,7 +51,7 @@ export default function YourAccount() {
                                 </div>
                             </Flex>
                         </Card>
-                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '44px', paddingBottom: '44px' }}>
+                        <Card decoration="top" decorationColor="orange" style={{ paddingTop: '26px', paddingBottom: '26px' }}>
                             <Flex>
                                 <Icon
                                     icon={CashIcon}

@@ -1,5 +1,5 @@
-import { Card, Metric, Text } from "@tremor/react";
-import { Divider, Typography, Button, Grid } from "@mui/material";
+import { Card, Metric, Text, Button } from "@tremor/react";
+import { Divider, Typography, Grid } from "@mui/material";
 import Value from "@/components/Dashboard/value";
 
 import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
@@ -131,13 +131,9 @@ export default function OptionMarket() {
                                 </List>
                             </Card> </Grid>
                     </Grid>
+                <Button 
+                    onClick={back} className="mt-3">Back</Button>
                 </div>
-                <Button variant="contained"
-                    component="label"
-                    sx={buttonStyle}
-                    onClick={back}
-                    style={{ marginLeft: '1%' }}>Back</Button>
-
             </div>
         </div >
     )

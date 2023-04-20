@@ -83,6 +83,7 @@ export default function RecentTransactions({ active }: UserProps) {
                     <TableHead>
                         <TableRow>
                             <TableHeaderCell> Stock </TableHeaderCell>
+                            <TableHeaderCell> Name </TableHeaderCell>
                             <TableHeaderCell> Type </TableHeaderCell>
                             <TableHeaderCell> Quantity </TableHeaderCell>
                             <TableHeaderCell> Premium ($) </TableHeaderCell>
@@ -99,7 +100,8 @@ export default function RecentTransactions({ active }: UserProps) {
                                     :
 
                                     <TableRow key={index}>
-                                        <TableCell className="content-center"> <Text> <Button variant="secondary" size="sm"> {item.stock.symbol} </Button> </Text> </TableCell>
+                                        <TableCell className="content-center"> <Text> <Badge size="xl"> {item.stock.symbol} </Badge> </Text> </TableCell>
+                                        <TableCell className="content-center"> <Text>  {item.stock.name} </Text> </TableCell>
                                         <TableCell> <Text> <Badge color={item.type == "put" ? "violet" : "amber"}> {item.type}</Badge> </Text> </TableCell>
                                         <TableCell> <Text> {item.quantity} </Text> </TableCell>
                                         <TableCell> <Text> {item.premium} </Text> </TableCell>

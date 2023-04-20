@@ -15,7 +15,14 @@ import {
 } from "@tremor/react";
 import { OptionInfo } from "@/pages/optionMarket";
 import { Center } from "@chakra-ui/react";
+import dayjs from "dayjs";
 
+
+const dateFormatter = (date: any) => {
+    return (
+        dayjs(date).format('D MMMM YYYY')
+    )
+}
 
 export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) {
     const data = tablerows;
@@ -39,9 +46,9 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
                 <TableBody>
                     {data.map((item, index) => (
                         <TableRow key={index}>
-                            <TableCell><Button variant="secondary" size="sm"> {item.stock.name}</Button></TableCell>
+                            <TableCell><Badge size="xl"> {item.stock.name}</Badge></TableCell>
                             <TableCell>
-                                <Text>{item.expiration_date}</Text>
+                                <Text>{dateFormatter(item.expiration_date)}</Text>
                             </TableCell>
                             <TableCell>
                                 <Text>${item.strike_price}</Text>

@@ -110,7 +110,7 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
               <Typography component="h1" variant="h5" mt={2} sx={{ flex: 1, color: 'rgb(41,56,69)' }}>Trading Account: John</Typography>
               <Grid item sm={3}>
 
-                <TextField
+                {/* <TextField
                   id="search"
                   type="search"
                   label="Search"
@@ -126,7 +126,7 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
                       </InputAdornment>
                     ),
                   }}
-                />
+                /> */}
 
               </Grid>
 
@@ -153,7 +153,7 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
                         label="UNITS"
 
                         onChange={(e) => {
-                          setUnits(parseInt(e.target.value))
+                          setUnits(parseFloat(e.target.value))
                         }}
                       />
                     </Grid>
@@ -163,7 +163,7 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
                         helperText={"Required field"}
                         label="STRIKE PRICE"
                         onChange={(e) => {
-                          setStrike(parseInt(e.target.value))
+                          setStrike(parseFloat(e.target.value))
                         }}
                       />
                     </Grid>
@@ -173,7 +173,7 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
                         helperText={"Required field"}
                         label="PREMIUM"
                         onChange={(e) => {
-                          setPremium(parseInt(e.target.value))
+                          setPremium(parseFloat(e.target.value))
                         }}
                       />
                     </Grid>

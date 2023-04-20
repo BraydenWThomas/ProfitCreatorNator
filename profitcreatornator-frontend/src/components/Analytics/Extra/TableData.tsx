@@ -43,9 +43,9 @@ export default function TableData({ data, highlightedRow, setHighlightedRow, set
             {data.stock.name} 
           </TableCell>
           <TableCell> ${data.strike_price} </TableCell>
-          <TableCell>
-            {/* <GetBadge status={data.profitLoss[0]} amount={data.profitLoss} /> */}
-          </TableCell>
+          {/* <TableCell>
+            <GetBadge status={data.profitLoss[0]} amount={data.profitLoss} />
+          </TableCell> */}
           <TableCell> {data.quantity} </TableCell>
           <TableCell> ${data.premium} </TableCell>
           <TableCell> {data.style} </TableCell>

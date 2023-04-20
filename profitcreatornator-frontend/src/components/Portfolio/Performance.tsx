@@ -1,4 +1,4 @@
-import { Button, Card, Divider, Flex, Title, Text, LineChart, TabList, Tab, Toggle, ToggleItem, AreaChart } from "@tremor/react";
+import { Button, Card, Divider, Flex, Title, Text, LineChart, TabList, Tab, Toggle, ToggleItem, AreaChart, Subtitle } from "@tremor/react";
 
 import { useState } from "react";
 import { startOfYear, subDays } from "date-fns";
@@ -111,7 +111,8 @@ export default function LineChartTabs() {
             decoration="top"
             decorationColor="purple"
         >
-            <Title> Account Performance - {selectedCategory}</Title>
+            <Title> My Performance</Title>
+            <Subtitle> Account Performance - {selectedCategory}</Subtitle>
 
             <div style={{ float: "left" }}>
                 <TabList
