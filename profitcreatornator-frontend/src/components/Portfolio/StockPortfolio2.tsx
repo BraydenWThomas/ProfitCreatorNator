@@ -1,5 +1,4 @@
 // Imports
-import PortfolioData from '@/components/data/PortfolioData';
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -35,7 +34,7 @@ function StockPie({ active }: UserProps) {
     useEffect(() => {
         axios.get('http://localhost:8080/api/portfolio/trader/detailed/' + active) // use 3 for now
             .then(response => {
-                console.log(response);
+                //console.log(response);
                 setStocks(response.data)
             }).catch(error => console.log('error', error));
     }, [])

@@ -1,59 +1,30 @@
 // IMPORTS
 import Navbar from '../components/Navbar';
 import StatBox from "@/components/Portfolio/StatBox";
-import RecentTransactions from '@/components/Dashboard/RecentTransactionsTable';
+// import RecentTransactions from '@/components/Dashboard/RecentTransactionsTable';
 import RecentTransactions2 from '@/components/Dashboard/RecentTransactionsTable2';
-import StockPortfolio from '../components/Portfolio/StockPortfolio';
+// import StockPortfolio from '../components/Portfolio/StockPortfolio';
 import StockPortfolio2 from '../components/Portfolio/StockPortfolio2';
-import StockPie from '../components/Portfolio/StockPie';
-import StockPie2 from '../components/Portfolio/StockPie2';
+// import StockPie from '../components/Portfolio/StockPie';
+// import StockPie2 from '../components/Portfolio/StockPie2';
 import Performance from "../components/Portfolio/Performance";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
-// Heroicons
-import { CashIcon } from "@heroicons/react/outline";
-import { ChartBarIcon } from "@heroicons/react/outline";
-import { ClockIcon } from "@heroicons/react/outline";
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
 
 // Material UI
-import { Box, Button, Container, Divider, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 
 // TREMOR SO
-import { Grid, Col, Card, Text, Metric } from "@tremor/react";
+import { Grid, Col } from "@tremor/react";
 import Header from '@/components/Header';
+import StatCardsView from '@/components/Portfolio/StatCardsView';
 
 // END OF IMPORTS
 
 export default function portfolio() {
 
-    const noForUser = 4; // for sake of testing user without login
-
-    // const [stocks, setStocks] = useState([])
-    // const [portfolio, setPortfolio] = useState([])
-
-    // Get stocks for 'My Holdings'
-    // useEffect(() => {
-    //     Promise.all([
-    //         axios.get('http://localhost:8080/api/portfolio/trader/detailed/3'), // use 3 for now
-    //         axios.get('http://localhost:8080/api/portfolio/trader/3') // use 3 for now
-    //     ]).then(response => {
-    //         console.log(response);
-    //         setStocks(response[0].data)
-    //         setPortfolio(response[1].data)
-    //     }).catch(error => console.log('error', error));
-    // }, [])
-
-    // console.log(stocks)
-    // console.log(portfolio)
-
-    // console.log(stocks)
-
-    // FETCH DATA
-
-    // END OF DATA FETCH
-
+    const userPH = 1; // User Place Holder
 
     return (
         <div style={{ display: 'flex', width: "100%" }}>
@@ -68,11 +39,11 @@ export default function portfolio() {
                         <Typography variant="h4" color="#293845" mx={2} mb={2} style={{ float: "left" }}> My Holdings </Typography>
                         <Button variant="contained" style={{ float: "right" }} href='/'> Buy / sell </Button> {/* Take you to 'Buy/sell' */}
                         <div style={{ clear: "both" }} />
-                        <RecentTransactions2 active={noForUser} />
+                        <RecentTransactions2 active={userPH} />
                     </div>
 
                     <div style={{ clear: "both" }}>
-                        <StockPortfolio2 active={noForUser} />
+                        <StockPortfolio2 active={userPH} />
                     </div>
 
                     <Divider />
@@ -84,22 +55,9 @@ export default function portfolio() {
                                 <Performance />
                             </Col>
                             <Col>
-
-                                <Box textAlign='center' className="ml-4">
-                                    <StatBox icon={CashIcon}
-                                        title={"Profit"}
-                                        total={"$834.95"}
-                                        color="amber" />
-                                    <StatBox icon={ChartBarIcon}
-                                        title={"Earnings"}
-                                        total={"$350.51"}
-                                        color="rose" />
-                                    <StatBox icon={ClockIcon}
-                                        title={"Pending Options"}
-                                        total={"4"}
-                                        color="stone" />
-                                    <Button className='w-full mx-auto' variant="contained" sx={{ backgroundColor: "lightpurple" }} href='/analytics'> View Analytics </Button> {/* Take you to 'Analytics' */}
-                                </Box>
+                                <div>
+                                    <StatCardsView active={userPH}/>
+                                </div>
                             </Col>
 
                         </Grid>

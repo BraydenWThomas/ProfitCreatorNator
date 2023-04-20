@@ -69,15 +69,12 @@ export default function RecentTransactions({ active }: UserProps) {
 
     // API Call to get option information based on user
     useEffect(() => {
-        let temp = [];
         axios.get('http://localhost:8080/api/option/' + active + '/all')
             .then(response => {
                 setOptions(response.data)
             }).catch(error => console.log('error', error));
     }, [])
 
-    console.log("Options t");
-    console.log(options)
     return (
         <div className="recent-transactions">
             <Card>
@@ -114,7 +111,6 @@ export default function RecentTransactions({ active }: UserProps) {
 
                             )
                         }
-
                     </TableBody>
                 </Table>
                 <Button
