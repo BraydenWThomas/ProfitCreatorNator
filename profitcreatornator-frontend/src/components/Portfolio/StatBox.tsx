@@ -4,7 +4,7 @@ import React, { FunctionComponent } from "react";
 interface Props {
     icon: React.ElementType
     title: string
-    total: string
+    total: any
     color: any
 }
 

@@ -18,28 +18,27 @@ interface portfolioItem {
     id: number;
     quantity: number;
     stock: stockInformation;
- }
+}
 
- interface UserProps {
+interface UserProps {
     active: number
 }
 
-export default function StockPie({active}: UserProps) {
+export default function StockPie({ active }: UserProps) {
 
     const [stocks, setStocks] = useState<portfolioItem[]>([]) // owned stocks
 
     // Make this more effecient, use that data component
     useEffect(() => {
-            axios.get('http://localhost:8080/api/portfolio/trader/detailed/' + active) // use 3 for now
-        .then(response => {
-            console.log(response);
-            setStocks(response.data)
-        }).catch(error => console.log('error', error));
+        axios.get('http://localhost:8080/api/portfolio/trader/detailed/' + active) // use 3 for now
+            .then(response => {
+                //console.log(response);
+                setStocks(response.data)
+            }).catch(error => console.log('error', error));
     }, [])
 
     const valueFormatter = (number: number) =>
         `${Intl.NumberFormat("us").format(number).toString()}`;
-
 
     return (
         <div className="stock-pie">
