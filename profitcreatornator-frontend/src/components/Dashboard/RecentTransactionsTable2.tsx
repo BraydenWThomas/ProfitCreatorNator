@@ -5,10 +5,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // Material UI
-import Button from "@mui/material/Button"
+// import Button from "@mui/material/Button"
 
 // Tremor
-import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TabList, Tab, Text, Title } from "@tremor/react";
+import { Badge, BadgeDelta, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TabList, Tab, Text, Title, Button } from "@tremor/react";
+import { ArrowNarrowRightIcon } from "@heroicons/react/outline";
 
 // END OF IMPORTS
 
@@ -99,16 +100,16 @@ export default function RecentTransactions({ active }: UserProps) {
                                 dateFormatter(item.purchase_date) == 'Invalid Date' ?
                                     null
                                     :
-                                    
-                                        <TableRow key={index}>
-                                            <TableCell className="content-center"> <Text> <Button variant="outlined" size="small"> {item.stock.symbol} </Button> </Text> </TableCell>
-                                            <TableCell> <Text> <Badge color={item.type == "put" ? "violet" : "amber"}> {item.type}</Badge> </Text> </TableCell>
-                                            <TableCell> <Text> {item.quantity} </Text> </TableCell>
-                                            <TableCell> <Text> {item.premium} </Text> </TableCell>
-                                            <TableCell> <Text> {item.strike_price} </Text> </TableCell>
-                                            <TableCell> <Text> {dateFormatter(item.purchase_date)} </Text> </TableCell>
-                                        </TableRow>
-                                    
+
+                                    <TableRow key={index}>
+                                        <TableCell className="content-center"> <Text> <Button variant="secondary" size="sm"> {item.stock.symbol} </Button> </Text> </TableCell>
+                                        <TableCell> <Text> <Badge color={item.type == "put" ? "violet" : "amber"}> {item.type}</Badge> </Text> </TableCell>
+                                        <TableCell> <Text> {item.quantity} </Text> </TableCell>
+                                        <TableCell> <Text> {item.premium} </Text> </TableCell>
+                                        <TableCell> <Text> {item.strike_price} </Text> </TableCell>
+                                        <TableCell> <Text> {dateFormatter(item.purchase_date)} </Text> </TableCell>
+                                    </TableRow>
+
 
 
                             )
@@ -116,6 +117,15 @@ export default function RecentTransactions({ active }: UserProps) {
 
                     </TableBody>
                 </Table>
+                <Button
+                    size="sm"
+                    variant="light"
+                    icon={ArrowNarrowRightIcon}
+                    iconPosition="right"
+                    className="mt-4"
+                >
+                    View all transactions
+                </Button>
             </Card>
         </div>
     )

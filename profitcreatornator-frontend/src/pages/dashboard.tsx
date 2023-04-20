@@ -14,7 +14,7 @@ export default function dashboard() {
     const noForUser = 1; // for sake of testing user without login
 
     return (
-        <div className="flex w-full dark:bg-blue-950">
+        <div className="flex w-full">
             <div>
             <Navbar active="Dashboard"/>
             </div>
