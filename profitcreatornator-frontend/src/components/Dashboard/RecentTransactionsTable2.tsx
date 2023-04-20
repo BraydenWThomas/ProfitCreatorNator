@@ -124,7 +124,9 @@ export default function RecentTransactions({ active }: UserProps) {
                     iconPosition="right"
                     className="mt-4"
                 >
+                    <a href="/portfolio">
                     View all transactions
+                    </a>
                 </Button>
             </Card>
         </div>
