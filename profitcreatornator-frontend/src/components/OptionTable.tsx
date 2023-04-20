@@ -14,17 +14,19 @@ import {
     Button
 } from "@tremor/react";
 import { OptionInfo } from "@/pages/optionMarket";
+import { Center } from "@chakra-ui/react";
 
 
 export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) {
     const data = tablerows;
+    const profitLoss = "+15";
     return (
         <Card>
 
             <Table className="mt-5">
                 <TableHead style={{ fontSize: "100%" }}>
                     <TableRow>
-                        <TableHeaderCell>Code</TableHeaderCell>
+                        <TableHeaderCell>Stock</TableHeaderCell>
                         <TableHeaderCell>Expiration Date</TableHeaderCell>
                         <TableHeaderCell>Strike Price($)</TableHeaderCell>
                         <TableHeaderCell>Profit/Loss(%)</TableHeaderCell>
@@ -37,7 +39,7 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
                 <TableBody>
                     {data.map((item, index) => (
                         <TableRow key={index}>
-                            <TableCell>{item.id}</TableCell>
+                            <TableCell><Button variant="secondary" size="sm"> {item.stock.name}</Button></TableCell>
                             <TableCell>
                                 <Text>{item.expiration_date}</Text>
                             </TableCell>
@@ -46,20 +48,20 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
                             </TableCell>
                             <TableCell>
 
-                                {/* {item.profitLoss[0] == "+" ?
+                                {profitLoss[0] == "+" ?
                                     <BadgeDelta
                                         deltaType="increase"
                                         isIncreasePositive={true}
                                         size="xs">
-                                        {item.profitLoss}
+                                        {profitLoss}
                                     </BadgeDelta> :
 
                                     <BadgeDelta
                                         deltaType="decrease"
                                         isIncreasePositive={false}
                                         size="xs">
-                                        {item.profitLoss}
-                                    </BadgeDelta>} */}
+                                        {profitLoss}
+                                    </BadgeDelta>}
                             </TableCell>
                             <TableCell>
                                 {item.quantity.toString()}
@@ -80,10 +82,7 @@ export default function OptionTable({ tablerows }: { tablerows: OptionInfo[] }) 
 
                             </TableCell>
                             <TableCell>
-                            <Link href={{
-                                    pathname: '/viewOption/' + item.id,
-                              
-                                }}> <Button color="green">View</Button></Link>
+                            <Link href={'/viewOption/[id]'} as={`/viewOption/${item.id}`}> <Button color="green">View</Button></Link>
                             </TableCell>
                         </TableRow>
                     ))}

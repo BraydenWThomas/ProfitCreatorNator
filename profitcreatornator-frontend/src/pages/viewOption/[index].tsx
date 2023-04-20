@@ -13,6 +13,7 @@ import StockInfoList from "@/components/StockInfo/StockInfoList";
 import StockPriceCard from "@/components/StockInfo/StockPriceCard"
 import Header from "@/components/Header";
 import { OptionInfo } from "../optionMarket";
+import { Stock } from "@/components/OptionModal";
 
 export default function OptionMarket() {
     
@@ -22,21 +23,36 @@ export default function OptionMarket() {
             color: 'rgb(44,136,217)',
         },
     }
+    const [id, setId] = useState<any>();
     const router = useRouter()
-    const id = Object.entries(router.query)[0][1];
+
+    useEffect(() => { 
+        
+        if(router.isReady){
+            setId(Object.entries(router.query)[0][1])
+        }
+      
+    }, [router])
+
     const [optionDetail, setOptionDetail] = useState<OptionInfo>({
+        barrierOption: null,
         expiration_date: "2023-04-17T00:00:00",
         id: "0",
         premium: 0,
         purchase_date: null,
         quantity: 0,
         status: "waiting_taker",
+        stock: null,
+
         strike_price: 0,
         style: "European",
-        type: "put"
+        taker: null,
+        type: "put",
+        writer: null
 
     })
     useEffect(() => {
+        if (id != undefined){
         const requestOptions: RequestInit = {
             method: 'GET',
             redirect: 'follow',
@@ -48,7 +64,13 @@ export default function OptionMarket() {
                 setOptionDetail(data)
             })
             .catch(error => console.log('error', error));
-    }, [])
+        }
+
+    }, [id])
+
+    const back = () => {
+        window.history.back()
+    }
 
     return (
         <div style={{ display: 'flex', width: "100%" }}>
@@ -56,7 +78,7 @@ export default function OptionMarket() {
                 <Navbar active="Marketplace" />
             </div>
             <div style={{ width: "100%" }}>
-                <Header title={"Option " + id } />
+                <Header title={id == undefined ? "Option" : "Option " + id} />
                 <div className="px-4 py-2">
                     <Grid container spacing={2}>
                         <Grid item sm={12}>
@@ -68,6 +90,7 @@ export default function OptionMarket() {
                         </Grid>
 
                         <Grid item sm={9}>
+                            <Title style={{fontSize: '50px', marginBottom: '2%', marginTop: '0.5%'}}>{optionDetail.stock ? optionDetail.stock.name : ""}</Title>
                             <Value />
                         </Grid>
                         <Grid item sm={3}>
@@ -85,6 +108,10 @@ export default function OptionMarket() {
                             <Card>
                                 <Title>Option Details</Title>
                                 <List>
+                                <ListItem>
+                                        <span>Writer</span>
+                                        <span>{optionDetail.writer ? optionDetail.writer.name : null}</span>
+                                    </ListItem>
                                     <ListItem>
                                         <span>Strike Price</span>
                                         <span>{optionDetail.strike_price}</span>
@@ -108,7 +135,7 @@ export default function OptionMarket() {
                 <Button variant="contained"
                     component="label"
                     sx={buttonStyle}
-                    onClick={router.back}
+                    onClick={back}
                     style={{ marginLeft: '1%' }}>Back</Button>
 
             </div>

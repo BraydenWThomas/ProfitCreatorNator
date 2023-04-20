@@ -4,20 +4,24 @@ import { Divider, Typography, Button } from "@mui/material";
 import Navbar from '../components/Navbar';
 import { ChakraProvider, Stat, StatArrow, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react";
 import OptionTable from "@/components/OptionTable";
-import OptionModal from "@/components/OptionModal";
+import OptionModal, { Stock } from "@/components/OptionModal";
 
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 export interface OptionInfo {
+    barrierOption: null
     expiration_date: String
     id: String
     premium: number
     purchase_date: any
     quantity: number
     status: String
+    stock: any
     strike_price: number
     style: String
+    taker: any
     type: String
+    writer: any
 }
 export default function OptionMarket() {
     const buttonStyle = {
@@ -48,6 +52,7 @@ export default function OptionMarket() {
             .then(response => response.json())
             .then(data => {
                 setOptionInfo(data.filter((item : OptionInfo) => item.status == "waiting_taker"))
+                
             })
             .catch(error => console.log('error', error));
     }, [])
