@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import OptionTable from "./OptionTable";
-import { Toggle, ToggleItem, Badge } from "@tremor/react";
+import { Toggle, ToggleItem, Badge, Title, Metric } from "@tremor/react";
 import { OptionInfo } from "@/pages/optionMarket";
 export interface Stock {
   id: String
@@ -95,19 +95,18 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
           boxShadow: 24
         }}
       >
-        <Box style={{ backgroundColor: 'rgb(195,207,217)', transform: 'translate(100%, 30%)', width: '30%', height: '60%' }}>
+        <Box className='bg-gray-300' style={{ transform: 'translate(100%, 30%)', width: '30%', height: '40%' }}>
           <Container component="main">
             <div className="header" style={{ display: "flex" }}>
-              <Typography component="h1" variant="h3" mt={2} sx={{ flex: 1, color: 'rgb(41,56,69)' }}>Create Option</Typography>
+              <Metric className="py-2">Create Option</Metric>
             </div>
             <Box
               sx={{
                 flexDirection: 'column',
                 alignItems: 'center',
-                mt: 3,
               }}>
-              <Divider sx={{ mt: 2, mb: 2 }} />
-              <Typography component="h1" variant="h5" mt={2} sx={{ flex: 1, color: 'rgb(41,56,69)' }}>Trading Account: John</Typography>
+              <Divider />
+              <Title className="py-2">Trading Account: John</Title>
               <Grid item sm={3}>
 
                 {/* <TextField
@@ -133,7 +132,7 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
               <div style={{ display: 'flex' }}>
                 <div>
                   <div style={{ marginBottom: '5%' }}>
-                    <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginBottom: '0.2%' }}> Order Type </Typography>
+                    <Title> Order Type </Title>
                     <Toggle style={{ fontWeight: '700' }} defaultValue="put" onValueChange={(value) => setOptionType(value)}>
 
                       <ToggleItem value="put" text="PUT" />
@@ -182,19 +181,19 @@ export default function OptionModal({ openState, setOpenState, optionInfo, setOp
                 </div>
 
                 <Box sx={{ marginLeft: '10%', width: '70%' }}>
-                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginBottom: '0.2%' }}> Order Style </Typography>
+                  <Title> Order Style </Title>
                   <Toggle style={{ fontWeight: '700' }} defaultValue="European" onValueChange={(value) => setOptionStyle(value)}>
 
                     <ToggleItem value="European" text="European" />
                     <ToggleItem value="American" text="American" />
                   </Toggle>
-                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginTop: '2%' }}> Select Stock </Typography>
+                  <Title className="pt-3"> Select Stock </Title>
 
                   {stockInfo[0] ? stockInfo.map((item, index) => (<Button key={index} variant="outlined" onClick={() => {
                     setSelectedStock(item);
                     
                   }}>{item.name}</Button>)) : <h1>hi</h1>}
-                  <Typography component="h2" variant="h6" mb={2} style={{ fontWeight: 700, marginTop: '2%' }}> Stock Chosen </Typography>
+                  <Title className="pt-3"> Stock Chosen </Title>
                  {selectedStock == undefined ? null : <Badge color="green" size="sm">{selectedStock.name}</Badge>}
                 </Box>
 

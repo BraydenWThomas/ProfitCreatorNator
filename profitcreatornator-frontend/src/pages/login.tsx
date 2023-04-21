@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function login() {
     return (
-        <div className="flex w-full h-screen bg-gray-700">
+        <div className="flex w-full bg-gray-500" style={{height:'100vh'}}>
             <Container component='main' maxWidth='lg'>
                 <Box
                     sx={{

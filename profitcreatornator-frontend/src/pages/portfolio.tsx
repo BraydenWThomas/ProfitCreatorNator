@@ -46,11 +46,9 @@ export default function portfolio() {
                         <StockPortfolio2 active={userPH} />
                     </div>
 
-                    <Divider />
-
                     <div style={{ clear: "both", marginBottom: "16px" }}>
                         {/* <Typography variant="h4" color="#293845" mx={2} mb={2}> My Performance </Typography> */}
-                        <Grid numCols={1} numColsSm={2} numColsLg={3} className="gap-2">
+                        <Grid numCols={1} numColsSm={2} numColsLg={3} className="gap-2" style={{paddingTop:20}}>
                             <Col numColSpan={2} numColSpanLg={2}>
                                 <Performance />
                             </Col>
